@@ -3,32 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <title>لوحة التحكم - المنهل</title>
-    <!-- في head كلا الملفين -->
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="/manifest.json">
 </head>
 <body>
+    <!-- الهيدر -->
     <header class="dashboard-header">
         <div class="header-left">
             <img src="logo1.png" class="header-logo" alt="شعار المنهل">
             <h1 id="branchName"></h1>
         </div>
-      <button class="logout-btn" onclick="logout()">
-    <span class="material-icons">logout</span>
-</button>
+        <button class="logout-btn" onclick="logout()">
+            <span class="material-icons">logout</span>
+        </button>
     </header>
 
+    <!-- المحتوى الرئيسي -->
     <main class="main-content">
-        <div class="cards-container" id="cardsContainer"></div>
+        <div id="dashboard">
+            <div class="cards-container" id="cardsContainer"></div>
+        </div>
     </main>
-<footer class="auto-update-notice">
-    <div class="notice-content">
-        <span class="material-icons">info</span>
-        <p>جميع تحديثات الهوية البصرية يتم تحديثها تلقائيًا عبر النظام</p>
-    </div>
-</footer>
+
+    <!-- الفوتر -->
+    <footer class="auto-update-notice">
+        <div class="notice-content">
+            <span class="material-icons">info</span>
+            <p>جميع تحديثات الهوية البصرية يتم تحديثها تلقائيًا عبر النظام</p>
+        </div>
+    </footer>
+
     <script src="script.js"></script>
 </body>
 </html>
