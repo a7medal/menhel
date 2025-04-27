@@ -359,7 +359,7 @@ function loadBranchData(branchKey) {
         <div class="search-bar">
             <div class="search-container">
                 <span class="material-icons">search</span>
-                <input type="text" id="searchInput" placeholder="ابحث هنا عن عنصر في الهوية البصرية...">
+                <input type="text" id="searchInput" placeholder="ابحث هنا عن عنصر  ...">
             </div>
         </div>
     `);
