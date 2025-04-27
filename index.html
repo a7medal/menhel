@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>تسجيل الدخول - المنهل</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <img src="logo.png" alt="شعار المنهل" class="logo">
+            <form id="loginForm">
+                <div class="input-group">
+                    <label for="username">
+                        <span class="material-icons">person</span>
+                        اسم المستخدم
+                    </label>
+                    <input type="text" id="username" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">
+                        <span class="material-icons">lock</span>
+                        كلمة المرور
+                    </label>
+                    <input type="password" id="password" required>
+                </div>
+                <button type="submit" class="login-btn">
+                    <span class="material-icons">login</span>
+                    تسجيل الدخول
+                </button>
+                <div class="error-msg" id="errorMsg"></div>
+            </form>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
