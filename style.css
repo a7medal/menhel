@@ -400,12 +400,12 @@ input {
     background: #155f4a !important;
 }
 
-/* تنسيق زر التثبيت الجديد */
+/* تنسيق زر التثبيت المعدل */
 .install-btn {
     position: fixed;
     bottom: 30px;
-    left: 30px; /* يمكن تغييرها إلى right للمحاذاة اليمنى */
-    background: linear-gradient(45deg, #DBA437, #FFD700);
+    left: 30px;
+    background: var(--accent-color); /* لون أحادي */
     color: white;
     padding: 14px 28px;
     border: none;
@@ -413,27 +413,24 @@ input {
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
-    box-shadow: 0 4px 20px rgba(219, 164, 55, 0.3);
     display: flex;
     align-items: center;
     gap: 12px;
     transition: all 0.3s ease;
     z-index: 1000;
-    backdrop-filter: blur(5px);
-    border: 2px solid rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.1); /* إطار خفيف */
 }
 
-/* تأثيرات الـ Hover */
+/* تأثيرات الـ Hover البسيطة */
 .install-btn:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 25px rgba(219, 164, 55, 0.4);
-    background: linear-gradient(45deg, #FFD700, #DBA437);
+    transform: translateY(-2px);
+    background: #c28d2e; /* تدرج داكن عند التمرير */
 }
 
 /* أيقونة المادة */
 .install-btn .material-icons {
     font-size: 24px;
-    filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.1));
+    color: rgba(255, 255, 255, 0.9); /* لون أيقونة ناعم */
 }
 
 /* تنسيق للأجهزة المحمولة */
