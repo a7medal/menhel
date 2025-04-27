@@ -175,25 +175,26 @@ const branches = {
                 files: 
                     { name: "PDF", url: "mh2.seal.pdf" },
                     { name: "PNG", url: "mh2.seal.png" },
-                    { name: "SVG", url: "mhz.seal.svg" }
+                    { name: "SVG", url: "mh2.seal.svg" }
                 ]
             },
             {
                 title: "وصل الدفع",
                 icon: "receipt",
                 files: [
-                    { name: "PDF", url: "assets/mh2/documents/payment.pdf" },
-                    { name: "PNG", url: "assets/mh2/documents/payment.png" }
+                    { name: "PDF", url: "mh2.payment.pdf" },
+                    { name: "PNG", url: "mh2.payment.png" }
                 ]
+            },
             },
             {
                 title: "شعار الرابطة",
                 icon: "groups",
                 files: [
-                    { name: "PNG", url: "assets/mh2/logos/association.png" },
-                    { name: "JPG", url: "assets/mh2/logos/association.jpg" },
-                    { name: "SVG", url: "assets/mh2/logos/association.svg" },
-                    { name: "PDF", url: "assets/mh2/logos/association.pdf" }
+                    { name: "PNG", url: "association.png" },
+                    { name: "JPG", url: "association.jpg" },
+                    { name: "SVG", url: "association.svg" },
+                    { name: "PDF", url: "association.svg" }
                 ]
             },
             {
