@@ -395,3 +395,38 @@ button[class="install-btn"]:hover {
     transform: translateY(-2px);
     background: #c28d2e !important;
 }
+/* styles.css - الجزء الجديد */
+.search-bar {
+  margin: 20px auto;
+  width: 90%;
+  max-width: 600px;
+}
+
+.search-container {
+  background: #f5f5f5;
+  border-radius: 25px;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  direction: rtl;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.search-container input {
+  border: none;
+  background: transparent;
+  width: 100%;
+  padding: 8px;
+  font-size: 16px;
+  color: #333;
+}
+
+.search-container input:focus {
+  outline: none;
+}
+
+.search-container .material-icons {
+  color: #666;
+  font-size: 24px;
+}
