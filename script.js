@@ -318,14 +318,7 @@ const branches = {
     }
 };
 
-// بيانات الدخول
-const validCredentials = {
-    mh1: '0987',
-    mh2: '6543',
-    mh3: '2143'
-};
-
-// تسجيل الدخول
+// بيانات الدخول// تسجيل الدخول
 document.addEventListener('DOMContentLoaded', () => {
     const loginForm = document.getElementById('loginForm');
     if (loginForm) {
@@ -337,13 +330,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (validCredentials[username] && validCredentials[username] === password) {
                 sessionStorage.setItem('currentBranch', username);
-                errorMsg.style.display = 'none';
                 window.location.href = 'dashboard.html';
             } else {
-                errorMsg.innerHTML = `
-                    <span class="material-icons">error_outline</span>
-                    اسم المستخدم أو كلمة المرور غير صحيحة!
-                `;
+                errorMsg.innerHTML = `<span class="material-icons">error_outline</span> اسم المستخدم أو كلمة المرور غير صحيحة!`;
                 errorMsg.style.display = 'block';
             }
         });
@@ -358,7 +347,7 @@ function loadBranchData(branchKey) {
         return;
     }
 
-    // شريط البحث
+    // إضافة شريط البحث
     const dashboard = document.getElementById('dashboard');
     dashboard.insertAdjacentHTML('afterbegin', `
         <div class="search-bar">
@@ -381,7 +370,7 @@ function loadBranchData(branchKey) {
         Array.from(cards).forEach(card => {
             const title = card.querySelector('h3').textContent.toLowerCase();
             const content = card.querySelector('.card-content').textContent.toLowerCase();
-            card.style.display = (title.includes(searchText) || content.includes(searchText) ? 'block' : 'none';
+            card.style.display = (title.includes(searchText) || content.includes(searchText)) ? 'block' : 'none';
         });
     });
 
@@ -426,21 +415,13 @@ function loadBranchData(branchKey) {
             asset.colors.forEach(color => {
                 const box = document.createElement('div');
                 box.className = 'color-box';
-                
-                // معالجة أنواع الألوان
                 let bgColor = 'transparent';
-                if (color.type === 'HEX') {
-                    bgColor = color.code;
-                } else if (color.type === 'RGB') {
-                    bgColor = `rgb(${color.code})`;
-                } else if (color.type === 'CMYK') {
-                    bgColor = '#EEECE9'; // لون افتراضي لعدم دعم CMYK في CSS
-                }
-                
+                if (color.type === 'HEX') bgColor = color.code;
+                if (color.type === 'RGB') bgColor = `rgb(${color.code})`;
                 box.style.backgroundColor = bgColor;
                 box.innerHTML = `
                     <div class="color-code">${color.code}</div>
-                    ${color.type !== 'CMYK' ? `<div class="color-type">${color.type}</div>` : ''}
+                    <div class="color-type">${color.type}</div>
                 `;
                 colorGrid.appendChild(box);
             });
@@ -467,7 +448,7 @@ function logout() {
     window.location.href = 'index.html';
 }
 
-// PWA Installation
+// PWA
 let deferredPrompt;
 window.addEventListener('beforeinstallprompt', (e) => {
     e.preventDefault();
@@ -478,10 +459,7 @@ window.addEventListener('beforeinstallprompt', (e) => {
 function showInstallButton() {
     const installBtn = document.createElement('button');
     installBtn.className = 'install-btn';
-    installBtn.innerHTML = `
-        <span class="material-icons">download</span>
-        تثبيت التطبيق
-    `;
+    installBtn.innerHTML = `<span class="material-icons">download</span> تثبيت التطبيق`;
     installBtn.onclick = installApp;
     document.querySelector('.login-box').appendChild(installBtn);
 }
@@ -507,10 +485,7 @@ if ('serviceWorker' in navigator) {
 window.addEventListener('DOMContentLoaded', () => {
     if (window.location.pathname.includes('dashboard.html')) {
         const currentBranch = sessionStorage.getItem('currentBranch');
-        if (!currentBranch) {
-            window.location.href = 'index.html';
-        } else {
-            loadBranchData(currentBranch);
-        }
+        if (!currentBranch) window.location.href = 'index.html';
+        else loadBranchData(currentBranch);
     }
 });
