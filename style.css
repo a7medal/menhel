@@ -374,59 +374,62 @@ input {
   font-size: 1.2rem;
 }
 /* تنسيق زر التثبيت */
-/* تنسيق زر التثبيت */
+/* تنسيق زر تسجيل الدخول */
+.login-btn {
+    background: var(--primary-color) !important;
+    color: white !important;
+    border: none;
+    border-radius: 12px;
+    padding: 16px 30px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(28, 100, 89, 0.3);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 25px;
+}
+
+.login-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(28, 100, 89, 0.4);
+    background: #155f4a !important;
+}
+
+/* تنسيق زر تثبيت التطبيق */
 .install-btn {
     position: fixed;
     bottom: 30px;
     left: 30px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 14px 24px;
-    background: var(--accent-color);
-    color: white;
+    background: linear-gradient(45deg, var(--accent-color), #e6b343);
+    color: white !important;
     border: none;
-    border-radius: 30px;
+    border-radius: 50px;
+    padding: 14px 28px;
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    transition: 
-        transform 0.3s ease,
-        background 0.3s ease,
-        box-shadow 0.3s ease;
+    box-shadow: 0 4px 20px rgba(219, 164, 55, 0.25);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: all 0.3s ease;
     z-index: 1000;
-    backdrop-filter: blur(5px);
-    border: 1px solid rgba(255,255,255,0.1);
+    border: 2px solid rgba(255, 255, 255, 0.15);
 }
 
 .install-btn:hover {
-    transform: translateY(-2px) scale(1.05);
-    background: #c28d2e;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+    transform: scale(1.05);
+    box-shadow: 0 6px 25px rgba(219, 164, 55, 0.35);
 }
 
-.install-btn .material-icons {
-    font-size: 22px;
-    filter: drop-shadow(0 2px 2px rgba(0,0,0,0.1));
-}
-
-/* تنسيق للأجهزة المحمولة */
-@media (max-width: 768px) {
-    .install-btn {
-        bottom: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 90%;
-        max-width: 300px;
-        justify-content: center;
-        padding: 12px 20px;
-        font-size: 14px;
-    }
-    
-    .install-btn:hover {
-        transform: translateX(-50%) translateY(-2px) scale(1.02);
-    }
+/* التأثيرات البصرية للأيقونات */
+.material-icons {
+    filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.1));
 }
 /* styles.css - الجزء الجديد */
 .search-bar {
