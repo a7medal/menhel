@@ -1,7 +1,6 @@
 // script.js
 
-
-// بيانات الفروع والموارد
+// بيانات الفروع والموارد الكاملة
 const branches = {
     mh1: { 
         name: "المنهــــــل 1",
@@ -348,7 +347,7 @@ document.getElementById('loginForm')?.addEventListener('submit', function(e) {
     }
 });
 
-// تحميل بيانات الفرع وعرض البطاقات
+// تحميل بيانات الفرع وعرض البطاقات مع شريط البحث
 function loadBranchData(branchKey) {
     const branch = branches[branchKey];
     if (!branch) {
@@ -356,10 +355,39 @@ function loadBranchData(branchKey) {
         return;
     }
 
+    // إضافة شريط البحث
+    const searchHTML = `
+        <div class="search-bar">
+            <div class="search-container">
+                <span class="material-icons">search</span>
+                <input type="text" id="searchInput" placeholder="ابحث في الموارد...">
+            </div>
+        </div>
+    `;
+    document.getElementById('dashboard').insertAdjacentHTML('afterbegin', searchHTML);
+
     document.getElementById('branchName').textContent = branch.name;
     const container = document.getElementById('cardsContainer');
     container.innerHTML = '';
 
+    // دالة تصفية البطاقات
+    const filterCards = (searchText) => {
+        const cards = container.getElementsByClassName('asset-card');
+        Array.from(cards).forEach(card => {
+            const title = card.querySelector('h3').textContent.toLowerCase();
+            const content = card.querySelector('.card-content').textContent.toLowerCase();
+            card.style.display = (title.includes(searchText) || content.includes(searchText)) 
+                ? 'block' 
+                : 'none';
+        });
+    };
+
+    // إضافة حدث البحث
+    document.getElementById('searchInput').addEventListener('input', (e) => {
+        filterCards(e.target.value.trim().toLowerCase());
+    });
+
+    // إنشاء البطاقات
     branch.assets.forEach(asset => {
         const card = document.createElement('div');
         card.className = 'asset-card';
@@ -445,8 +473,6 @@ function showInstallButton() {
     تثبيت التطبيق
   `;
   installBtn.onclick = installApp;
-
-  // نلصق زر التثبيت داخل صندوق تسجيل الدخول
   document.querySelector('.login-box').appendChild(installBtn);
 }
 
