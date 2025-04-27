@@ -1,5 +1,3 @@
-// script.js
-
 // بيانات الفروع والموارد الكاملة
 const branches = {
     mh1: { 
@@ -320,34 +318,39 @@ const branches = {
     }
 };
 
-// بيانات الدخول الصحيحة
+// بيانات الدخول
 const validCredentials = {
     mh1: '0987',
     mh2: '6543',
     mh3: '2143'
 };
 
-// التعامل مع نموذج تسجيل الدخول
-document.getElementById('loginForm')?.addEventListener('submit', function(e) {
-    e.preventDefault();
-    const username = document.getElementById('username').value.trim().toLowerCase();
-    const password = document.getElementById('password').value.trim();
-    const errorMsg = document.getElementById('errorMsg');
+// تسجيل الدخول
+document.addEventListener('DOMContentLoaded', () => {
+    const loginForm = document.getElementById('loginForm');
+    if (loginForm) {
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value.trim().toLowerCase();
+            const password = document.getElementById('password').value.trim();
+            const errorMsg = document.getElementById('errorMsg');
 
-    if (validCredentials[username] && validCredentials[username] === password) {
-        localStorage.setItem('currentBranch', username);
-        errorMsg.style.display = 'none';
-        window.location.href = 'dashboard.html';
-    } else {
-        errorMsg.innerHTML = `
-            <span class="material-icons">error_outline</span>
-            اسم المستخدم أو كلمة المرور غير صحيحة!
-        `;
-        errorMsg.style.display = 'block';
+            if (validCredentials[username] && validCredentials[username] === password) {
+                sessionStorage.setItem('currentBranch', username);
+                errorMsg.style.display = 'none';
+                window.location.href = 'dashboard.html';
+            } else {
+                errorMsg.innerHTML = `
+                    <span class="material-icons">error_outline</span>
+                    اسم المستخدم أو كلمة المرور غير صحيحة!
+                `;
+                errorMsg.style.display = 'block';
+            }
+        });
     }
 });
 
-// تحميل بيانات الفرع وعرض البطاقات مع شريط البحث
+// تحميل بيانات الفرع
 function loadBranchData(branchKey) {
     const branch = branches[branchKey];
     if (!branch) {
@@ -355,36 +358,31 @@ function loadBranchData(branchKey) {
         return;
     }
 
-    // إضافة شريط البحث
-    const searchHTML = `
+    // شريط البحث
+    const dashboard = document.getElementById('dashboard');
+    dashboard.insertAdjacentHTML('afterbegin', `
         <div class="search-bar">
             <div class="search-container">
                 <span class="material-icons">search</span>
                 <input type="text" id="searchInput" placeholder="ابحث في الموارد...">
             </div>
         </div>
-    `;
-    document.getElementById('dashboard').insertAdjacentHTML('afterbegin', searchHTML);
+    `);
 
     document.getElementById('branchName').textContent = branch.name;
     const container = document.getElementById('cardsContainer');
     container.innerHTML = '';
 
-    // دالة تصفية البطاقات
-    const filterCards = (searchText) => {
+    // تصفية النتائج
+    document.getElementById('searchInput').addEventListener('input', function(e) {
+        const searchText = e.target.value.trim().toLowerCase();
         const cards = container.getElementsByClassName('asset-card');
+        
         Array.from(cards).forEach(card => {
             const title = card.querySelector('h3').textContent.toLowerCase();
             const content = card.querySelector('.card-content').textContent.toLowerCase();
-            card.style.display = (title.includes(searchText) || content.includes(searchText)) 
-                ? 'block' 
-                : 'none';
+            card.style.display = (title.includes(searchText) || content.includes(searchText) ? 'block' : 'none';
         });
-    };
-
-    // إضافة حدث البحث
-    document.getElementById('searchInput').addEventListener('input', (e) => {
-        filterCards(e.target.value.trim().toLowerCase());
     });
 
     // إنشاء البطاقات
@@ -392,6 +390,7 @@ function loadBranchData(branchKey) {
         const card = document.createElement('div');
         card.className = 'asset-card';
 
+        // رأس البطاقة
         const header = document.createElement('div');
         header.className = 'card-header';
         header.innerHTML = `
@@ -402,6 +401,7 @@ function loadBranchData(branchKey) {
         header.addEventListener('click', () => toggleCard(card));
         card.appendChild(header);
 
+        // محتوى البطاقة
         const content = document.createElement('div');
         content.className = 'card-content';
         content.style.maxHeight = '0';
@@ -426,11 +426,21 @@ function loadBranchData(branchKey) {
             asset.colors.forEach(color => {
                 const box = document.createElement('div');
                 box.className = 'color-box';
-                const bg = color.type === 'HEX' ? color.code : 'transparent';
-                box.style.background = bg;
+                
+                // معالجة أنواع الألوان
+                let bgColor = 'transparent';
+                if (color.type === 'HEX') {
+                    bgColor = color.code;
+                } else if (color.type === 'RGB') {
+                    bgColor = `rgb(${color.code})`;
+                } else if (color.type === 'CMYK') {
+                    bgColor = '#EEECE9'; // لون افتراضي لعدم دعم CMYK في CSS
+                }
+                
+                box.style.backgroundColor = bgColor;
                 box.innerHTML = `
                     <div class="color-code">${color.code}</div>
-                    <div class="color-type">${color.type}</div>
+                    ${color.type !== 'CMYK' ? `<div class="color-type">${color.type}</div>` : ''}
                 `;
                 colorGrid.appendChild(box);
             });
@@ -442,7 +452,7 @@ function loadBranchData(branchKey) {
     });
 }
 
-// دالة لتبديل حالة البطاقة (فتح/إغلاق)
+// تبديل حالة البطاقة
 function toggleCard(card) {
     const content = card.querySelector('.card-content');
     const arrow = card.querySelector('.arrow');
@@ -453,50 +463,50 @@ function toggleCard(card) {
 
 // تسجيل الخروج
 function logout() {
-    localStorage.removeItem('currentBranch');
+    sessionStorage.removeItem('currentBranch');
     window.location.href = 'index.html';
 }
 
-// إضافة دعم تثبيت التطبيق كـ PWA
+// PWA Installation
 let deferredPrompt;
 window.addEventListener('beforeinstallprompt', (e) => {
-  e.preventDefault();
-  deferredPrompt = e;
-  showInstallButton();
+    e.preventDefault();
+    deferredPrompt = e;
+    showInstallButton();
 });
 
 function showInstallButton() {
-  const installBtn = document.createElement('button');
-  installBtn.className = 'install-btn';
-  installBtn.innerHTML = `
-    <span class="material-icons">download</span>
-    تثبيت التطبيق
-  `;
-  installBtn.onclick = installApp;
-  document.querySelector('.login-box').appendChild(installBtn);
+    const installBtn = document.createElement('button');
+    installBtn.className = 'install-btn';
+    installBtn.innerHTML = `
+        <span class="material-icons">download</span>
+        تثبيت التطبيق
+    `;
+    installBtn.onclick = installApp;
+    document.querySelector('.login-box').appendChild(installBtn);
 }
 
 function installApp() {
-  deferredPrompt.prompt();
-  deferredPrompt.userChoice.then(() => {
-    deferredPrompt = null;
-    document.querySelector('.install-btn').remove();
-  });
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then(() => {
+        deferredPrompt = null;
+        document.querySelector('.install-btn').remove();
+    });
 }
 
-// تسجيل Service Worker
+// Service Worker
 if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js')
-      .then(registration => console.log('ServiceWorker registered'))
-      .catch(err => console.log('ServiceWorker registration failed:', err));
-  });
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js')
+            .then(registration => console.log('ServiceWorker registered'))
+            .catch(err => console.log('ServiceWorker registration failed:', err));
+    });
 }
 
-// حماية صفحة dashboard وتحميل البيانات تلقائيًا
+// حماية الصفحة
 window.addEventListener('DOMContentLoaded', () => {
-    if (window.location.pathname.endsWith('dashboard.html')) {
-        const currentBranch = localStorage.getItem('currentBranch');
+    if (window.location.pathname.includes('dashboard.html')) {
+        const currentBranch = sessionStorage.getItem('currentBranch');
         if (!currentBranch) {
             window.location.href = 'index.html';
         } else {
