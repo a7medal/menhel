@@ -429,20 +429,8 @@ function logout() {
     window.location.href = 'index.html';
 }
 
-// حماية صفحة dashboard وتحميل البيانات
-window.addEventListener('DOMContentLoaded', () => {
-    if (window.location.pathname.endsWith('dashboard.html')) {
-        const currentBranch = localStorage.getItem('currentBranch');
-        if (!currentBranch) {
-            window.location.href = 'index.html';
-        } else {
-            loadBranchData(currentBranch);
-        }
-    }
-});
-// أضف في بداية الملف
+// إضافة دعم تثبيت التطبيق كـ PWA
 let deferredPrompt;
-
 window.addEventListener('beforeinstallprompt', (e) => {
   e.preventDefault();
   deferredPrompt = e;
@@ -457,7 +445,9 @@ function showInstallButton() {
     تثبيت التطبيق
   `;
   installBtn.onclick = installApp;
-  document.body.appendChild(installBtn);
+
+  // نلصق زر التثبيت داخل صندوق تسجيل الدخول
+  document.querySelector('.login-box').appendChild(installBtn);
 }
 
 function installApp() {
@@ -477,5 +467,14 @@ if ('serviceWorker' in navigator) {
   });
 }
 
-  document.querySelector('.login-box').appendChild(installBtn);
-}
+// حماية صفحة dashboard وتحميل البيانات تلقائيًا
+window.addEventListener('DOMContentLoaded', () => {
+    if (window.location.pathname.endsWith('dashboard.html')) {
+        const currentBranch = localStorage.getItem('currentBranch');
+        if (!currentBranch) {
+            window.location.href = 'index.html';
+        } else {
+            loadBranchData(currentBranch);
+        }
+    }
+});
