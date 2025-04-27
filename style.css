@@ -373,3 +373,25 @@ input {
 .install-btn .material-icons {
   font-size: 1.2rem;
 }
+/* تنسيق زر التثبيت */
+button[class="install-btn"] {
+    position: relative;
+    top: -20px;
+    margin: 1rem auto;
+    width: 90%;
+    background: var(--accent-color) !important;
+    color: white !important;
+    border: none;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    transition: all 0.3s;
+    z-index: 100;
+}
+
+button[class="install-btn"]:hover {
+    transform: translateY(-2px);
+    background: #c28d2e !important;
+}
