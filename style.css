@@ -353,3 +353,23 @@ input {
         text-align: center;
     }
 }
+.install-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: var(--accent-color);
+  color: white;
+  padding: 1rem 1.5rem;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  z-index: 1000;
+  border: none;
+  cursor: pointer;
+}
+
+.install-btn .material-icons {
+  font-size: 1.2rem;
+}
