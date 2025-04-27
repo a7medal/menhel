@@ -374,26 +374,59 @@ input {
   font-size: 1.2rem;
 }
 /* تنسيق زر التثبيت */
-button[class="install-btn"] {
-    position: relative;
-    top: -20px;
-    margin: 1rem auto;
-    width: 90%;
-    background: var(--accent-color) !important;
-    color: white !important;
+/* تنسيق زر التثبيت */
+.install-btn {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 24px;
+    background: var(--accent-color);
+    color: white;
     border: none;
-    border-radius: 8px;
-    padding: 12px;
+    border-radius: 30px;
     font-size: 16px;
+    font-weight: 600;
     cursor: pointer;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
-    transition: all 0.3s;
-    z-index: 100;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transition: 
+        transform 0.3s ease,
+        background 0.3s ease,
+        box-shadow 0.3s ease;
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255,255,255,0.1);
 }
 
-button[class="install-btn"]:hover {
-    transform: translateY(-2px);
-    background: #c28d2e !important;
+.install-btn:hover {
+    transform: translateY(-2px) scale(1.05);
+    background: #c28d2e;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+}
+
+.install-btn .material-icons {
+    font-size: 22px;
+    filter: drop-shadow(0 2px 2px rgba(0,0,0,0.1));
+}
+
+/* تنسيق للأجهزة المحمولة */
+@media (max-width: 768px) {
+    .install-btn {
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%;
+        max-width: 300px;
+        justify-content: center;
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+    
+    .install-btn:hover {
+        transform: translateX(-50%) translateY(-2px) scale(1.02);
+    }
 }
 /* styles.css - الجزء الجديد */
 .search-bar {
