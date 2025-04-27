@@ -7,7 +7,7 @@ const ASSETS = [
   '/script.js',
   '/logo.png',
   '/icon-192192.png',
-  '/icon-512512.png'
+  
 ];
 
 self.addEventListener('install', (e) => {
