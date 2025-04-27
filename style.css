@@ -400,36 +400,53 @@ input {
     background: #155f4a !important;
 }
 
-/* تنسيق زر تثبيت التطبيق */
+/* تنسيق زر التثبيت الجديد */
 .install-btn {
     position: fixed;
     bottom: 30px;
-    left: 30px;
-    background: linear-gradient(45deg, var(--accent-color), #e6b343);
-    color: white !important;
-    border: none;
-    border-radius: 50px;
+    left: 30px; /* يمكن تغييرها إلى right للمحاذاة اليمنى */
+    background: linear-gradient(45deg, #DBA437, #FFD700);
+    color: white;
     padding: 14px 28px;
+    border: none;
+    border-radius: 35px;
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
-    box-shadow: 0 4px 20px rgba(219, 164, 55, 0.25);
+    box-shadow: 0 4px 20px rgba(219, 164, 55, 0.3);
     display: flex;
     align-items: center;
     gap: 12px;
     transition: all 0.3s ease;
     z-index: 1000;
-    border: 2px solid rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(5px);
+    border: 2px solid rgba(255, 255, 255, 0.2);
 }
 
+/* تأثيرات الـ Hover */
 .install-btn:hover {
     transform: scale(1.05);
-    box-shadow: 0 6px 25px rgba(219, 164, 55, 0.35);
+    box-shadow: 0 6px 25px rgba(219, 164, 55, 0.4);
+    background: linear-gradient(45deg, #FFD700, #DBA437);
 }
 
-/* التأثيرات البصرية للأيقونات */
-.material-icons {
+/* أيقونة المادة */
+.install-btn .material-icons {
+    font-size: 24px;
     filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.1));
+}
+
+/* تنسيق للأجهزة المحمولة */
+@media (max-width: 768px) {
+    .install-btn {
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%;
+        max-width: 280px;
+        padding: 12px 20px;
+        font-size: 14px;
+    }
 }
 /* styles.css - الجزء الجديد */
 .search-bar {
