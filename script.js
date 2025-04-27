@@ -439,3 +439,39 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     }
 });
+// أضف في بداية الملف
+let deferredPrompt;
+
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  showInstallButton();
+});
+
+function showInstallButton() {
+  const installBtn = document.createElement('button');
+  installBtn.className = 'install-btn';
+  installBtn.innerHTML = `
+    <span class="material-icons">download</span>
+    تثبيت التطبيق
+  `;
+  installBtn.onclick = installApp;
+  document.body.appendChild(installBtn);
+}
+
+function installApp() {
+  deferredPrompt.prompt();
+  deferredPrompt.userChoice.then(() => {
+    deferredPrompt = null;
+    document.querySelector('.install-btn').remove();
+  });
+}
+
+// تسجيل Service Worker
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js')
+      .then(registration => console.log('ServiceWorker registered'))
+      .catch(err => console.log('ServiceWorker registration failed:', err));
+  });
+}
