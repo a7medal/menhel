@@ -286,3 +286,70 @@ input {
     color: var(--accent-color);
     font-size: 1.2rem;
 }
+@media (max-width: 768px) {
+    .dashboard-header {
+        padding: 1rem;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+    
+    .header-logo {
+        height: 40px;
+    }
+    
+    #branchName {
+        font-size: 1.2rem;
+    }
+    
+    .logout-btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+    }
+}
+@media (max-width: 480px) {
+    .cards-container {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .asset-card {
+        padding: 1rem;
+    }
+    
+    .file-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .color-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (max-width: 480px) {
+    .login-box {
+        padding: 1.5rem;
+        margin: 1rem;
+    }
+    
+    .logo {
+        width: 140px;
+    }
+    
+    input {
+        font-size: 14px;
+    }
+    
+    .login-btn {
+        font-size: 14px;
+    }
+}
+.auto-update-notice {
+    padding: 1rem 0.5rem;
+    font-size: 0.8rem;
+}
+
+@media (max-width: 480px) {
+    .notice-content {
+        flex-direction: column;
+        text-align: center;
+    }
+}
