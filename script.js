@@ -1,3 +1,6 @@
+// script.js
+
+// بيانات الفروع والموارد
 const branches = {
     mh1: {
         name: "المنهل 1",
@@ -6,88 +9,87 @@ const branches = {
                 title: "دليل الهوية البصرية",
                 icon: "library_books",
                 files: [
-                    { name: "PDF", url: "guide.pdf" },
-                    { name: "PPT", url: "guide.pptx" }
+                    { name: "PDF", url: "assets/mh1/documents/guide.pdf" },
+                    { name: "PPT", url: "assets/mh1/documents/guide.pptx" }
                 ]
             },
             {
                 title: "الشعار الرسمي",
                 icon: "format_shapes",
                 files: [
-                    { name: "ملون (PNG)", url: "logo.png" },
-                    { name: "أبيض/أسود (JPG)", url: "bw.jpg" },
-                    { name: "لون أحادي (SVG)", url: "mono.svg" },
-                    { name: "ملف PDF", url: "logo.pdf" }
+                    { name: "ملون (PNG)", url: "assets/mh1/logos/logo.png" },
+                    { name: "أبيض/أسود (JPG)", url: "assets/mh1/logos/bw.jpg" },
+                    { name: "لون أحادي (SVG)", url: "assets/mh1/logos/mono.svg" },
+                    { name: "PDF", url: "assets/mh1/logos/logo.pdf" }
                 ]
             },
             {
                 title: "الخطوط الرسمية",
                 icon: "font_download",
                 files: [
-                    { name: "Cairo Regular (OTF)", url: "cairo.otf" },
-                    
+                    { name: "Cairo Regular (OTF)", url: "assets/mh1/fonts/cairo-regular.otf" }
                 ]
             },
             {
                 title: "ورق المراسلات",
                 icon: "description",
                 files: [
-                    { name: "DOC", url: "mh1.letter.docx" },
-                    { name: "JPEG", url: "mh1.letter.jpg" },
-                    { name: "PDF", url: "letter.pdf" }
+                    { name: "DOCX", url: "assets/mh1/documents/letter.docx" },
+                    { name: "JPEG", url: "assets/mh1/documents/letter.jpg" },
+                    { name: "PDF", url: "assets/mh1/documents/letter.pdf" }
                 ]
             },
             {
                 title: "الشهادات",
                 icon: "verified",
                 files: [
-                    { name: "DOC", url: "certificate.docx" },
-                    { name: "PNG", url: "certificate.png" },
-                    { name: "PDF", url: "certificate.pdf" }
+                    { name: "DOCX", url: "assets/mh1/documents/certificate.docx" },
+                    { name: "PNG", url: "assets/mh1/documents/certificate.png" },
+                    { name: "PDF", url: "assets/mh1/documents/certificate.pdf" }
                 ]
             },
             {
                 title: "الرأسية",
                 icon: "vertical_align_top",
                 files: [
-                    { name: "DOC", url: "mh1.header.docx" },
-                    { name: "JPEG", url: "mh1.header.jpg" },
-                    { name: "PDF", url: "mh1.header.pdf" }
+                    { name: "DOCX", url: "assets/mh1/documents/header.docx" },
+                    { name: "JPEG", url: "assets/mh1/documents/header.jpg" },
+                    { name: "PDF", url: "assets/mh1/documents/header.pdf" }
                 ]
             },
             {
                 title: "بطاقة العمل",
                 icon: "contact_mail",
                 files: [
-                    { name: "PDF", url: "mh1.card.pdf" },
-                    { name: "JPEG", url: "mh1.card.jpg" },
-                    { name: "PNG", url: "mh1.card.png" }
+                    { name: "PDF", url: "assets/mh1/documents/card.pdf" },
+                    { name: "JPEG", url: "assets/mh1/documents/card.jpg" },
+                    { name: "PNG", url: "assets/mh1/documents/card.png" }
                 ]
             },
             {
                 title: "الأختام",
                 icon: "stamp",
                 files: [
-                    { name: "(PDF) ختم الإدارة ", url: "direction.pdf" },
-                    { name: "(PDF) ختم المحاسبة", url: "comtablity.pdf" },
-                        ]
+                    { name: "PDF (ختم الإدارة)", url: "assets/mh1/documents/seal-direction.pdf" },
+                    { name: "PDF (ختم المحاسبة)", url: "assets/mh1/documents/seal-accounting.pdf" }
+                ]
             },
             {
                 title: "وصل الدفع",
                 icon: "receipt",
                 files: [
-                    { name: "PDF", url: "mh1.payment.pdf" },
-                    { name: "PNG", url: "mh1.payment.png" }
+                    { name: "PDF", url: "assets/mh1/documents/payment.pdf" },
+                    { name: "PNG", url: "assets/mh1/documents/payment.png" }
                 ]
             },
             {
                 title: "شعار الرابطة",
                 icon: "groups",
                 files: [
-                    { name: "PNG", url: "association.png" },
-                    { name: "JPG", url: "association.jpg" },
-                    { name: "SVG", url: "association.svg" },
-                    { name: "PDF", url: "association.pdf" }
+                    { name: "PNG", url: "assets/mh1/logos/association.png" },
+                    { name: "JPG", url: "assets/mh1/logos/association.jpg" },
+                    { name: "SVG", url: "assets/mh1/logos/association.svg" },
+                    { name: "PDF", url: "assets/mh1/logos/association.pdf" }
                 ]
             },
             {
@@ -95,8 +97,8 @@ const branches = {
                 icon: "palette",
                 colors: [
                     { name: "الخلفية", code: "#EEECE9", type: "HEX" },
-                    { name: "CMYK", code: "C70 M40 Y60 K20" },
-                    { name: "RGB", code: "28, 100, 89" },
+                    { name: "CMYK", code: "C70 M40 Y60 K20", type: "CMYK" },
+                    { name: "RGB", code: "28,100,89", type: "RGB" },
                     { name: "الأساسي", code: "#1C6459", type: "HEX" },
                     { name: "الثانوي", code: "#123740", type: "HEX" },
                     { name: "التأكيدي", code: "#DBA437", type: "HEX" }
@@ -105,96 +107,95 @@ const branches = {
         ]
     },
     mh2: {
-        name: "المنهل ٢",
+        name: "المنهل 2",
         assets: [
             {
                 title: "دليل الهوية البصرية",
                 icon: "library_books",
                 files: [
-                    { name: "PDF", url: "guide.pdf" },
-                    { name: "PPT", url: "guide.pptx" }
+                    { name: "PDF", url: "assets/mh2/documents/guide.pdf" },
+                    { name: "PPT", url: "assets/mh2/documents/guide.pptx" }
                 ]
             },
             {
                 title: "الشعار الرسمي",
                 icon: "format_shapes",
                 files: [
-                    { name: "ملون (PNG)", url: "color.png" },
-                    { name: "أبيض/أسود (JPG)", url: "bw.jpg" },
-                    { name: "لون أحادي (SVG)", url: "mono.svg" },
-                    { name: "ملف PDF", url: "logo.pdf" }
+                    { name: "ملون (PNG)", url: "assets/mh2/logos/color.png" },
+                    { name: "أبيض/أسود (JPG)", url: "assets/mh2/logos/bw.jpg" },
+                    { name: "لون أحادي (SVG)", url: "assets/mh2/logos/mono.svg" },
+                    { name: "PDF", url: "assets/mh2/logos/logo.pdf" }
                 ]
             },
             {
                 title: "الخطوط الرسمية",
                 icon: "font_download",
                 files: [
-                    { name: "Cairo Regular (OTF)", url: "regular.otf" },
-                    { name: "Cairo Bold (TTF)", url: "bold.ttf" }
+                    { name: "Cairo Regular (OTF)", url: "assets/mh2/fonts/regular.otf" },
+                    { name: "Cairo Bold (TTF)", url: "assets/mh2/fonts/bold.ttf" }
                 ]
             },
             {
                 title: "ورق المراسلات",
                 icon: "description",
                 files: [
-                    { name: "DOC", url: "mh2.letter.docx" },
-                    { name: "JPEG", url: "mh2.letter.jpg" },
-                    { name: "PDF", url: "mh2.letter.pdf" }
+                    { name: "DOCX", url: "assets/mh2/documents/letter.docx" },
+                    { name: "JPEG", url: "assets/mh2/documents/letter.jpg" },
+                    { name: "PDF", url: "assets/mh2/documents/letter.pdf" }
                 ]
             },
             {
                 title: "الشهادات",
                 icon: "verified",
                 files: [
-                    { name: "DOC", url: "certificate.docx" },
-                    { name: "PNG", url: "certificate.png" },
-                    { name: "PDF", url: "certificate.pdf" }
+                    { name: "DOCX", url: "assets/mh2/documents/certificate.docx" },
+                    { name: "PNG", url: "assets/mh2/documents/certificate.png" },
+                    { name: "PDF", url: "assets/mh2/documents/certificate.pdf" }
                 ]
             },
             {
                 title: "الرأسية",
                 icon: "vertical_align_top",
                 files: [
-                    { name: "DOC", url: "mh2.header.docx" },
-                    { name: "JPEG", url: "mh2.header.jpg" },
-                    { name: "PDF", url: "mh2.header.pdf" }
+                    { name: "DOCX", url: "assets/mh2/documents/header.docx" },
+                    { name: "JPEG", url: "assets/mh2/documents/header.jpg" },
+                    { name: "PDF", url: "assets/mh2/documents/header.pdf" }
                 ]
             },
             {
                 title: "بطاقة العمل",
                 icon: "contact_mail",
                 files: [
-                    { name: "PDF", url: "mh2.card.pdf" },
-                    { name: "JPEG", url: "mh2.card.jpg" },
-                    { name: "PNG", url: "mh2.card.png" }
+                    { name: "PDF", url: "assets/mh2/documents/card.pdf" },
+                    { name: "JPEG", url: "assets/mh2/documents/card.jpg" },
+                    { name: "PNG", url: "assets/mh2/documents/card.png" }
                 ]
             },
             {
                 title: "الأختام",
                 icon: "stamp",
-                files: 
-                    { name: "PDF", url: "mh2.seal.pdf" },
-                    { name: "PNG", url: "mh2.seal.png" },
-                    { name: "SVG", url: "mh2.seal.svg" }
+                files: [
+                    { name: "PDF", url: "assets/mh2/documents/seal.pdf" },
+                    { name: "PNG", url: "assets/mh2/documents/seal.png" },
+                    { name: "SVG", url: "assets/mh2/documents/seal.svg" }
                 ]
             },
             {
                 title: "وصل الدفع",
                 icon: "receipt",
                 files: [
-                    { name: "PDF", url: "mh2.payment.pdf" },
-                    { name: "PNG", url: "mh2.payment.png" }
+                    { name: "PDF", url: "assets/mh2/documents/payment.pdf" },
+                    { name: "PNG", url: "assets/mh2/documents/payment.png" }
                 ]
-            },
             },
             {
                 title: "شعار الرابطة",
                 icon: "groups",
                 files: [
-                    { name: "PNG", url: "association.png" },
-                    { name: "JPG", url: "association.jpg" },
-                    { name: "SVG", url: "association.svg" },
-                    { name: "PDF", url: "association.svg" }
+                    { name: "PNG", url: "assets/mh2/logos/association.png" },
+                    { name: "JPG", url: "assets/mh2/logos/association.jpg" },
+                    { name: "SVG", url: "assets/mh2/logos/association.svg" },
+                    { name: "PDF", url: "assets/mh2/logos/association.pdf" }
                 ]
             },
             {
@@ -202,8 +203,8 @@ const branches = {
                 icon: "palette",
                 colors: [
                     { name: "الخلفية", code: "#EEECE9", type: "HEX" },
-                    { name: "CMYK", code: "C70 M40 Y60 K20" },
-                    { name: "RGB", code: "28, 100, 89" },
+                    { name: "CMYK", code: "C70 M40 Y60 K20", type: "CMYK" },
+                    { name: "RGB", code: "28,100,89", type: "RGB" },
                     { name: "الأساسي", code: "#1C6459", type: "HEX" },
                     { name: "الثانوي", code: "#123740", type: "HEX" },
                     { name: "التأكيدي", code: "#DBA437", type: "HEX" }
@@ -212,7 +213,7 @@ const branches = {
         ]
     },
     mh3: {
-        name: "المنهل ٣",
+        name: "المنهل 3",
         assets: [
             {
                 title: "دليل الهوية البصرية",
@@ -229,7 +230,7 @@ const branches = {
                     { name: "ملون (PNG)", url: "assets/mh3/logos/color.png" },
                     { name: "أبيض/أسود (JPG)", url: "assets/mh3/logos/bw.jpg" },
                     { name: "لون أحادي (SVG)", url: "assets/mh3/logos/mono.svg" },
-                    { name: "ملف PDF", url: "assets/mh3/logos/logo.pdf" }
+                    { name: "PDF", url: "assets/mh3/logos/logo.pdf" }
                 ]
             },
             {
@@ -244,7 +245,7 @@ const branches = {
                 title: "ورق المراسلات",
                 icon: "description",
                 files: [
-                    { name: "DOC", url: "assets/mh3/documents/letter.docx" },
+                    { name: "DOCX", url: "assets/mh3/documents/letter.docx" },
                     { name: "JPEG", url: "assets/mh3/documents/letter.jpg" },
                     { name: "PDF", url: "assets/mh3/documents/letter.pdf" }
                 ]
@@ -253,7 +254,7 @@ const branches = {
                 title: "الشهادات",
                 icon: "verified",
                 files: [
-                    { name: "DOC", url: "assets/mh3/documents/certificate.docx" },
+                    { name: "DOCX", url: "assets/mh3/documents/certificate.docx" },
                     { name: "PNG", url: "assets/mh3/documents/certificate.png" },
                     { name: "PDF", url: "assets/mh3/documents/certificate.pdf" }
                 ]
@@ -262,7 +263,7 @@ const branches = {
                 title: "الرأسية",
                 icon: "vertical_align_top",
                 files: [
-                    { name: "DOC", url: "assets/mh3/documents/header.docx" },
+                    { name: "DOCX", url: "assets/mh3/documents/header.docx" },
                     { name: "JPEG", url: "assets/mh3/documents/header.jpg" },
                     { name: "PDF", url: "assets/mh3/documents/header.pdf" }
                 ]
@@ -308,8 +309,8 @@ const branches = {
                 icon: "palette",
                 colors: [
                     { name: "الخلفية", code: "#EEECE9", type: "HEX" },
-                    { name: "CMYK", code: "C70 M40 Y60 K20" },
-                    { name: "RGB", code: "28, 100, 89" },
+                    { name: "CMYK", code: "C70 M40 Y60 K20", type: "CMYK" },
+                    { name: "RGB", code: "28,100,89", type: "RGB" },
                     { name: "الأساسي", code: "#1C6459", type: "HEX" },
                     { name: "الثانوي", code: "#123740", type: "HEX" },
                     { name: "التأكيدي", code: "#DBA437", type: "HEX" }
@@ -319,25 +320,24 @@ const branches = {
     }
 };
 
-// نظام تسجيل الدخول
+// بيانات الدخول الصحيحة
+const validCredentials = {
+    mh1: '1234',
+    mh2: '5678',
+    mh3: '9012'
+};
+
+// التعامل مع نموذج تسجيل الدخول
 document.getElementById('loginForm')?.addEventListener('submit', function(e) {
     e.preventDefault();
     const username = document.getElementById('username').value.trim().toLowerCase();
     const password = document.getElementById('password').value.trim();
     const errorMsg = document.getElementById('errorMsg');
 
-    // بيانات الدخول الصحيحة
-    const validCredentials = {
-        mh1: '1234',
-        mh2: '5678',
-        mh3: '9012'
-    };
-
-    // التحقق من صحة البيانات
     if (validCredentials[username] && validCredentials[username] === password) {
         localStorage.setItem('currentBranch', username);
-        window.location.href = 'dashboard.html';
         errorMsg.style.display = 'none';
+        window.location.href = 'dashboard.html';
     } else {
         errorMsg.innerHTML = `
             <span class="material-icons">error_outline</span>
@@ -347,75 +347,79 @@ document.getElementById('loginForm')?.addEventListener('submit', function(e) {
     }
 });
 
-// تحميل بيانات الفرع
+// تحميل بيانات الفرع وعرض البطاقات
 function loadBranchData(branchKey) {
     const branch = branches[branchKey];
     if (!branch) {
         window.location.href = 'index.html';
         return;
-        <!-- داخل دالة loadBranchData في script.js -->
-card.innerHTML = `
-    <div class="card-header" onclick="toggleCard(this)">
-        <span class="material-icons">${asset.icon}</span>
-        <h3>${asset.title}</h3>
-        <span class="material-icons arrow">expand_more</span>
-    </div>
-    <!-- ... باقي المحتوى -->
-`;
     }
 
-    // تحديث اسم الفرع في الهيدر
     document.getElementById('branchName').textContent = branch.name;
-
-    // إنشاء بطاقات المحتوى
     const container = document.getElementById('cardsContainer');
     container.innerHTML = '';
 
     branch.assets.forEach(asset => {
         const card = document.createElement('div');
         card.className = 'asset-card';
-        card.innerHTML = `
-            <div class="card-header" onclick="toggleCard(this)">
-                <span class="material-icons">${asset.icon}</span>
-                <h3>${asset.title}</h3>
-                <span class="material-icons arrow">expand_more</span>
-            </div>
-            <div class="card-content">
-                ${asset.files ? `
-                    <div class="file-grid">
-                        ${asset.files.map(file => `
-                            <a href="${file.url}" class="file-item" download>
-                                <span class="material-icons">download</span>
-                                ${file.name}
-                            </a>
-                        `).join('')}
-                    </div>
-                ` : ''}
-                ${asset.colors ? `
-                    <div class="color-grid">
-                        ${asset.colors.map(color => `
-                            <div class="color-box" style="background: ${color.code.includes('#') ? color.code : 'transparent'}">
-                                <div class="color-code">${color.code}</div>
-                                <div class="color-type">${color.type || ''}</div>
-                            </div>
-                        `).join('')}
-                    </div>
-                ` : ''}
-            </div>
+
+        const header = document.createElement('div');
+        header.className = 'card-header';
+        header.innerHTML = `
+            <span class="material-icons">${asset.icon}</span>
+            <h3>${asset.title}</h3>
+            <span class="material-icons arrow">expand_more</span>
         `;
+        header.addEventListener('click', () => toggleCard(card));
+        card.appendChild(header);
+
+        const content = document.createElement('div');
+        content.className = 'card-content';
+        content.style.maxHeight = '0';
+
+        if (asset.files) {
+            const fileGrid = document.createElement('div');
+            fileGrid.className = 'file-grid';
+            asset.files.forEach(file => {
+                const a = document.createElement('a');
+                a.href = file.url;
+                a.className = 'file-item';
+                a.setAttribute('download', '');
+                a.innerHTML = `<span class="material-icons">download</span> ${file.name}`;
+                fileGrid.appendChild(a);
+            });
+            content.appendChild(fileGrid);
+        }
+
+        if (asset.colors) {
+            const colorGrid = document.createElement('div');
+            colorGrid.className = 'color-grid';
+            asset.colors.forEach(color => {
+                const box = document.createElement('div');
+                box.className = 'color-box';
+                const bg = color.type === 'HEX' ? color.code : 'transparent';
+                box.style.background = bg;
+                box.innerHTML = `
+                    <div class="color-code">${color.code}</div>
+                    <div class="color-type">${color.type}</div>
+                `;
+                colorGrid.appendChild(box);
+            });
+            content.appendChild(colorGrid);
+        }
+
+        card.appendChild(content);
         container.appendChild(card);
     });
 }
 
-// تبديل عرض البطاقة
-function toggleCard(header) {
-    const card = header.parentElement;
+// دالة لتبديل حالة البطاقة (فتح/إغلاق)
+function toggleCard(card) {
     const content = card.querySelector('.card-content');
     const arrow = card.querySelector('.arrow');
-    
-    card.classList.toggle('active');
-    content.style.maxHeight = card.classList.contains('active') ? `${content.scrollHeight}px` : '0';
-    arrow.textContent = card.classList.contains('active') ? 'expand_less' : 'expand_more';
+    const isActive = card.classList.toggle('active');
+    content.style.maxHeight = isActive ? `${content.scrollHeight}px` : '0';
+    arrow.textContent = isActive ? 'expand_less' : 'expand_more';
 }
 
 // تسجيل الخروج
@@ -424,9 +428,9 @@ function logout() {
     window.location.href = 'index.html';
 }
 
-// حماية الصفحة عند التحميل
+// حماية صفحة dashboard وتحميل البيانات
 window.addEventListener('DOMContentLoaded', () => {
-    if (window.location.pathname.includes('dashboard.html')) {
+    if (window.location.pathname.endsWith('dashboard.html')) {
         const currentBranch = localStorage.getItem('currentBranch');
         if (!currentBranch) {
             window.location.href = 'index.html';
