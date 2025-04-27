@@ -1,16 +1,5 @@
 // script.js
-// تسجيل Service Worker
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('sw.js')
-      .then(registration => {
-        console.log('Service Worker مسجل بنجاح');
-      })
-      .catch(err => {
-        console.error('فشل تسجيل Service Worker:', err);
-      });
-  });
-}
+
 
 // بيانات الفروع والموارد
 const branches = {
@@ -487,28 +476,6 @@ if ('serviceWorker' in navigator) {
       .catch(err => console.log('ServiceWorker registration failed:', err));
   });
 }
-let deferredPrompt;
 
-window.addEventListener('beforeinstallprompt', (e) => {
-  e.preventDefault();
-  deferredPrompt = e;
-  // يمكنك هنا عرض زر تثبيت مخصص
-  showInstallButton(); // دالة افتراضية لعرض الزر
-});
-
-function showInstallButton() {
-  const installBtn = document.createElement('button');
-  installBtn.textContent = 'ثبّت التطبيق';
-  installBtn.className = 'login-btn'; // استخدم نفس كلاس زر الدخول
-  installBtn.style.marginTop = '1rem';
-  installBtn.onclick = () => {
-    deferredPrompt.prompt();
-    deferredPrompt.userChoice.then((choice) => {
-      if (choice.outcome === 'accepted') {
-        console.log('تم التثبيت');
-      }
-      deferredPrompt = null;
-    });
-  };
   document.querySelector('.login-box').appendChild(installBtn);
 }
