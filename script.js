@@ -319,6 +319,12 @@ const branches = {
 };
 
 // بيانات الدخول// تسجيل الدخول
+// بيانات الدخول الصحيحة
+  const validCredentials = {
+      mh1: '0987',
+      mh2: '6543',
+      mh3: '2143'
+  };
 document.addEventListener('DOMContentLoaded', () => {
     const loginForm = document.getElementById('loginForm');
     if (loginForm) {
