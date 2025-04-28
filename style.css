@@ -1,4 +1,4 @@
-:root {
+٦:root {
     --primary-color: #1C6459;
     --secondary-color: #123740;
     --accent-color: #DBA437;
@@ -487,24 +487,35 @@ input {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #EEECE9; /* لون الخلفية */
+  background-color: #EEECE9; /* خلفية هادئة */
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  text-align: center;
+  padding: 20px;
   z-index: 9999;
   transition: opacity 0.5s ease;
 }
 
-#splash-screen .splash-logo {
-  width: 150px;
-  height: 150px;
+.splash-logo {
+  width: 140px;
+  height: 140px;
+  object-fit: contain;
   margin-bottom: 20px;
 }
 
-#splash-screen h1 {
-  font-size: 24px;
-  color: #1C6459; /* لون النص */
+.splash-title {
+  font-size: 28px;
+  color: #1C6459; /* لون أخضر أنيق */
+  margin-bottom: 10px;
+  font-family: 'Cairo', sans-serif; /* خط أنيق عربي */
+}
+
+.splash-subtitle {
+  font-size: 18px;
+  color: #444;
+  font-family: 'Cairo', sans-serif;
 }
 
 #splash-screen.fade-out {
