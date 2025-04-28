@@ -540,5 +540,5 @@ window.addEventListener('load', () => {
   const splash = document.getElementById('splash-screen');
   setTimeout(() => {
     splash.classList.add('fade-out');
-  }, 1000); // يظهر لمدة ثانية واحدة ثم يختفي
+  }, 2000); // يظهر لمدة ثانية واحدة ثم يختفي
 });
