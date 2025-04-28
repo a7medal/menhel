@@ -1,4 +1,4 @@
-const CACHE_NAME = 'menhel-v1.1';
+const CACHE_NAME = 'menhel-v2';
 const ASSETS = [
   '/',
   '/index.html',
