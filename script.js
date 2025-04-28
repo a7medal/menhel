@@ -22,7 +22,7 @@ const branches = {
                 ]
             },
             {
-                title: "الخطوط الرسمية",
+                title: "الخطوط ",
                 icon: "font_download",
                 files: [
                     { name: "Cairo Regular (OTF)", url: "assets/mh1/fonts/cairo-regular.otf" }
