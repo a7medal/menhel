@@ -7,7 +7,7 @@ const branches = {
                 title: "دليل الهوية البصرية",
                 icon: "library_books",
                 files: [
-                    { name: "PDF", url: "assets/mh1/documents/guide.pdf" },
+                    { name: "PDF", url: "https://drive.google.com/file/d/1i98urqNPc7vRi5eDdgn1b_CjfXT8N2Jd/view?usp=drivesdk" },
                     { name: "PPT", url: "assets/mh1/documents/guide.pptx" }
                 ]
             },
