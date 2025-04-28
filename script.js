@@ -41,9 +41,9 @@ const branches = {
                 title: "الشهادات",
                 icon: "verified",
                 files: [
-                    { name: "DOCX", url: "assets/mh1/documents/certificate.docx" },
-                    { name: "PNG", url: "assets/mh1/documents/certificate.png" },
-                    { name: "PDF", url: "assets/mh1/documents/certificate.pdf" }
+                    { name: "DOCX", url: "https://docs.google.com/file/d/1xx9UnO4or6WwgU8nzlNjtR1XtbaBhoLV/edit?usp=docslist_api&filetype=msword" },
+                    { name: "PNG", url: "https://drive.google.com/file/d/1mMcYENlnZXYZMVBbF8eP_eZT2Q9ucqj2/view?usp=drivesdk" },
+                    { name: "PDF", url: "https://drive.google.com/file/d/1JgrGztlwoLk7PMYOtUBjpMxJUKB1Gd_s/view?usp=drivesdk" }
                 ]
             },
             {
