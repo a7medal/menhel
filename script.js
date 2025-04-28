@@ -317,17 +317,17 @@ const branches = {
     }
 };
 
-// بيانات الدخول// تسجيل الدخول
-// بيانات الدخول الصحيحة
-  const validCredentials = {
-      mh1: '0987',
-      mh2: '6543',
-      mh3: '2143'
-  };
+// بيانات الدخول
+const validCredentials = {
+    mh1: '0987',
+    mh2: '6543',
+    mh3: '2143'
+};
+
 document.addEventListener('DOMContentLoaded', () => {
     const loginForm = document.getElementById('loginForm');
     if (loginForm) {
-        loginForm.addEventListener('submit', function(e) {
+        loginForm.addEventListener('submit', function (e) {
             e.preventDefault();
             const username = document.getElementById('username').value.trim().toLowerCase();
             const password = document.getElementById('password').value.trim();
@@ -341,6 +341,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 errorMsg.style.display = 'block';
             }
         });
+    }
+
+    // حماية الصفحة
+    if (window.location.pathname.includes('dashboard.html')) {
+        const currentBranch = sessionStorage.getItem('currentBranch');
+        if (!currentBranch) window.location.href = 'index.html';
+        else loadBranchData(currentBranch);
     }
 });
 
@@ -358,7 +365,7 @@ function loadBranchData(branchKey) {
         <div class="search-bar">
             <div class="search-container">
                 <span class="material-icons">search</span>
-                <input type="text" id="searchInput" placeholder="ابحث هنا عن عنصر  ...">
+                <input type="text" id="searchInput" placeholder="ابحث هنا عن عنصر ...">
             </div>
         </div>
     `);
@@ -368,10 +375,10 @@ function loadBranchData(branchKey) {
     container.innerHTML = '';
 
     // تصفية النتائج
-    document.getElementById('searchInput').addEventListener('input', function(e) {
+    document.getElementById('searchInput').addEventListener('input', function (e) {
         const searchText = e.target.value.trim().toLowerCase();
         const cards = container.getElementsByClassName('asset-card');
-        
+
         Array.from(cards).forEach(card => {
             const title = card.querySelector('h3').textContent.toLowerCase();
             const content = card.querySelector('.card-content').textContent.toLowerCase();
@@ -453,7 +460,7 @@ function logout() {
     window.location.href = 'index.html';
 }
 
-// PWA
+// PWA تثبيت التطبيق
 let deferredPrompt;
 window.addEventListener('beforeinstallprompt', (e) => {
     e.preventDefault();
@@ -477,20 +484,54 @@ function installApp() {
     });
 }
 
-// Service Worker
+// تسجيل Service Worker ومراقبة التحديثات
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js')
-            .then(registration => console.log('ServiceWorker registered'))
-            .catch(err => console.log('ServiceWorker registration failed:', err));
+        navigator.serviceWorker.register('./sw.js?v=1.1')
+            .then(registration => {
+                console.log('Service Worker مسجل بنجاح!', registration);
+
+                registration.onupdatefound = () => {
+                    const installingWorker = registration.installing;
+                    installingWorker.onstatechange = () => {
+                        if (installingWorker.state === 'installed') {
+                            if (navigator.serviceWorker.controller) {
+                                showUpdateBanner();
+                            }
+                        }
+                    };
+                };
+            })
+            .catch(err => console.error('فشل تسجيل Service Worker:', err));
     });
 }
 
-// حماية الصفحة
-window.addEventListener('DOMContentLoaded', () => {
-    if (window.location.pathname.includes('dashboard.html')) {
-        const currentBranch = sessionStorage.getItem('currentBranch');
-        if (!currentBranch) window.location.href = 'index.html';
-        else loadBranchData(currentBranch);
-    }
-});
+// عرض إشعار عند توفر تحديث
+function showUpdateBanner() {
+    const banner = document.createElement('div');
+    banner.style.position = 'fixed';
+    banner.style.bottom = '20px';
+    banner.style.left = '50%';
+    banner.style.transform = 'translateX(-50%)';
+    banner.style.background = '#1e1e1e';
+    banner.style.color = '#fff';
+    banner.style.padding = '10px 20px';
+    banner.style.fontSize = '16px';
+    banner.style.borderRadius = '8px';
+    banner.style.boxShadow = '0px 2px 10px rgba(0,0,0,0.5)';
+    banner.style.cursor = 'pointer';
+    banner.style.opacity = '0';
+    banner.style.transition = 'opacity 0.5s';
+    banner.style.zIndex = '1000';
+    banner.innerText = 'تم إصدار تحديث جديد! اضغط هنا لتحديث التطبيق.';
+
+    banner.addEventListener('click', () => {
+        window.location.reload();
+    });
+
+    document.body.appendChild(banner);
+
+    setTimeout(() => {
+        banner.style.opacity = '1';
+    }, 100);
+}
