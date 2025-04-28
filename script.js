@@ -535,3 +535,10 @@ function showUpdateBanner() {
         banner.style.opacity = '1';
     }, 100);
 }
+ // إخفاء Splash Screen بعد تحميل الصفحة
+window.addEventListener('load', () => {
+  const splash = document.getElementById('splash-screen');
+  setTimeout(() => {
+    splash.classList.add('fade-out');
+  }, 1000); // يظهر لمدة ثانية واحدة ثم يختفي
+});
