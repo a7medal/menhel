@@ -50,10 +50,9 @@ const branches = {
                 title: "الرأسية",
                 icon: "vertical_align_top",
                 files: [
-                    { name: "DOCX", url: "assets/mh1/documents/header.docx" },
-                    { name: "JPEG", url: "assets/mh1/documents/header.jpg" },
-                    { name: "PDF", url: "assets/mh1/documents/header.pdf" }
-                ]
+                    { name: "DOCX رأسية امتحانات واختبارات ", url: "https://docs.google.com/file/d/15H6XU52UJC5ertYrpkWT6-Cw6Ygva6bu/edit?usp=docslist_api&filetype=msword" },
+                    { name: "JPEG رأسية نتيجة", url: "https://drive.google.com/file/d/1lDorlAfRFdLiXSagIfYWrtVwkZNe_Fb6/view?usp=drivesdk" }
+                      ]
             },
             {
                 title: "بطاقة العمل",
