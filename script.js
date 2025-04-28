@@ -33,10 +33,9 @@ const branches = {
                 title: "ورق المراسلات",
                 icon: "description",
                 files: [
-                    { name: "DOCX", url: "assets/mh1/documents/letter.docx" },
-                    { name: "JPEG", url: "assets/mh1/documents/letter.jpg" },
-                    { name: "PDF", url: "assets/mh1/documents/letter.pdf" }
-                ]
+                    { name: "DOCX", url: "https://docs.google.com/file/d/1yTIP1Yy665Fb9NyOsOjfbKo712PD1vTm/edit?usp=docslist_api&filetype=msword" },
+                    { name: "JPEG", url: "https://drive.google.com/file/d/1s4GxOKLlfeAJs2msM0P4qm1WhjRmu9UZ/view?usp=drivesdk" }
+                             ]
             },
             {
                 title: "الشهادات",
