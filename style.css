@@ -480,3 +480,23 @@ input {
   color: #666;
   font-size: 24px;
 }
+#notification-icon {
+  position: relative;
+  font-size: 24px;
+  color: var(--primary-color);
+}
+
+#notification-icon.new-notifications {
+  color: var(--error-color); /* اللون الأحمر عند وجود إشعارات جديدة */
+}
+
+#notification-icon.new-notifications::after {
+  content: '';
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  width: 12px;
+  height: 12px;
+  background-color: red;
+  border-radius: 50%;
+}
