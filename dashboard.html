@@ -19,7 +19,17 @@
         <button class="logout-btn" onclick="logout()">
             <span class="material-icons">logout</span>
         </button>
-<div id="notification-icon" class="material-icons">notifications</div>
+<!-- أيقونة الإشعارات -->
+<button id="notification-icon" class="notification-icon">
+  <i class="material-icons">notifications</i>
+  <span id="notification-badge" class="notification-badge"></span>
+</button>
+
+<!-- قائمة الإشعارات المنبثقة -->
+<div id="notifications-list" class="notifications-list" style="display: none;">
+  <ul id="notifications-container"></ul>
+  <p id="no-notifications" style="display: none;">لا يوجد لديك إشعارات</p>
+</div>
     </header>
 
     <!-- المحتوى الرئيسي -->
