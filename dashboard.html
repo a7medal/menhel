@@ -122,12 +122,38 @@
       badge.innerText = notifications.length;
     }
 
+    // إظهار أو إخفاء قائمة الإشعارات عند الضغط على الأيقونة
     icon.addEventListener('click', () => {
       menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
     });
 
-    // أول تحميل
+    // أول تحميل: تحميل الإشعارات
     renderNotifications();
+
+    // حفظ الإشعار في IndexedDB عند تلقي إشعار
+    function saveNotification(notification) {
+      openDB().then(db => {
+        const tx = db.transaction("notifications", "readwrite");
+        const store = tx.objectStore("notifications");
+        store.add(notification);
+        tx.oncomplete = renderNotifications;
+      });
+    }
+
+    // تفعيل OneSignal عند تلقي إشعار جديد
+    window.addEventListener("load", () => {
+      OneSignal.push(function() {
+        OneSignal.on('notificationDisplay', function(event) {
+          const notification = event.notification;
+          const notificationData = {
+            title: notification.title,
+            body: notification.body,
+            timestamp: Date.now()
+          };
+          saveNotification(notificationData); // حفظ الإشعار في IndexedDB
+        });
+      });
+    });
   </script>
 
   <script src="script.js"></script>
