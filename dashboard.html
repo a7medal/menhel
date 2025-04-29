@@ -19,16 +19,9 @@
         <button class="logout-btn" onclick="logout()">
             <span class="material-icons">logout</span>
         </button>
-<!-- أيقونة الإشعارات -->
-<button id="notification-icon" class="notification-icon">
-  <i class="material-icons">notifications</i>
-  <span id="notification-badge" class="notification-badge"></span>
-</button>
-
-<!-- قائمة الإشعارات المنبثقة -->
-<div id="notifications-list" class="notifications-list" style="display: none;">
-  <ul id="notifications-container"></ul>
-  <p id="no-notifications" style="display: none;">لا يوجد لديك إشعارات</p>
+<div id="notification-icon" style="position: relative;">
+  <i class="material-icons" style="font-size: 24px;">notifications</i>
+  <span id="notification-badge" style="position: absolute; top: 0; right: 0; background-color: red; color: white; border-radius: 50%; padding: 5px 10px; font-size: 14px; display: none;">1</span>
 </div>
     </header>
 
@@ -48,5 +41,76 @@
     </footer>
 
     <script src="script.js"></script>
+<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+<script>
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  OneSignalDeferred.push(async function(OneSignal) {
+    await OneSignal.init({
+      appId: "7d5bdcc4-50a4-47a5-a933-b37a8242d05c",  // استبدال مع الـ App ID الخاص بك
+      serviceWorkerPath: 'OneSignalSDKWorker.js',
+      serviceWorkerUpdaterPath: 'OneSignalSDKUpdaterWorker.js',
+    });
+  });
+</script>
+<script>
+  // التحقق من وجود إشعارات في التخزين المحلي
+  const notifications = JSON.parse(localStorage.getItem('notifications')) || [];
+
+  // تحديث حالة أيقونة الإشعارات
+  const notificationIcon = document.getElementById('notification-icon');
+  const notificationBadge = document.getElementById('notification-badge');
+
+  if (notifications.length > 0) {
+    notificationBadge.style.display = 'block'; // عرض العلامة الحمراء
+    notificationBadge.innerText = notifications.length; // تعيين عدد الإشعارات غير المقروءة
+  } else {
+    notificationBadge.style.display = 'none'; // إخفاء العلامة إذا لم تكن هناك إشعارات
+  }
+
+  // عند الضغط على الأيقونة، عرض الإشعارات
+  notificationIcon.addEventListener('click', function() {
+    const notificationsContainer = document.createElement('div');
+    notificationsContainer.style.position = 'absolute';
+    notificationsContainer.style.top = '40px';
+    notificationsContainer.style.right = '0';
+    notificationsContainer.style.background = 'white';
+    notificationsContainer.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.2)';
+    notificationsContainer.style.padding = '10px';
+    notificationsContainer.style.maxWidth = '300px';
+    notificationsContainer.style.borderRadius = '8px';
+
+    if (notifications.length > 0) {
+      notifications.forEach((notification, index) => {
+        const notificationItem = document.createElement('div');
+        notificationItem.style.padding = '10px';
+        notificationItem.style.marginBottom = '5px';
+        notificationItem.style.borderBottom = '1px solid #ccc';
+        notificationItem.innerHTML = `
+          <p>${notification}</p>
+          <button onclick="markAsRead(${index})" style="color: red;">قراءة</button>
+        `;
+        notificationsContainer.appendChild(notificationItem);
+      });
+    } else {
+      notificationsContainer.innerHTML = '<p>لا توجد لديك إشعارات جديدة.</p>';
+    }
+
+    document.body.appendChild(notificationsContainer);
+  });
+
+  // دالة لحذف الإشعار من التخزين المحلي عند قراءته
+  function markAsRead(index) {
+    notifications.splice(index, 1); // إزالة الإشعار من المصفوفة
+    localStorage.setItem('notifications', JSON.stringify(notifications)); // تحديث التخزين المحلي
+    location.reload(); // إعادة تحميل الصفحة لتحديث الأيقونة
+  }
+// لإضافة إشعار جديد إلى التخزين المحلي (هذه العملية ستتم عندما يتم إرسال إشعار جديد)
+function addNotification(message) {
+  const notifications = JSON.parse(localStorage.getItem('notifications')) || [];
+  notifications.push(message);  // إضافة الإشعار
+  localStorage.setItem('notifications', JSON.stringify(notifications));  // تخزين الإشعار في localStorage
+  location.reload();  // إعادة تحميل الصفحة لتحديث الأيقونة
+}
+</script>
 </body>
 </html>
