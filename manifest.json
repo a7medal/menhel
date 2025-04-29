@@ -1,10 +1,11 @@
 {
   "name": "المنهل - الهوية البصرية",
-  "short_name": " هوية المنهل البصرية",
+  "short_name": "هوية المنهل البصرية",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#EEECE9",
   "theme_color": "#1C6459",
+  "gcm_sender_id": "482941778795",
   "icons": [
     {
       "src": "icon-192192.png",
