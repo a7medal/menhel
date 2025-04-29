@@ -1,4 +1,4 @@
-// بيانات الفروع والموارد الكاملة
+// بيانات الفروع والموارد الكامل
 const branches = {
     mh1: { 
         name: "المنهـــــل 1",
@@ -505,33 +505,3 @@ if ('serviceWorker' in navigator) {
     });
 }
 
-// عرض إشعار عند توفر تحديث
-function showUpdateBanner() {
-    const banner = document.createElement('div');
-    banner.style.position = 'fixed';
-    banner.style.bottom = '20px';
-    banner.style.left = '50%';
-    banner.style.transform = 'translateX(-50%)';
-    banner.style.background = '#1e1e1e';
-    banner.style.color = '#fff';
-    banner.style.padding = '10px 20px';
-    banner.style.fontSize = '16px';
-    banner.style.borderRadius = '8px';
-    banner.style.boxShadow = '0px 2px 10px rgba(0,0,0,0.5)';
-    banner.style.cursor = 'pointer';
-    banner.style.opacity = '0';
-    banner.style.transition = 'opacity 0.5s';
-    banner.style.zIndex = '1000';
-    banner.innerText = 'تم إصدار تحديث جديد! اضغط هنا لتحديث التطبيق.';
-
-    banner.addEventListener('click', () => {
-        window.location.reload();
-    });
-
-    document.body.appendChild(banner);
-
-    setTimeout(() => {
-        banner.style.opacity = '1';
-    }, 100);
-}
- 
