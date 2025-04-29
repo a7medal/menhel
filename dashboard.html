@@ -19,12 +19,7 @@
     <button class="logout-btn" onclick="logout()">
       <span class="material-icons">logout</span>
     </button>
-    <div id="notification-icon" style="position: relative; cursor: pointer;">
-      <i class="material-icons" style="font-size: 24px;">notifications</i>
-      <span id="notification-badge" style="position: absolute; top: 0; right: 0; background-color: red; color: white; border-radius: 50%; padding: 3px 6px; font-size: 12px; display: none;">0</span>
-    </div>
-    <div id="notifications-menu" style="display:none; position: absolute; top: 60px; left: 10px; background: white; border: 1px solid #ccc; box-shadow: 0 4px 8px rgba(0,0,0,0.1); border-radius: 6px; width: 280px; max-height: 300px; overflow-y: auto; z-index: 999;">
-    </div>
+   
   </header>
 
   <!-- المحتوى الرئيسي -->
@@ -42,120 +37,7 @@
     </div>
   </footer>
 
-  <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async></script>
-  <script>
-    window.OneSignalDeferred = window.OneSignalDeferred || [];
-    OneSignalDeferred.push(async function(OneSignal) {
-      await OneSignal.init({
-        appId: "7d5bdcc4-50a4-47a5-a933-b37a8242d05c",
-        serviceWorkerPath: 'OneSignalSDKWorkerCustom.js',
-        serviceWorkerUpdaterPath: 'OneSignalSDKWorkerCustom.js',
-      });
-    });
-  </script>
-
-  <script>
-    const icon = document.getElementById('notification-icon');
-    const badge = document.getElementById('notification-badge');
-    const menu = document.getElementById('notifications-menu');
-
-    // فتح قاعدة البيانات IndexedDB
-    function openDB() {
-      return new Promise((resolve, reject) => {
-        const request = indexedDB.open("notificationsDB", 1);
-        request.onupgradeneeded = function (e) {
-          const db = e.target.result;
-          db.createObjectStore("notifications", { keyPath: "timestamp" });
-        };
-        request.onsuccess = function (e) {
-          resolve(e.target.result);
-        };
-        request.onerror = function (e) {
-          reject(e);
-        };
-      });
-    }
-
-    // جلب جميع الإشعارات من IndexedDB
-    async function getAllNotifications() {
-      const db = await openDB();
-      return new Promise((resolve) => {
-        const tx = db.transaction("notifications", "readonly");
-        const store = tx.objectStore("notifications");
-        const request = store.getAll();
-        request.onsuccess = () => resolve(request.result);
-      });
-    }
-
-    // حذف الإشعار من IndexedDB
-    async function deleteNotification(timestamp) {
-      const db = await openDB();
-      const tx = db.transaction("notifications", "readwrite");
-      const store = tx.objectStore("notifications");
-      store.delete(timestamp);
-      tx.oncomplete = renderNotifications;
-    }
-
-    // عرض الإشعارات في واجهة المستخدم
-    async function renderNotifications() {
-      const notifications = await getAllNotifications();
-      menu.innerHTML = '';
-
-      if (notifications.length === 0) {
-        menu.innerHTML = '<p style="padding: 10px;">لا توجد لديك إشعارات جديدة.</p>';
-        badge.style.display = 'none';
-        return;
-      }
-
-      notifications.forEach(note => {
-        const item = document.createElement('div');
-        item.style.borderBottom = '1px solid #eee';
-        item.style.padding = '10px';
-        item.innerHTML = `
-          <p style="margin:0;">${note.title} - ${note.body}</p>
-          <button onclick="deleteNotification(${note.timestamp})" style="margin-top:5px; color:red; font-size:12px;">تمت القراءة</button>
-        `;
-        menu.appendChild(item);
-      });
-
-      badge.style.display = 'block';
-      badge.innerText = notifications.length;
-    }
-
-    // إظهار أو إخفاء قائمة الإشعارات عند الضغط على الأيقونة
-    icon.addEventListener('click', () => {
-      menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
-    });
-
-    // أول تحميل: تحميل الإشعارات
-    renderNotifications();
-
-    // حفظ الإشعار في IndexedDB عند تلقي إشعار
-    function saveNotification(notification) {
-      openDB().then(db => {
-        const tx = db.transaction("notifications", "readwrite");
-        const store = tx.objectStore("notifications");
-        store.add(notification);
-        tx.oncomplete = renderNotifications;
-      });
-    }
-
-    // تفعيل OneSignal عند تلقي إشعار جديد
-    window.addEventListener("load", () => {
-      OneSignal.push(function() {
-        OneSignal.on('notificationDisplay', function(event) {
-          const notification = event.notification;
-          const notificationData = {
-            title: notification.title,
-            body: notification.body,
-            timestamp: Date.now()
-          };
-          saveNotification(notificationData); // حفظ الإشعار في IndexedDB
-        });
-      });
-    });
-  </script>
-
+  
   <script src="script.js"></script>
 </body>
 </html>
