@@ -58,9 +58,8 @@ const branches = {
                 title: "بطاقة العمل",
                 icon: "contact_mail",
                 files: [
-                    { name: "PDF", url: "assets/mh1/documents/card.pdf" },
-                    { name: "JPEG", url: "assets/mh1/documents/card.jpg" },
-                    { name: "PNG", url: "assets/mh1/documents/card.png" }
+                    { name: "PDF", url: "https://drive.google.com/file/d/12Ui9Kq5XmqFtQdFQJbl3JpygnKKUwfkm/view?usp=drivesdk" }
+                    
                 ]
             },
             {
