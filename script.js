@@ -66,8 +66,8 @@ const branches = {
                 title: "الأختام",
                 icon: "stamp",
                 files: [
-                    { name: "PDF (ختم الإدارة)", url: "assets/mh1/documents/seal-direction.pdf" },
-                    { name: "PDF (ختم المحاسبة)", url: "assets/mh1/documents/seal-accounting.pdf" }
+                    { name: "PDF (ختم الإدارة)", url: "https://drive.google.com/file/d/1GmSt4ggCkf6Vsf4-E9SuthiorGmyszla/view?usp=drivesdk" },
+                    { name: "PDF (ختم المحاسبة)", url: "https://drive.google.com/file/d/15_3BMFK2BSreJbrCTZTBti8zPwvwu2Uc/view?usp=drivesdk" }
                 ]
             },
             {
