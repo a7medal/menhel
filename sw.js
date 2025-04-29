@@ -7,6 +7,7 @@ const ASSETS = [
   '/script.js',
   '/logo.png',
   '/logo1.png',
+    '/Screen.png',
   '/icon-192192.png',
 ];
 
