@@ -42,44 +42,15 @@
     </div>
     <script src="script.js"></script>
 <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
-<script>  
-  window.OneSignalDeferred = window.OneSignalDeferred || [];  
-  OneSignalDeferred.push(async function(OneSignal) {  
-    await OneSignal.init({  
-      appId: "7d5bdcc4-50a4-47a5-a933-b37a8242d05c",  
-      serviceWorkerPath: 'OneSignalSDKWorker.js',  
+<<script>
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  OneSignalDeferred.push(async function(OneSignal) {
+    await OneSignal.init({
+      appId: "7d5bdcc4-50a4-47a5-a933-b37a8242d05c",
+      serviceWorkerPath: 'OneSignalSDKWorker.js',
       serviceWorkerUpdaterPath: 'OneSignalSDKUpdaterWorker.js',
     });
-
-    // التحقق من وجود إشعارات غير مقروءة
-    OneSignal.on('notificationDisplay', function(event) {
-      const notifications = localStorage.getItem('notifications') || '[]';
-      const unreadNotifications = JSON.parse(notifications).filter(n => !n.read);
-      updateNotificationIcon(unreadNotifications.length);
-    });
-
-    // عندما يتم قراءة الإشعار، حذفه من التخزين المحلي
-    OneSignal.on('notificationClicked', function(event) {
-      const notifications = JSON.parse(localStorage.getItem('notifications') || '[]');
-      const updatedNotifications = notifications.map(notification => {
-        if (notification.id === event.notificationId) {
-          notification.read = true;
-        }
-        return notification;
-      });
-      localStorage.setItem('notifications', JSON.stringify(updatedNotifications));
-      updateNotificationIcon(0);  // تحديث الأيقونة بعد قراءة الإشعار
-    });
   });
-
-  function updateNotificationIcon(unreadCount) {
-    const notificationIcon = document.querySelector('#notification-icon');
-    if (unreadCount > 0) {
-      notificationIcon.classList.add('new-notifications');
-    } else {
-      notificationIcon.classList.remove('new-notifications');
-    }
-  }
 </script>
 </body>
 </html>
