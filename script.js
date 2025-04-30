@@ -150,21 +150,18 @@ const branches = {
                 ]
             },
             {
-                title: "الرأسية",
+                title: "رأسية امتحانات واختبارات",
                 icon: "vertical_align_top",
                 files: [
-                    { name: "DOCX", url: "assets/mh2/documents/header.docx" },
-                    { name: "JPEG", url: "assets/mh2/documents/header.jpg" },
-                    { name: "PDF", url: "assets/mh2/documents/header.pdf" }
+                    { name: "DOCX", url: "https://docs.google.com/file/d/15H6XU52UJC5ertYrpkWT6-Cw6Ygva6bu/edit?usp=docslist_api&filetype=msword" },
+                    { name: "JPEG", url: "https://drive.google.com/file/d/1lDorlAfRFdLiXSagIfYWrtVwkZNe_Fb6/view?usp=drivesdk" }
                 ]
             },
             {
                 title: "بطاقة العمل",
                 icon: "contact_mail",
                 files: [
-                    { name: "PDF", url: "assets/mh2/documents/card.pdf" },
-                    { name: "JPEG", url: "assets/mh2/documents/card.jpg" },
-                    { name: "PNG", url: "assets/mh2/documents/card.png" }
+                    { name: "PDF", url: "https://drive.google.com/file/d/1TuKgeztR646Pl3vsaNTOGcCqWouWykeA/view?usp=drivesdk"}
                 ]
             },
             {
