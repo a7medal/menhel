@@ -8,6 +8,66 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <link rel="manifest" href="/manifest.json">
+ <style>
+     #popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(18, 55, 64, 0.85);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 1rem;
+}
+
+.popup-box {
+  background: white;
+  color: var(--text-color);
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  max-width: 600px;
+  width: 100%;
+  max-height: 80vh;
+  overflow-y: auto;
+  border: 3px solid var(--primary-color);
+  text-align: center;
+}
+
+.popup-title {
+  font-size: 1.5rem;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.popup-message {
+  font-size: 1.1rem;
+  color: var(--text-color);
+  margin-bottom: 2rem;
+  line-height: 1.6;
+  text-align: justify;
+}
+
+#popup-ok {
+  padding: 0.9rem 2rem;
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+#popup-ok:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+    </style>
 </head>
 <body>
   <!-- الهيدر -->
@@ -21,6 +81,19 @@
     </button>
    
   </header>
+
+
+<div id="popup">
+  <div class="popup-box">
+    <h2 class="popup-title">تنبيه هام</h2>
+    <p class="popup-message">
+      هذا نص طويل يمكن أن يحتوي على تفاصيل كثيرة جداً حول تحديث أو تنبيه يخص النظام. الرجاء قراءته بعناية قبل المتابعة.
+    </p>
+    <button id="popup-ok">موافق</button>
+  </div>
+</div>
+
+
 
   <!-- المحتوى الرئيسي -->
   <main class="main-content">
@@ -39,5 +112,26 @@
 
   
   <script src="script.js"></script>
+ <script>document.addEventListener("DOMContentLoaded", () => {
+  const popup = document.getElementById("popup");
+  const okBtn = document.getElementById("popup-ok");
+
+  const popupKey = "popup_seen_v1"; // غيّره عند تحديث الرسالة
+  const popupEnabled = localStorage.getItem("popup_enabled") !== "false";
+
+  if (popupEnabled && !localStorage.getItem(popupKey)) {
+    popup.style.display = "flex";
+  }
+
+  okBtn.addEventListener("click", () => {
+    popup.style.display = "none";
+    localStorage.setItem(popupKey, "true");
+  });
+});
+
+// يمكنك تشغيل أو تعطيل الرسالة هكذا:
+// localStorage.setItem("popup_enabled", "true"); // لتفعيلها
+// localStorage.setItem("popup_enabled", "false"); // لتعطيلها نهائياً
+// localStorage.removeItem("popup_seen_v1"); // لإظهارها من جديد للمستخدم</script>
 </body>
 </html>
