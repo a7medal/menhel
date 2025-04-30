@@ -109,89 +109,85 @@ const branches = {
                 title: "دليل الهوية البصرية",
                 icon: "library_books",
                 files: [
-                    { name: "PDF", url: "assets/mh2/documents/guide.pdf" },
-                    { name: "PPT", url: "assets/mh2/documents/guide.pptx" }
+                    { name: "PDF", url: "https://drive.google.com/file/d/1i98urqNPc7vRi5eDdgn1b_CjfXT8N2Jd/view?usp=drivesdk" },
+                    { name: "PPT (عرض تقديمي)", url: "https://docs.google.com/presentation/d/1-yO4j2MEiGhSVIcmTNCq_-s1btBz_Aen/edit?usp=drivesdk&ouid=110359949235494531611&rtpof=true&sd=true" }
                 ]
             },
             {
                 title: "الشعار الرسمي",
                 icon: "format_shapes",
                 files: [
-                    { name: "ملون (PNG)", url: "assets/mh2/logos/color.png" },
-                    { name: "أبيض/أسود (JPG)", url: "assets/mh2/logos/bw.jpg" },
-                    { name: "لون أحادي (SVG)", url: "assets/mh2/logos/mono.svg" },
-                    { name: "PDF", url: "assets/mh2/logos/logo.pdf" }
+                    { name: "ملون (JPJ)", url: "https://drive.google.com/file/d/1iIMFUJeJZ7-L_ZG1nTwH4q7DQI8jHWbs/view?usp=drivesdk" },
+                    { name: "أبيض/أسود (JPG)", url: "https://drive.google.com/file/d/11D1gh2Bp7GYUTER0LC3RU5ZPGSrMbNqB/view?usp=drivesdk" },
+                    { name: "لون أحادي (PNG)", url: "https://drive.google.com/file/d/1Kdxq3tMl0dKp3pnkYnsGkNp5KVrmg_lY/view?usp=drivesdk" },
+                    { name: "PDF", url: "https://drive.google.com/file/d/1iIMFUJeJZ7-L_ZG1nTwH4q7DQI8jHWbs/view?usp=drivesdk" },
+                    { name: "ملون شفاف (PNG)", url: "https://drive.google.com/file/d/1jWrJZeCUVvtIQyw5iVsvMVuDf2bfmpLX/view?usp=drivesdk" }
                 ]
             },
             {
-                title: "الخطوط الرسمية",
+                title: "الخطوط ",
                 icon: "font_download",
                 files: [
-                    { name: "Cairo Regular (OTF)", url: "assets/mh2/fonts/regular.otf" },
-                    { name: "Cairo Bold (TTF)", url: "assets/mh2/fonts/bold.ttf" }
+                    { name: "Cairo Regular (Zip)", url: "https://drive.google.com/file/d/1nZWIWo3LV7RmW_TdAKAc1c6XHtiZRbfc/view?usp=drivesdk" }
                 ]
             },
             {
                 title: "ورق المراسلات",
                 icon: "description",
                 files: [
-                    { name: "DOCX", url: "assets/mh2/documents/letter.docx" },
-                    { name: "JPEG", url: "assets/mh2/documents/letter.jpg" },
-                    { name: "PDF", url: "assets/mh2/documents/letter.pdf" }
-                ]
+                    { name: "DOCX", url: "https://docs.google.com/file/d/1yTIP1Yy665Fb9NyOsOjfbKo712PD1vTm/edit?usp=docslist_api&filetype=msword" },
+                    { name: "JPEG", url: "https://drive.google.com/file/d/1s4GxOKLlfeAJs2msM0P4qm1WhjRmu9UZ/view?usp=drivesdk" }
+                             ]
             },
             {
                 title: "الشهادات",
                 icon: "verified",
                 files: [
-                    { name: "DOCX", url: "assets/mh2/documents/certificate.docx" },
-                    { name: "PNG", url: "assets/mh2/documents/certificate.png" },
-                    { name: "PDF", url: "assets/mh2/documents/certificate.pdf" }
+                    { name: "DOCX", url: "https://docs.google.com/file/d/1xx9UnO4or6WwgU8nzlNjtR1XtbaBhoLV/edit?usp=docslist_api&filetype=msword" },
+                    { name: "PNG", url: "https://drive.google.com/file/d/1mMcYENlnZXYZMVBbF8eP_eZT2Q9ucqj2/view?usp=drivesdk" },
+                    { name: "PDF", url: "https://drive.google.com/file/d/1JgrGztlwoLk7PMYOtUBjpMxJUKB1Gd_s/view?usp=drivesdk" }
                 ]
             },
             {
                 title: "الرأسية",
                 icon: "vertical_align_top",
                 files: [
-                    { name: "DOCX", url: "assets/mh2/documents/header.docx" },
-                    { name: "JPEG", url: "assets/mh2/documents/header.jpg" },
-                    { name: "PDF", url: "assets/mh2/documents/header.pdf" }
-                ]
+                    { name: "DOCX رأسية امتحانات واختبارات ", url: "https://docs.google.com/file/d/15H6XU52UJC5ertYrpkWT6-Cw6Ygva6bu/edit?usp=docslist_api&filetype=msword" },
+                    { name: "JPEG رأسية نتيجة", url: "https://drive.google.com/file/d/1lDorlAfRFdLiXSagIfYWrtVwkZNe_Fb6/view?usp=drivesdk" }
+                      ]
             },
             {
                 title: "بطاقة العمل",
                 icon: "contact_mail",
                 files: [
-                    { name: "PDF", url: "assets/mh2/documents/card.pdf" },
-                    { name: "JPEG", url: "assets/mh2/documents/card.jpg" },
-                    { name: "PNG", url: "assets/mh2/documents/card.png" }
+                    { name: "PDF", url: "https://drive.google.com/file/d/12Ui9Kq5XmqFtQdFQJbl3JpygnKKUwfkm/view?usp=drivesdk" }
+                    
                 ]
             },
             {
                 title: "الأختام",
                 icon: "stamp",
                 files: [
-                    { name: "PDF", url: "assets/mh2/documents/seal.pdf" },
-                    { name: "PNG", url: "assets/mh2/documents/seal.png" },
-                    { name: "SVG", url: "assets/mh2/documents/seal.svg" }
+                    { name: "PDF (ختم الإدارة)", url: "https://drive.google.com/file/d/1GmSt4ggCkf6Vsf4-E9SuthiorGmyszla/view?usp=drivesdk" },
+                    { name: "PDF (ختم المحاسبة)", url: "https://drive.google.com/file/d/15_3BMFK2BSreJbrCTZTBti8zPwvwu2Uc/view?usp=drivesdk" }
                 ]
             },
             {
                 title: "وصل الدفع",
                 icon: "receipt",
                 files: [
-                    { name: "PDF", url: "assets/mh2/documents/payment.pdf" },
-                    { name: "PNG", url: "assets/mh2/documents/payment.png" }
+                    { name: "PDF", url: "assets/mh1/documents/payment.pdf" },
+                    { name: "PNG", url: "assets/mh1/documents/payment.png" }
                 ]
             },
             {
                 title: "شعار الرابطة",
                 icon: "groups",
                 files: [
-                    { name: "PNG", url: "assets/mh2/logos/association.png" },
-                    { name: "JPG", url: "assets/mh2/logos/association.jpg" },
-                    { name: "SVG", url: "assets/mh2/logos/association.svg" },
-                    { name: "PDF", url: "assets/mh2/logos/association.pdf" }
+                    { name: "PNG", url: "assets/mh1/logos/association.png" },
+                    { name: "JPG", url: "assets/mh1/logos/association.jpg" },
+                    { name: "SVG", url: "assets/mh1/logos/association.svg" },
+                    { name: "PDF", url: "assets/mh1/logos/association.pdf" }
                 ]
             },
             {
@@ -215,89 +211,85 @@ const branches = {
                 title: "دليل الهوية البصرية",
                 icon: "library_books",
                 files: [
-                    { name: "PDF", url: "assets/mh3/documents/guide.pdf" },
-                    { name: "PPT", url: "assets/mh3/documents/guide.pptx" }
+                    { name: "PDF", url: "https://drive.google.com/file/d/1i98urqNPc7vRi5eDdgn1b_CjfXT8N2Jd/view?usp=drivesdk" },
+                    { name: "PPT (عرض تقديمي)", url: "https://docs.google.com/presentation/d/1-yO4j2MEiGhSVIcmTNCq_-s1btBz_Aen/edit?usp=drivesdk&ouid=110359949235494531611&rtpof=true&sd=true" }
                 ]
             },
             {
                 title: "الشعار الرسمي",
                 icon: "format_shapes",
                 files: [
-                    { name: "ملون (PNG)", url: "assets/mh3/logos/color.png" },
-                    { name: "أبيض/أسود (JPG)", url: "assets/mh3/logos/bw.jpg" },
-                    { name: "لون أحادي (SVG)", url: "assets/mh3/logos/mono.svg" },
-                    { name: "PDF", url: "assets/mh3/logos/logo.pdf" }
+                    { name: "ملون (JPJ)", url: "https://drive.google.com/file/d/1iIMFUJeJZ7-L_ZG1nTwH4q7DQI8jHWbs/view?usp=drivesdk" },
+                    { name: "أبيض/أسود (JPG)", url: "https://drive.google.com/file/d/11D1gh2Bp7GYUTER0LC3RU5ZPGSrMbNqB/view?usp=drivesdk" },
+                    { name: "لون أحادي (PNG)", url: "https://drive.google.com/file/d/1Kdxq3tMl0dKp3pnkYnsGkNp5KVrmg_lY/view?usp=drivesdk" },
+                    { name: "PDF", url: "https://drive.google.com/file/d/1iIMFUJeJZ7-L_ZG1nTwH4q7DQI8jHWbs/view?usp=drivesdk" },
+                    { name: "ملون شفاف (PNG)", url: "https://drive.google.com/file/d/1jWrJZeCUVvtIQyw5iVsvMVuDf2bfmpLX/view?usp=drivesdk" }
                 ]
             },
             {
-                title: "الخطوط الرسمية",
+                title: "الخطوط ",
                 icon: "font_download",
                 files: [
-                    { name: "Cairo Regular (OTF)", url: "assets/mh3/fonts/regular.otf" },
-                    { name: "Cairo Bold (TTF)", url: "assets/mh3/fonts/bold.ttf" }
+                    { name: "Cairo Regular (Zip)", url: "https://drive.google.com/file/d/1nZWIWo3LV7RmW_TdAKAc1c6XHtiZRbfc/view?usp=drivesdk" }
                 ]
             },
             {
                 title: "ورق المراسلات",
                 icon: "description",
                 files: [
-                    { name: "DOCX", url: "assets/mh3/documents/letter.docx" },
-                    { name: "JPEG", url: "assets/mh3/documents/letter.jpg" },
-                    { name: "PDF", url: "assets/mh3/documents/letter.pdf" }
-                ]
+                    { name: "DOCX", url: "https://docs.google.com/file/d/1yTIP1Yy665Fb9NyOsOjfbKo712PD1vTm/edit?usp=docslist_api&filetype=msword" },
+                    { name: "JPEG", url: "https://drive.google.com/file/d/1s4GxOKLlfeAJs2msM0P4qm1WhjRmu9UZ/view?usp=drivesdk" }
+                             ]
             },
             {
                 title: "الشهادات",
                 icon: "verified",
                 files: [
-                    { name: "DOCX", url: "assets/mh3/documents/certificate.docx" },
-                    { name: "PNG", url: "assets/mh3/documents/certificate.png" },
-                    { name: "PDF", url: "assets/mh3/documents/certificate.pdf" }
+                    { name: "DOCX", url: "https://docs.google.com/file/d/1xx9UnO4or6WwgU8nzlNjtR1XtbaBhoLV/edit?usp=docslist_api&filetype=msword" },
+                    { name: "PNG", url: "https://drive.google.com/file/d/1mMcYENlnZXYZMVBbF8eP_eZT2Q9ucqj2/view?usp=drivesdk" },
+                    { name: "PDF", url: "https://drive.google.com/file/d/1JgrGztlwoLk7PMYOtUBjpMxJUKB1Gd_s/view?usp=drivesdk" }
                 ]
             },
             {
                 title: "الرأسية",
                 icon: "vertical_align_top",
                 files: [
-                    { name: "DOCX", url: "assets/mh3/documents/header.docx" },
-                    { name: "JPEG", url: "assets/mh3/documents/header.jpg" },
-                    { name: "PDF", url: "assets/mh3/documents/header.pdf" }
-                ]
+                    { name: "DOCX رأسية امتحانات واختبارات ", url: "https://docs.google.com/file/d/15H6XU52UJC5ertYrpkWT6-Cw6Ygva6bu/edit?usp=docslist_api&filetype=msword" },
+                    { name: "JPEG رأسية نتيجة", url: "https://drive.google.com/file/d/1lDorlAfRFdLiXSagIfYWrtVwkZNe_Fb6/view?usp=drivesdk" }
+                      ]
             },
             {
                 title: "بطاقة العمل",
                 icon: "contact_mail",
                 files: [
-                    { name: "PDF", url: "assets/mh3/documents/card.pdf" },
-                    { name: "JPEG", url: "assets/mh3/documents/card.jpg" },
-                    { name: "PNG", url: "assets/mh3/documents/card.png" }
+                    { name: "PDF", url: "https://drive.google.com/file/d/12Ui9Kq5XmqFtQdFQJbl3JpygnKKUwfkm/view?usp=drivesdk" }
+                    
                 ]
             },
             {
                 title: "الأختام",
                 icon: "stamp",
                 files: [
-                    { name: "PDF", url: "assets/mh3/documents/seal.pdf" },
-                    { name: "PNG", url: "assets/mh3/documents/seal.png" },
-                    { name: "SVG", url: "assets/mh3/documents/seal.svg" }
+                    { name: "PDF (ختم الإدارة)", url: "https://drive.google.com/file/d/1GmSt4ggCkf6Vsf4-E9SuthiorGmyszla/view?usp=drivesdk" },
+                    { name: "PDF (ختم المحاسبة)", url: "https://drive.google.com/file/d/15_3BMFK2BSreJbrCTZTBti8zPwvwu2Uc/view?usp=drivesdk" }
                 ]
             },
             {
                 title: "وصل الدفع",
                 icon: "receipt",
                 files: [
-                    { name: "PDF", url: "assets/mh3/documents/payment.pdf" },
-                    { name: "PNG", url: "assets/mh3/documents/payment.png" }
+                    { name: "PDF", url: "assets/mh1/documents/payment.pdf" },
+                    { name: "PNG", url: "assets/mh1/documents/payment.png" }
                 ]
             },
             {
                 title: "شعار الرابطة",
                 icon: "groups",
                 files: [
-                    { name: "PNG", url: "assets/mh3/logos/association.png" },
-                    { name: "JPG", url: "assets/mh3/logos/association.jpg" },
-                    { name: "SVG", url: "assets/mh3/logos/association.svg" },
-                    { name: "PDF", url: "assets/mh3/logos/association.pdf" }
+                    { name: "PNG", url: "assets/mh1/logos/association.png" },
+                    { name: "JPG", url: "assets/mh1/logos/association.jpg" },
+                    { name: "SVG", url: "assets/mh1/logos/association.svg" },
+                    { name: "PDF", url: "assets/mh1/logos/association.pdf" }
                 ]
             },
             {
@@ -313,8 +305,7 @@ const branches = {
                 ]
             }
         ]
-    }
-};
+    },
 
 // بيانات الدخول
 const validCredentials = {
