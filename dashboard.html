@@ -174,7 +174,11 @@
   <div class="popup-box">
     <h2 class="popup-title">تحديث جديد </h2>
     <p class="popup-message">
-      اختبار نختر ميزة في التطبيق
+      لقد قمنا بتحديثات في عناصر الهوية البصرية للفروع:
+المنهل1
+المنهل3
+
+ونحن الآن نعمل على إضافة باقي عناصر الهوية في أقرب وقت.
   </p>
     <button id="popup-ok">موافق</button>
   </div>
@@ -199,11 +203,12 @@
 
   
   <script src="script.js"></script>
- <script>document.addEventListener("DOMContentLoaded", () => {
+ <script>
+document.addEventListener("DOMContentLoaded", () => {
   const popup = document.getElementById("popup");
   const okBtn = document.getElementById("popup-ok");
 
-  const popupKey = "popup_seen_v2"; // غيّره عند تحديث الرسالة
+  const popupKey = "popup_seen_v3"; // غيّره عند تحديث الرسالة
   const popupEnabled = localStorage.getItem("popup_enabled") !== "false";
 
   if (popupEnabled && !localStorage.getItem(popupKey)) {
