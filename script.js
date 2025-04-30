@@ -136,18 +136,17 @@ const branches = {
                 title: "ورق المراسلات",
                 icon: "description",
                 files: [
-                    { name: "DOCX", url: "assets/mh2/documents/letter.docx" },
-                    { name: "JPEG", url: "assets/mh2/documents/letter.jpg" },
-                    { name: "PDF", url: "assets/mh2/documents/letter.pdf" }
+                    { name: "DOCX", url: "https://docs.google.com/document/d/1MOf7dGqn5bwwNdHbb_BJU_u8OIKdjBtK/edit?usp=drivesdk&ouid=110359949235494531611&rtpof=true&sd=true" },
+                    { name: "JPEG", url: "https://drive.google.com/file/d/1ZOZOTz-Ltu7gYx0KrjoCQJFjgY40XvtP/view?usp=drivesdk" }
                 ]
             },
             {
                 title: "الشهادات",
                 icon: "verified",
                 files: [
-                    { name: "DOCX", url: "assets/mh2/documents/certificate.docx" },
-                    { name: "PNG", url: "assets/mh2/documents/certificate.png" },
-                    { name: "PDF", url: "assets/mh2/documents/certificate.pdf" }
+                    { name: "DOCX", url: "https://docs.google.com/file/d/1xx9UnO4or6WwgU8nzlNjtR1XtbaBhoLV/edit?usp=docslist_api&filetype=msword" },
+                    { name: "PNG", url: "https://drive.google.com/file/d/1mMcYENlnZXYZMVBbF8eP_eZT2Q9ucqj2/view?usp=drivesdk" },
+                    { name: "PDF", url: "https://drive.google.com/file/d/1JgrGztlwoLk7PMYOtUBjpMxJUKB1Gd_s/view?usp=drivesdk" }
                 ]
             },
             {
