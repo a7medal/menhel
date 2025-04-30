@@ -212,18 +212,20 @@ const branches = {
                 title: "دليل الهوية البصرية",
                 icon: "library_books",
                 files: [
-                    { name: "PDF", url: "assets/mh3/documents/guide.pdf" },
-                    { name: "PPT", url: "assets/mh3/documents/guide.pptx" }
+                    { name: "PDF", url: "assets/mh3/documents/guide.pdfhttps://drive.google.com/file/d/1i98urqNPc7vRi5eDdgn1b_CjfXT8N2Jd/view?usp=drivesdk" },
+                    { name: "PPT", url: "https://docs.google.com/presentation/d/1-yO4j2MEiGhSVIcmTNCq_-s1btBz_Aen/edit?usp=drivesdk&ouid=110359949235494531611&rtpof=true&sd=true" }
                 ]
             },
             {
                 title: "الشعار الرسمي",
                 icon: "format_shapes",
                 files: [
-                    { name: "ملون (PNG)", url: "assets/mh3/logos/color.png" },
-                    { name: "أبيض/أسود (JPG)", url: "assets/mh3/logos/bw.jpg" },
-                    { name: "لون أحادي (SVG)", url: "assets/mh3/logos/mono.svg" },
-                    { name: "PDF", url: "assets/mh3/logos/logo.pdf" }
+                    { name: "ملون (JPJ)", url: "https://drive.google.com/file/d/1iIMFUJeJZ7-L_ZG1nTwH4q7DQI8jHWbs/view?usp=drivesdk" },
+                    { name: "أبيض/أسود (JPG)", url: "https://drive.google.com/file/d/11D1gh2Bp7GYUTER0LC3RU5ZPGSrMbNqB/view?usp=drivesdk" },
+                    { name: "لون أحادي (PNG)", url: "https://drive.google.com/file/d/1Kdxq3tMl0dKp3pnkYnsGkNp5KVrmg_lY/view?usp=drivesdk" },
+                    { name: "PDF", url: "https://drive.google.com/file/d/1iIMFUJeJZ7-L_ZG1nTwH4q7DQI8jHWbs/view?usp=drivesdk" },
+
+{ name: "ملون شفاف (PNG)", url: "https://drive.google.com/file/d/1jWrJZeCUVvtIQyw5iVsvMVuDf2bfmpLX/view?usp=drivesdk" }
                 ]
             },
             {
