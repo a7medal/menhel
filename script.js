@@ -129,8 +129,7 @@ const branches = {
                 title: "الخطوط الرسمية",
                 icon: "font_download",
                 files: [
-                    { name: "Cairo Regular (OTF)", url: "assets/mh2/fonts/regular.otf" },
-                    { name: "Cairo Bold (TTF)", url: "assets/mh2/fonts/bold.ttf" }
+                    { name: "Cairo Regular (Zip)", url: "https://drive.google.com/file/d/1nZWIWo3LV7RmW_TdAKAc1c6XHtiZRbfc/view?usp=drivesdk" }
                 ]
             },
             {
