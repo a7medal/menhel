@@ -150,10 +150,10 @@ const branches = {
                 ]
             },
             {
-                title: "رأسية امتحانات واختبارات",
+                title: "الرأسية",
                 icon: "vertical_align_top",
                 files: [
-                    { name: "DOCX", url: "https://docs.google.com/file/d/15H6XU52UJC5ertYrpkWT6-Cw6Ygva6bu/edit?usp=docslist_api&filetype=msword" },
+                    { name: "(DOCX) رأسية امتحاناتواختبارات", url: "https://docs.google.com/file/d/15H6XU52UJC5ertYrpkWT6-Cw6Ygva6bu/edit?usp=docslist_api&filetype=msword" },
                     { name: "JPEG", url: "https://drive.google.com/file/d/1lDorlAfRFdLiXSagIfYWrtVwkZNe_Fb6/view?usp=drivesdk" }
                 ]
             },
@@ -232,44 +232,39 @@ const branches = {
                 title: "الخطوط الرسمية",
                 icon: "font_download",
                 files: [
-                    { name: "Cairo Regular (OTF)", url: "assets/mh3/fonts/regular.otf" },
-                    { name: "Cairo Bold (TTF)", url: "assets/mh3/fonts/bold.ttf" }
+                    { name: "Cairo Regular (Zip)", url: "https://drive.google.com/file/d/1nZWIWo3LV7RmW_TdAKAc1c6XHtiZRbfc/view?usp=drivesdk" }
                 ]
             },
             {
                 title: "ورق المراسلات",
                 icon: "description",
                 files: [
-                    { name: "DOCX", url: "assets/mh3/documents/letter.docx" },
-                    { name: "JPEG", url: "assets/mh3/documents/letter.jpg" },
-                    { name: "PDF", url: "assets/mh3/documents/letter.pdf" }
+                    { name: "DOCX", url: "https://docs.google.com/document/d/1fjpmwxUbr2yloQthegZv8oSfWBzFhaTQ/edit?usp=drivesdk&ouid=110359949235494531611&rtpof=true&sd=true" },
+                    { name: "JPEG", url: "https://drive.google.com/file/d/1h6ip8lTzRljPKNxyoEVjk4hz1Q9V6Ybf/view?usp=drivesdk" }
                 ]
             },
             {
                 title: "الشهادات",
                 icon: "verified",
                 files: [
-                    { name: "DOCX", url: "assets/mh3/documents/certificate.docx" },
-                    { name: "PNG", url: "assets/mh3/documents/certificate.png" },
-                    { name: "PDF", url: "assets/mh3/documents/certificate.pdf" }
+                    { name: "DOCX", url: "https://docs.google.com/file/d/1xx9UnO4or6WwgU8nzlNjtR1XtbaBhoLV/edit?usp=docslist_api&filetype=msword" },
+                    { name: "PNG", url: "https://drive.google.com/file/d/1mMcYENlnZXYZMVBbF8eP_eZT2Q9ucqj2/view?usp=drivesdk" },
+                    { name: "PDF", url: "https://drive.google.com/file/d/1JgrGztlwoLk7PMYOtUBjpMxJUKB1Gd_s/view?usp=drivesdk" }
                 ]
             },
             {
                 title: "الرأسية",
                 icon: "vertical_align_top",
                 files: [
-                    { name: "DOCX", url: "assets/mh3/documents/header.docx" },
-                    { name: "JPEG", url: "assets/mh3/documents/header.jpg" },
-                    { name: "PDF", url: "assets/mh3/documents/header.pdf" }
+                    { name: "(DOCX) رأسية امتحانات واختبارات", url: "https://docs.google.com/file/d/15H6XU52UJC5ertYrpkWT6-Cw6Ygva6bu/edit?usp=docslist_api&filetype=msword" },
+                    { name: "رأسية نتيجة (JPJ)", url: "https://drive.google.com/file/d/1SeUSI2vlxr7NfbAKKqGNDqUX4Q65Jz7D/view?usp=drivesdk" }
                 ]
             },
             {
                 title: "بطاقة العمل",
                 icon: "contact_mail",
                 files: [
-                    { name: "PDF", url: "assets/mh3/documents/card.pdf" },
-                    { name: "JPEG", url: "assets/mh3/documents/card.jpg" },
-                    { name: "PNG", url: "assets/mh3/documents/card.png" }
+                    { name: "PDF", url: "https://drive.google.com/file/d/1dUI-gCWcGqjkvwJeUJKT_QbucWrMRihJ/view?usp=drivesdk" }            
                 ]
             },
             {
