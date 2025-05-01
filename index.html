@@ -1,68 +1,91 @@
 <!DOCTYPE html>
 <html dir="rtl" lang="ar">
 <head>
-    <meta charset="UTF-8">
-    <title>تسجيل الدخول - المنهل</title>
-<link rel="apple-touch-startup-image" href="/Screen.png">
-<link rel="icon" href="logo.png" type="image/png">
-    <!-- أضف في الـ head -->
-<link rel="manifest" href="/manifest.json">
-    <!-- في head كلا الملفين -->
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>تسجيل الدخول - المنهل</title>
+  <link rel="apple-touch-startup-image" href="/Screen.png">
+  <link rel="icon" href="logo.png" type="image/png">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="login-container">
-        <div class="login-box">
-            <img src="logo.png" alt="شعار المنهل" class="logo">
-            <form id="loginForm">
-                <div class="input-group">
-                    <label for="username">
-                        <span class="material-icons">person</span>
-                        إسم المستخدم
-                    </label>
-                    <input type="text" id="username" required>
-                </div>
-                <div class="input-group">
-                    <label for="password">
-                        <span class="material-icons">lock</span>
-                        كلمة المرور
-                    </label>
-                    <input type="password" id="password" required>
-                </div>
-                <button type="submit" class="login-btn">
-                    <span class="material-icons">login</span>
-                    تسجيل الدخول
-                </button>
-                <div class="error-msg" id="errorMsg"></div>
-            </form>
+  <div class="login-container">
+    <div class="login-box">
+      <img src="logo.png" alt="شعار المنهل" class="logo">
+      <form id="loginForm">
+        <div class="input-group">
+          <label for="username">
+            <span class="material-icons">person</span>
+            إسم المستخدم
+          </label>
+          <input type="text" id="username" required>
         </div>
+        <div class="input-group">
+          <label for="password">
+            <span class="material-icons">lock</span>
+            كلمة المرور
+          </label>
+          <input type="password" id="password" required>
+        </div>
+        <button type="submit" class="login-btn">
+          <span class="material-icons">login</span>
+          تسجيل الدخول
+        </button>
+        <div class="error-msg" id="errorMsg"></div>
+      </form>
     </div>
-    <script src="script.js"></script>
-<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
-<script>
-  window.OneSignalDeferred = window.OneSignalDeferred || [];
-OneSignalDeferred.push(async function(OneSignal) {
-  await OneSignal.init({
-    appId: "7d5bdcc4-50a4-47a5-a933-b37a8242d05c",
-    serviceWorkerPath: 'OneSignalSDKWorker.js',
-    serviceWorkerUpdaterPath: 'OneSignalSDKUpdaterWorker.js',
-  });
+  </div>
 
-  // تفعيل الجرس
-  OneSignal.showSlidedownPrompt(); // هذا يعرض الجرس للمستخدم
-
-  // عند الضغط على الجرس، يظهر إشعار للسماح
-  OneSignal.on('subscriptionChange', function(isSubscribed) {
-    if (!isSubscribed) {
-      OneSignal.push(function() {
-        OneSignal.showSlidedownPrompt();  // يظهر نافذة طلب الإذن
+  <!-- إشعارات OneSignal -->
+  <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+  <script>
+    window.OneSignalDeferred = window.OneSignalDeferred || [];
+    OneSignalDeferred.push(async function(OneSignal) {
+      await OneSignal.init({
+        appId: "7d5bdcc4-50a4-47a5-a933-b37a8242d05c",
+        serviceWorkerPath: 'OneSignalSDKWorker.js',
+        serviceWorkerUpdaterPath: 'OneSignalSDKUpdaterWorker.js',
       });
-    }
-  });
-});
-</script>
+
+      OneSignal.showSlidedownPrompt();
+
+      OneSignal.on('subscriptionChange', function(isSubscribed) {
+        if (!isSubscribed) {
+          OneSignal.push(function() {
+            OneSignal.showSlidedownPrompt();
+          });
+        }
+      });
+    });
+  </script>
+
+  <!-- كود إرسال بيانات تسجيل الدخول إلى Google Sheets -->
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const username = document.getElementById("username").value;
+
+      fetch("https://script.google.com/macros/s/AKfycbx5rkSB14uOhH8G58O3fQW0ESR_MOJXXd-Uzwc_mSLEdRa_6QZP-HnAGA5vgrmzw8SY/exec", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          username: username,
+          time: new Date().toLocaleString()
+        })
+      })
+      .then(res => res.text())
+      .then(data => {
+        alert("تم تسجيل الدخول");
+        // هنا يمكنك توجيه المستخدم لصفحة أخرى مثل: location.href = "الرئيسية.html";
+      })
+      .catch(err => {
+        console.error("خطأ أثناء الإرسال:", err);
+        alert("فشل إرسال البيانات إلى Google Sheets");
+      });
+    });
+  </script>
 </body>
 </html>
