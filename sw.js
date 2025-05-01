@@ -1,4 +1,6 @@
-const CACHE_NAME = 'menhel-cache-v1';
+const CACHE_NAME = 'menhel-cache-v2';
+const OFFLINE_URL = '/offline.html'; // تأكد من إضافة هذه الصفحة في الكاش
+
 const ASSETS = [
   '/',
   '/index.html',
@@ -7,12 +9,13 @@ const ASSETS = [
   '/script.js',
   '/logo.png',
   '/logo1.png',
-    '/Screen.png',
+  '/Screen.png',
   '/icon-192192.png',
+  '/offline.html', // صفحة لا يوجد اتصال
 ];
 
 self.addEventListener('install', (event) => {
-  self.skipWaiting(); // يجبر التثبيت مباشرة
+  self.skipWaiting();
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then((cache) => cache.addAll(ASSETS))
@@ -25,31 +28,35 @@ self.addEventListener('activate', (event) => {
       return Promise.all(
         cacheNames.map((cache) => {
           if (cache !== CACHE_NAME) {
-            return caches.delete(cache); // حذف الكاش القديم
+            return caches.delete(cache);
           }
         })
       );
     })
   );
-  self.clients.claim(); // السيطرة على جميع الصفحات فورا
+  self.clients.claim();
 });
 
 self.addEventListener('fetch', (event) => {
-  event.respondWith(
-    caches.match(event.request)
-      .then((cachedResponse) => {
-        const fetchPromise = fetch(event.request)
-          .then((networkResponse) => {
-            // نحدث الكاش بنسخة جديدة من السيرفر
-            return caches.open(CACHE_NAME).then((cache) => {
-              cache.put(event.request, networkResponse.clone());
-              return networkResponse;
-            });
-          })
-          .catch(() => {}); // إذا لا يوجد نت، يتجاهل الخطأ
+  if (event.request.method !== 'GET') return;
 
-        // نرجع النسخة من الكاش فورًا، وأيضًا نحدث الكاش بالخلفية
-        return cachedResponse || fetchPromise;
+  event.respondWith(
+    fetch(event.request)
+      .then((response) => {
+        return caches.open(CACHE_NAME).then((cache) => {
+          cache.put(event.request, response.clone());
+          return response;
+        });
+      })
+      .catch(() => {
+        return caches.match(event.request)
+          .then((cachedResponse) => {
+            if (cachedResponse) {
+              return cachedResponse;
+            } else if (event.request.mode === 'navigate') {
+              return caches.match(OFFLINE_URL); // لو ما فيه كاش ولا نت، يرجع صفحة لا اتصال
+            }
+          });
       })
   );
 });
