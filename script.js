@@ -176,9 +176,8 @@ const branches = {
                 title: "وصل الدفع",
                 icon: "receipt",
                 files: [
-                    { name: "PDF", url: "assets/mh2/documents/payment.pdf" },
-                    { name: "PNG", url: "assets/mh2/documents/payment.png" }
-                ]
+                    { name: "PDF", url: "https://drive.google.com/file/d/1-lkAtaYAJFiNpd4FPOC_j96aJfG4rqVk/view?usp=drivesdk" }
+                          ]
             },
             {
                 title: "شعار الرابطة",
@@ -279,9 +278,8 @@ const branches = {
                 title: "وصل الدفع",
                 icon: "receipt",
                 files: [
-                    { name: "PDF", url: "assets/mh3/documents/payment.pdf" },
-                    { name: "PNG", url: "assets/mh3/documents/payment.png" }
-                ]
+                    { name: "PDF", url: "https://drive.google.com/file/d/13aA9KbqJyvHlbzWOZwNZhz1tiMn3-S7u/view?usp=drivesdk" },
+                       ]
             },
             {
                 title: "شعار الرابطة",
