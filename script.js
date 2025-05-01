@@ -81,10 +81,9 @@ const branches = {
                 title: "شعار الرابطة",
                 icon: "groups",
                 files: [
-                    { name: "PNG", url: "assets/mh1/logos/association.png" },
-                    { name: "JPG", url: "assets/mh1/logos/association.jpg" },
-                    { name: "SVG", url: "assets/mh1/logos/association.svg" },
-                    { name: "PDF", url: "assets/mh1/logos/association.pdf" }
+                    { name: "PNG", url: "https://drive.google.com/file/d/1HSnoY64Vd1-mYEqkAYs7LhEn0EjW8D66/view?usp=drivesdk" },
+                    { name: "للإسنخدام الرقمي (JPJ)", url: "https://drive.google.com/file/d/1UZe6B3kd_ThfSCsymV_Vv7JWwYXqp9m0/view?usp=drivesdk" }
+                    
                 ]
             },
             {
@@ -183,10 +182,9 @@ const branches = {
                 title: "شعار الرابطة",
                 icon: "groups",
                 files: [
-                    { name: "PNG", url: "assets/mh2/logos/association.png" },
-                    { name: "JPG", url: "assets/mh2/logos/association.jpg" },
-                    { name: "SVG", url: "assets/mh2/logos/association.svg" },
-                    { name: "PDF", url: "assets/mh2/logos/association.pdf" }
+                    { name: "PNG", url: "https://drive.google.com/file/d/1HSnoY64Vd1-mYEqkAYs7LhEn0EjW8D66/view?usp=drivesdk" },
+                    { name: "للإسنخدام الرقمي (JPJ)", url: "https://drive.google.com/file/d/1UZe6B3kd_ThfSCsymV_Vv7JWwYXqp9m0/view?usp=drivesdk" }
+                    
                 ]
             },
             {
@@ -285,10 +283,9 @@ const branches = {
                 title: "شعار الرابطة",
                 icon: "groups",
                 files: [
-                    { name: "PNG", url: "assets/mh3/logos/association.png" },
-                    { name: "JPG", url: "assets/mh3/logos/association.jpg" },
-                    { name: "SVG", url: "assets/mh3/logos/association.svg" },
-                    { name: "PDF", url: "assets/mh3/logos/association.pdf" }
+                    { name: "PNG", url: "https://drive.google.com/file/d/1HSnoY64Vd1-mYEqkAYs7LhEn0EjW8D66/view?usp=drivesdk" },
+                    { name: "للإسنخدام الرقمي (JPJ)", url: "https://drive.google.com/file/d/1UZe6B3kd_ThfSCsymV_Vv7JWwYXqp9m0/view?usp=drivesdk" }
+                    
                 ]
             },
             {
