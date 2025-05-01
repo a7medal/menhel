@@ -74,8 +74,7 @@ const branches = {
                 title: "وصل الدفع",
                 icon: "receipt",
                 files: [
-                    { name: "PDF", url: "assets/mh1/documents/payment.pdf" },
-                    { name: "PNG", url: "assets/mh1/documents/payment.png" }
+                    { name: "PDF", url: "https://drive.google.com/file/d/1lK1vCA7uPRyTGlksOOuUgOW3szR8n0aH/view?usp=drivesdk" }
                 ]
             },
             {
