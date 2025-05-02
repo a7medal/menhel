@@ -500,3 +500,41 @@ input {
   background-color: red;
   border-radius: 50%;
 }
+[data-theme="dark"] {
+  --primary-color: #1C6459;
+  --secondary-color: #123740;
+  --accent-color: #DBA437;
+
+  --background-color: #121212;
+  --surface-color: #1E1E1E;
+
+  --text-color: #E0E0E0;
+  --muted-text-color: #AAAAAA;
+
+  --border-color: #2E2E2E;
+  --error-color: #E74C3C;
+
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+[data-theme="dark"] body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+[data-theme="dark"] .popup-box {
+  background: var(--surface-color);
+  color: var(--text-color);
+  border-color: var(--primary-color);
+}
+
+[data-theme="dark"] .popup-title::after {
+  background: var(--accent-color);
+}
+
+[data-theme="dark"] #popup-ok {
+  background: linear-gradient(135deg, var(--accent-color), var(--secondary-color));
+  color: white;
+}
+ 
