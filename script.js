@@ -492,3 +492,18 @@ if ('serviceWorker' in navigator) {
             .catch(err => console.error('فشل تسجيل Service Worker:', err));
     });
 }
+window.addEventListener('load', function () {
+  function checkOnlineStatus() {
+    if (!navigator.onLine) {
+      window.location.href = 'offline.html';
+    }
+  }
+
+  // تحقق عند تحميل الصفحة
+  checkOnlineStatus();
+
+  // استمع لأي تغيّر في حالة الاتصال
+  window.addEventListener('offline', function () {
+    window.location.href = 'offline.html';
+  });
+});
