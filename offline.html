@@ -219,46 +219,52 @@
             </button>
         </div>
     </div>
-        <script>
-        // كشف حالة الاتصال الحالية عند التحميل
-        window.addEventListener('load', function() {
-            if(navigator.onLine) {
-                redirectToHome();
-            }
-        });
+    <script>
+    const title = document.querySelector('.offline-title');
+    const message = document.querySelector('.offline-message');
+    const icon = document.querySelector('.offline-icon svg');
+    const retryBtn = document.getElementById('retryBtn');
 
-        // مراقبة تغيرات حالة الاتصال
-        window.addEventListener('online', function() {
-            setTimeout(() => {
-                redirectToHome();
-            }, 2000); // تأخير 2 ثانية للتأكد من استقرار الاتصال
-        });
+    function showOnlineStatusAndRedirect() {
+        // تغيير المحتوى للإشارة إلى استعادة الاتصال
+        title.textContent = 'تم استعادة الاتصال';
+        message.innerHTML = 'تم إعادة الاتصال بالإنترنت. سيتم توجيهك تلقائيًا...';
+        icon.innerHTML = `
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                d="M5 13l4 4L19 7" />
+        `;
+        retryBtn.style.display = 'none';
 
-        // دالة إعادة التوجيه
-        function redirectToHome() {
-            window.location.href = 'https://hewiya-menhel.netlify.app'; // استبدل بالرابط الفعلي
-        }
-
-        // دالة التحقق من الاتصال عند النقر
-        function checkConnection() {
-            if(navigator.onLine) {
-                redirectToHome();
+        // إعادة التوجيه إلى الصفحة السابقة
+        setTimeout(() => {
+            if (document.referrer) {
+                window.location.href = document.referrer;
             } else {
-                window.location.reload();
+                window.location.href = '/'; // رابط بديل في حال عدم وجود صفحة سابقة
             }
-        }
+        }, 2000);
+    }
 
-        // كشف دوري كل 5 ثواني (كخطة احتياطية)
-        setInterval(() => {
-            if(navigator.onLine) {
-                redirectToHome();
-            }
-        }, 5000);
-    </script>
-  <script>
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/sw.js');
-  }
+    // عند تحميل الصفحة
+    window.addEventListener('load', () => {
+        if (navigator.onLine) {
+            showOnlineStatusAndRedirect();
+        }
+    });
+
+    // عند عودة الاتصال
+    window.addEventListener('online', () => {
+        setTimeout(() => {
+            showOnlineStatusAndRedirect();
+        }, 1500);
+    });
+
+    // تحقق دوري
+    setInterval(() => {
+        if (navigator.onLine) {
+            showOnlineStatusAndRedirect();
+        }
+    }, 5000);
 </script>
 </body>
 </html>
