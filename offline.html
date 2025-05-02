@@ -11,16 +11,20 @@
       --secondary-color: #123740;
       --accent-color: #DBA437;
       --background-color: #EEECE9;
+      --error-color: #E74C3C;
       --text-color: #333333;
     }
+
     * {
       font-family: 'Cairo', sans-serif;
       box-sizing: border-box;
     }
+
     body {
       margin: 0;
       background: var(--background-color);
     }
+
     .offline-page {
       position: fixed;
       top: 0;
@@ -36,11 +40,14 @@
       backdrop-filter: blur(8px);
       animation: cardEntrance 0.6s ease-out;
     }
+
     .offline-container {
       background: var(--background-color);
       padding: 4rem;
       border-radius: 32px;
-      box-shadow: 0 12px 24px rgba(18, 55, 64, 0.15), 0 8px 16px rgba(18, 55, 64, 0.1);
+      box-shadow: 
+        0 12px 24px rgba(18, 55, 64, 0.15),
+        0 8px 16px rgba(18, 55, 64, 0.1);
       max-width: 680px;
       width: 100%;
       border: 3px solid var(--primary-color);
@@ -48,6 +55,7 @@
       position: relative;
       overflow: hidden;
     }
+
     .offline-container::before {
       content: '';
       position: absolute;
@@ -55,9 +63,13 @@
       left: -50%;
       width: 200%;
       height: 200%;
-      background: linear-gradient(45deg, transparent 25%, rgba(219, 164, 55, 0.1) 50%, transparent 75%);
+      background: linear-gradient(45deg,
+        transparent 25%,
+        rgba(219, 164, 55, 0.1) 50%,
+        transparent 75%);
       animation: shimmer 8s infinite linear;
     }
+
     .offline-icon {
       width: 140px;
       height: 140px;
@@ -65,12 +77,14 @@
       position: relative;
       z-index: 1;
     }
+
     .offline-icon svg {
       width: 100%;
       height: 100%;
       color: var(--secondary-color);
       filter: drop-shadow(0 4px 6px rgba(18, 55, 64, 0.1));
     }
+
     .offline-title {
       font-size: 2.2rem;
       color: var(--secondary-color);
@@ -80,6 +94,7 @@
       z-index: 1;
       text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
+
     .offline-message {
       font-size: 1.2rem;
       line-height: 1.8;
@@ -90,9 +105,12 @@
       z-index: 1;
       padding: 0 2rem;
     }
+
     .retry-button {
       padding: 1.2rem 3rem;
-      background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+      background: linear-gradient(135deg, 
+        var(--primary-color) 0%, 
+        var(--secondary-color) 100%);
       color: white;
       border: none;
       border-radius: 16px;
@@ -105,6 +123,7 @@
       z-index: 1;
       border: 2px solid var(--accent-color);
     }
+
     .retry-button::before {
       content: '';
       position: absolute;
@@ -112,17 +131,27 @@
       left: -100%;
       width: 100%;
       height: 100%;
-      background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+      );
       transition: all 0.6s;
     }
+
     .retry-button:hover {
       transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(28, 100, 89, 0.3), 0 4px 12px rgba(28, 100, 89, 0.2);
+      box-shadow: 
+        0 8px 20px rgba(28, 100, 89, 0.3),
+        0 4px 12px rgba(28, 100, 89, 0.2);
       border-color: white;
     }
+
     .retry-button:hover::before {
       left: 100%;
     }
+
     @keyframes cardEntrance {
       from {
         opacity: 0;
@@ -133,26 +162,32 @@
         transform: translateY(0) scale(1);
       }
     }
+
     @keyframes shimmer {
       0% { transform: rotate(0deg) translateX(-25%); }
       100% { transform: rotate(360deg) translateX(-25%); }
     }
+
     @media (max-width: 768px) {
       .offline-container {
         padding: 2.5rem;
         border-radius: 24px;
       }
+
       .offline-title {
         font-size: 1.8rem;
       }
+
       .offline-message {
         font-size: 1rem;
         padding: 0;
       }
+
       .retry-button {
         padding: 1rem 2.5rem;
         font-size: 1rem;
       }
+
       .offline-icon {
         width: 100px;
         height: 100px;
@@ -165,7 +200,7 @@
     <div class="offline-container">
       <div class="offline-icon">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" 
             d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0M12 4v4m0 4h.01"/>
         </svg>
       </div>
@@ -173,11 +208,15 @@
       <p class="offline-message">
         تعذر الاتصال بالإنترنت. الرجاء اتباع الخطوات التالية:
         <br><br>
-        ✓ التحقق من عدم تشغيل وضع الطيران<br>
-        ✓ إعادة تشغيل الموجه اللاسلكي<br>
+        ✓ التحقق من عدم تشغيل وضع الطيران
+        <br>
+        ✓ إعادة تشغيل الموجه اللاسلكي
+        <br>
         ✓ التأكد من تفعيل بيانات الجوال
       </p>
-      <button class="retry-button" id="retryBtn" onclick="manualRetry()">إعادة المحاولة</button>
+      <button class="retry-button" onclick="window.location.href='https://hewiya-menhel.netlify.app'">
+        إعادة المحاولة
+      </button>
     </div>
   </div>
 
@@ -185,7 +224,6 @@
     const title = document.querySelector('.offline-title');
     const message = document.querySelector('.offline-message');
     const icon = document.querySelector('.offline-icon svg');
-    const retryBtn = document.getElementById('retryBtn');
 
     function showOnlineStatusAndRedirect() {
       title.textContent = 'تم استعادة الاتصال';
@@ -194,30 +232,27 @@
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
               d="M5 13l4 4L19 7" />
       `;
-      retryBtn.style.display = 'none';
       setTimeout(() => {
-        window.location.href = document.referrer || '/';
+        window.location.href = 'https://hewiya-menhel.netlify.app';
       }, 2000);
     }
 
-    function manualRetry() {
+    window.addEventListener('load', () => {
       if (navigator.onLine) {
         showOnlineStatusAndRedirect();
-      } else {
-        alert('ما زلت غير متصل بالإنترنت!');
       }
-    }
-
-    window.addEventListener('load', () => {
-      if (navigator.onLine) showOnlineStatusAndRedirect();
     });
 
     window.addEventListener('online', () => {
-      setTimeout(showOnlineStatusAndRedirect, 1500);
+      setTimeout(() => {
+        showOnlineStatusAndRedirect();
+      }, 1500);
     });
 
     setInterval(() => {
-      if (navigator.onLine) showOnlineStatusAndRedirect();
+      if (navigator.onLine) {
+        showOnlineStatusAndRedirect();
+      }
     }, 5000);
   </script>
 </body>
