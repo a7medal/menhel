@@ -23,7 +23,7 @@ const branches = {
                 ]
             },
             {
-                title: "الخطوط الرسمية ",
+                title: "الخطوط  ",
                 icon: "font_download",
                 files: [
                     { name: "Cairo Regular (Zip)", url: "https://drive.google.com/file/d/1nZWIWo3LV7RmW_TdAKAc1c6XHtiZRbfc/view?usp=drivesdk" }
