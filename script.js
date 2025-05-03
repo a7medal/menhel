@@ -55,6 +55,14 @@ const branches = {
                       ]
             },
             {
+                title: "سوشيل ميديا",
+                icon: "fa-facebook",
+                files: [
+                    { name: "الملف الشخصي", url: "https://drive.google.com/file/d/1k10hJTBi3byr924KGquU6ylIC34bK6bg/view?usp=drivesdk" },
+                    { name: "الغلاف", url: "https://drive.google.com/file/d/19XVwD2SI4F622V5fgCAiKK_4XYCouVkI/view?usp=drivesdk" }
+                      ]
+            },
+            {
                 title: "بطاقة العمل",
                 icon: "contact_mail",
                 files: [
