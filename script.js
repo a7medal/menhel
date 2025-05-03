@@ -163,6 +163,14 @@ const branches = {
                     { name: "JPEG", url: "https://drive.google.com/file/d/1lDorlAfRFdLiXSagIfYWrtVwkZNe_Fb6/view?usp=drivesdk" }
                 ]
             },
+             {
+                title: "سوشيل ميديا",
+                icon: "facebook",
+                files: [
+                    { name: "الملف الشخصي", url: "https://drive.google.com/file/d/1k10hJTBi3byr924KGquU6ylIC34bK6bg/view?usp=drivesdk" },
+                    { name: "الغلاف", url: "https://drive.google.com/file/d/19XVwD2SI4F622V5fgCAiKK_4XYCouVkI/view?usp=drivesdk" }
+                      ]
+            },
             {
                 title: "بطاقة العمل",
                 icon: "contact_mail",
@@ -263,6 +271,14 @@ const branches = {
                     { name: "(DOCX) رأسية امتحانات واختبارات", url: "https://docs.google.com/file/d/15H6XU52UJC5ertYrpkWT6-Cw6Ygva6bu/edit?usp=docslist_api&filetype=msword" },
                     { name: "رأسية نتيجة (JPJ)", url: "https://drive.google.com/file/d/1SeUSI2vlxr7NfbAKKqGNDqUX4Q65Jz7D/view?usp=drivesdk" }
                 ]
+            },
+             {
+                title: "سوشيل ميديا",
+                icon: "facebook",
+                files: [
+                    { name: "الملف الشخصي", url: "https://drive.google.com/file/d/1k10hJTBi3byr924KGquU6ylIC34bK6bg/view?usp=drivesdk" },
+                    { name: "الغلاف", url: "https://drive.google.com/file/d/19XVwD2SI4F622V5fgCAiKK_4XYCouVkI/view?usp=drivesdk" }
+                      ]
             },
             {
                 title: "بطاقة العمل",
