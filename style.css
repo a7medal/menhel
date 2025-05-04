@@ -19,9 +19,7 @@ body {
 }
 
 /* تسجيل الدخول */
-
-
-/* الخلفية الرئيسية /* الخلفية الرئيسية */
+/* الخلفية الرئيسية /* الخلفية الرئيسية /* الخلفية الرئيسية */
 .login-container {
   min-height: 100vh;
   width: 100vw;
@@ -116,14 +114,18 @@ body {
   outline: none;
 }
 
-/* عند الضغط (focus-within) */
-.input-group input:focus, 
+/* عند الضغط على الحقل (active) */
 .input-group input:active {
+  background-color: rgba(255,255,255,0.9);
+  box-shadow: 0 0 0 2px var(--accent-color), 0 4px 16px rgba(219,164,55,0.09);
   background-image: 
     linear-gradient(white, white),
     linear-gradient(90deg, var(--primary-color) 70%, var(--secondary-color) 100%);
   background-clip: padding-box, border-box;
-  outline: none;
+}
+
+/* عند التركيز (focus) */
+.input-group input:focus {
   background-color: rgba(255,255,255,0.9);
   box-shadow: 0 0 0 2px var(--accent-color), 0 4px 16px rgba(219,164,55,0.09);
 }
