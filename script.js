@@ -348,7 +348,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 sessionStorage.setItem('currentBranch', username);
                 window.location.href = 'dashboard.html';
             } else {
-                errorMsg.innerHTML = `<span class="material-icons">error_outline</span> اسم المستخدم أو كلمة المرور غير صحيحة!`;
+                errorMsg.innerHTML = `<span class="material-icons">error</span> اسم المستخدم أو كلمة المرور غير صحيحة!`;
                 errorMsg.style.display = 'block';
             }
         });
