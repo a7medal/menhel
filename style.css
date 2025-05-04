@@ -30,7 +30,11 @@ body {
   background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
   animation: fadeInBg 1.2s;
 }
-
+input:focus {
+  border: 2px solid linear-gradient(90deg, var(--primary-color) 70%, var(--secondary-color) 100%);
+; /*  */
+  outline: none; /* لإزالة الخط الأزرق الافتراضي في بعض المتصفحات */
+}
 @keyframes fadeInBg {
   from { filter: blur(12px); opacity: 0; }
   to { filter: blur(0); opacity: 1; }
