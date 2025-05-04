@@ -39,7 +39,7 @@ body {
 .login-box {
   background: rgba(255,255,255,0.85);
   backdrop-filter: blur(14px) saturate(1.3);
-  border-radius: var(--radius);
+  border-radius: 25px;
   box-shadow: var(--shadow), 0 1.5px 4px #DBA43711;
   padding: 2.8rem 2.2rem;
   width: 100%;
