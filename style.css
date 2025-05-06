@@ -110,7 +110,7 @@ body {
 
 .input-group input:focus {
   background: rgba(255,255,255,0.9);
-  box-shadow: 0 0 0 2px var(--accent-color), 0 4px 16px rgba(219,164,55,0.09);
+  box-shadow: 0 0 0 2px var(--primary-color), 0 4px 16px rgba(219,164,55,0.09);
 }
 
 .input-group input::placeholder {
