@@ -1,4 +1,4 @@
-// بيانات الفروعn والموارد الكامل
+// بيانات الفروع والموارد الكامل
 const branches = {
     mh1: { 
         name: "المنهـــــل 1",
@@ -399,7 +399,7 @@ const validCredentials = {
     mh1: '0987',
     mh2: '6543',
     mh3: '2143',
-    prf: '2143'
+    prf: '0911'
 };
 
 document.addEventListener('DOMContentLoaded', () => {
