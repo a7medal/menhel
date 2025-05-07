@@ -23,7 +23,7 @@ const branches = {
                 ]
             },
             {
-                title: "الخطوط  ",
+                title: "الخطوط",
                 icon: "font_download",
                 files: [
                     { name: "Cairo Regular (Zip)", url: "https://drive.google.com/file/d/1nZWIWo3LV7RmW_TdAKAc1c6XHtiZRbfc/view?usp=drivesdk" }
@@ -35,7 +35,7 @@ const branches = {
                 files: [
                     { name: "DOCX", url: "https://docs.google.com/file/d/1yTIP1Yy665Fb9NyOsOjfbKo712PD1vTm/edit?usp=docslist_api&filetype=msword" },
                     { name: "JPEG", url: "https://drive.google.com/file/d/1s4GxOKLlfeAJs2msM0P4qm1WhjRmu9UZ/view?usp=drivesdk" }
-                             ]
+                ]
             },
             {
                 title: "الشهادات",
@@ -52,7 +52,7 @@ const branches = {
                 files: [
                     { name: "DOCX رأسية امتحانات واختبارات ", url: "https://docs.google.com/file/d/15H6XU52UJC5ertYrpkWT6-Cw6Ygva6bu/edit?usp=docslist_api&filetype=msword" },
                     { name: "JPEG رأسية نتيجة", url: "https://drive.google.com/file/d/1lDorlAfRFdLiXSagIfYWrtVwkZNe_Fb6/view?usp=drivesdk" }
-                      ]
+                ]
             },
             {
                 title: "سوشيل ميديا",
@@ -60,14 +60,13 @@ const branches = {
                 files: [
                     { name: "الملف الشخصي", url: "https://drive.google.com/file/d/1k10hJTBi3byr924KGquU6ylIC34bK6bg/view?usp=drivesdk" },
                     { name: "الغلاف", url: "https://drive.google.com/file/d/19XVwD2SI4F622V5fgCAiKK_4XYCouVkI/view?usp=drivesdk" }
-                      ]
+                ]
             },
             {
                 title: "بطاقة العمل",
                 icon: "contact_mail",
                 files: [
                     { name: "PDF", url: "https://drive.google.com/file/d/12Ui9Kq5XmqFtQdFQJbl3JpygnKKUwfkm/view?usp=drivesdk" }
-                    
                 ]
             },
             {
@@ -91,7 +90,6 @@ const branches = {
                 files: [
                     { name: "PNG", url: "https://drive.google.com/file/d/1HSnoY64Vd1-mYEqkAYs7LhEn0EjW8D66/view?usp=drivesdk" },
                     { name: "للإسنخدام الرقمي (JPJ)", url: "https://drive.google.com/file/d/1UZe6B3kd_ThfSCsymV_Vv7JWwYXqp9m0/view?usp=drivesdk" }
-                    
                 ]
             },
             {
@@ -127,8 +125,7 @@ const branches = {
                     { name: "أبيض/أسود (JPG)", url: "https://drive.google.com/file/d/11D1gh2Bp7GYUTER0LC3RU5ZPGSrMbNqB/view?usp=drivesdk" },
                     { name: "لون أحادي (PNG)", url: "https://drive.google.com/file/d/1Kdxq3tMl0dKp3pnkYnsGkNp5KVrmg_lY/view?usp=drivesdk" },
                     { name: "PDF", url: "https://drive.google.com/file/d/1iIMFUJeJZ7-L_ZG1nTwH4q7DQI8jHWbs/view?usp=drivesdk" },
-
-{ name: "ملون شفاف (PNG)", url: "https://drive.google.com/file/d/1jWrJZeCUVvtIQyw5iVsvMVuDf2bfmpLX/view?usp=drivesdk" }
+                    { name: "ملون شفاف (PNG)", url: "https://drive.google.com/file/d/1jWrJZeCUVvtIQyw5iVsvMVuDf2bfmpLX/view?usp=drivesdk" }
                 ]
             },
             {
@@ -163,13 +160,13 @@ const branches = {
                     { name: "JPEG", url: "https://drive.google.com/file/d/1lDorlAfRFdLiXSagIfYWrtVwkZNe_Fb6/view?usp=drivesdk" }
                 ]
             },
-             {
+            {
                 title: "سوشيل ميديا",
                 icon: "facebook",
                 files: [
                     { name: "الملف الشخصي", url: "https://drive.google.com/file/d/1k10hJTBi3byr924KGquU6ylIC34bK6bg/view?usp=drivesdk" },
                     { name: "الغلاف", url: "https://drive.google.com/file/d/19XVwD2SI4F622V5fgCAiKK_4XYCouVkI/view?usp=drivesdk" }
-                      ]
+                ]
             },
             {
                 title: "بطاقة العمل",
@@ -192,7 +189,7 @@ const branches = {
                 icon: "receipt",
                 files: [
                     { name: "PDF", url: "https://drive.google.com/file/d/1-lkAtaYAJFiNpd4FPOC_j96aJfG4rqVk/view?usp=drivesdk" }
-                          ]
+                ]
             },
             {
                 title: "شعار الرابطة",
@@ -200,7 +197,6 @@ const branches = {
                 files: [
                     { name: "PNG", url: "https://drive.google.com/file/d/1HSnoY64Vd1-mYEqkAYs7LhEn0EjW8D66/view?usp=drivesdk" },
                     { name: "للإسنخدام الرقمي (JPJ)", url: "https://drive.google.com/file/d/1UZe6B3kd_ThfSCsymV_Vv7JWwYXqp9m0/view?usp=drivesdk" }
-                    
                 ]
             },
             {
@@ -236,8 +232,7 @@ const branches = {
                     { name: "أبيض/أسود (JPG)", url: "https://drive.google.com/file/d/11D1gh2Bp7GYUTER0LC3RU5ZPGSrMbNqB/view?usp=drivesdk" },
                     { name: "لون أحادي (PNG)", url: "https://drive.google.com/file/d/1Kdxq3tMl0dKp3pnkYnsGkNp5KVrmg_lY/view?usp=drivesdk" },
                     { name: "PDF", url: "https://drive.google.com/file/d/1iIMFUJeJZ7-L_ZG1nTwH4q7DQI8jHWbs/view?usp=drivesdk" },
-
-{ name: "ملون شفاف (PNG)", url: "https://drive.google.com/file/d/1jWrJZeCUVvtIQyw5iVsvMVuDf2bfmpLX/view?usp=drivesdk" }
+                    { name: "ملون شفاف (PNG)", url: "https://drive.google.com/file/d/1jWrJZeCUVvtIQyw5iVsvMVuDf2bfmpLX/view?usp=drivesdk" }
                 ]
             },
             {
@@ -272,13 +267,13 @@ const branches = {
                     { name: "رأسية نتيجة (JPJ)", url: "https://drive.google.com/file/d/1SeUSI2vlxr7NfbAKKqGNDqUX4Q65Jz7D/view?usp=drivesdk" }
                 ]
             },
-             {
+            {
                 title: "سوشيل ميديا",
                 icon: "facebook",
                 files: [
                     { name: "الملف الشخصي", url: "https://drive.google.com/file/d/1k10hJTBi3byr924KGquU6ylIC34bK6bg/view?usp=drivesdk" },
                     { name: "الغلاف", url: "https://drive.google.com/file/d/19XVwD2SI4F622V5fgCAiKK_4XYCouVkI/view?usp=drivesdk" }
-                      ]
+                ]
             },
             {
                 title: "بطاقة العمل",
@@ -300,8 +295,8 @@ const branches = {
                 title: "وصل الدفع",
                 icon: "receipt",
                 files: [
-                    { name: "PDF", url: "https://drive.google.com/file/d/13aA9KbqJyvHlbzWOZwNZhz1tiMn3-S7u/view?usp=drivesdk" },
-                       ]
+                    { name: "PDF", url: "https://drive.google.com/file/d/13aA9KbqJyvHlbzWOZwNZhz1tiMn3-S7u/view?usp=drivesdk" }
+                ]
             },
             {
                 title: "شعار الرابطة",
@@ -309,7 +304,6 @@ const branches = {
                 files: [
                     { name: "PNG", url: "https://drive.google.com/file/d/1HSnoY64Vd1-mYEqkAYs7LhEn0EjW8D66/view?usp=drivesdk" },
                     { name: "للإسنخدام الرقمي (JPJ)", url: "https://drive.google.com/file/d/1UZe6B3kd_ThfSCsymV_Vv7JWwYXqp9m0/view?usp=drivesdk" }
-                    
                 ]
             },
             {
@@ -326,73 +320,80 @@ const branches = {
             }
         ]
     },
-  
-  prf: {
-    name: "الأساتذة",
-    assets: [
-        {
-            title: "دليل الهوية البصرية",
-            icon: "library_books",
-            files: [
-                { 
-                    name: "PDF", 
-                    url: "https://drive.google.com/file/d/1i98urqNPc7vRi5eDdgn1b_CjfXT8N2Jd/view?usp=drivesdk" 
-                },
-                { 
-                    name: "PPT", 
-                    url: "https://docs.google.com/presentation/d/1-yO4j2MEiGhSVIcmTNCq_-s1btBz_Aen/edit?usp=drivesdk" 
-                }
-            ]
-        },
-        {
-            title: "الشعار الرسمي",
-            icon: "format_shapes",
-            files: [
-                { 
-                    name: "ملون (JPG)", 
-                    url: "https://drive.google.com/file/d/1iIMFUJeJZ7-L_ZG1nTwH4q7DQI8jHWbs/view?usp=drivesdk" 
-                },
-                { 
-                    name: "أبيض/أسود (JPG)", 
-                    url: "https://drive.google.com/file/d/11D1gh2Bp7GYUTER0LC3RU5ZPGSrMbNqB/view?usp=drivesdk" 
-                }
-            ]
-        },
-        {
-            title: "الرأسية",
-            icon: "vertical_align_top",
-            files: [
-                { 
-                    name: "DOCX رأسية امتحانات واختبارات", 
-                    url: "https://docs.google.com/file/d/15H6XU52UJC5ertYrpkWT6-Cw6Ygva6bu/edit?usp=drivesdk" 
-                }
-            ]
-        },
-        {
-            title: "ألوان الهوية",
-            icon: "palette",
-            colors: [
-                { name: "الخلفية", code: "#EEECE9", type: "HEX" },
-                { name: "CMYK", code: "C70 M40 Y60 K20", type: "CMYK" },
-                { name: "RGB", code: "28,100,89", type: "RGB" },
-                { name: "الأساسي", code: "#1C6459", type: "HEX" },
-                { name: "الثانوي", code: "#123740", type: "HEX" },
-                { name: "التأكيدي", code: "#DBA437", type: "HEX" }
-            ]
-        },
-        {
-            title: "الخطوط الرسمية",
-            icon: "font_download",
-            files: [
-                { 
-                    name: "Cairo Regular (Zip)", 
-                    url: "https://drive.google.com/file/d/1nZWIWo3LV7RmW_TdAKAc1c6XHtiZRbfc/view?usp=drivesdk" 
-                }
-            ]
-        }
-    ]
-},
-
+    prf: {
+        name: "الأساتذة",
+        assets: [
+            {
+                title: "دليل الهوية البصرية",
+                icon: "library_books",
+                files: [
+                    { 
+                        name: "PDF", 
+                        url: "https://drive.google.com/file/d/your-pdf-link/view?usp=drivesdk" 
+                    },
+                    { 
+                        name: "PPT", 
+                        url: "https://docs.google.com/presentation/d/your-ppt-link/edit?usp=drivesdk" 
+                    }
+                ]
+            },
+            {
+                title: "الشعار الرسمي",
+                icon: "format_shapes",
+                files: [
+                    { 
+                        name: "ملون (JPG)", 
+                        url: "https://drive.google.com/file/d/your-colored-logo-link/view?usp=drivesdk" 
+                    },
+                    { 
+                        name: "أبيض/أسود (JPG)", 
+                        url: "https://drive.google.com/file/d/your-bw-logo-link/view?usp=drivesdk" 
+                    },
+                    { 
+                        name: "لون أحادي (PNG)", 
+                        url: "https://drive.google.com/file/d/your-mono-logo-link/view?usp=drivesdk" 
+                    },
+                    { 
+                        name: "PDF", 
+                        url: "https://drive.google.com/file/d/your-logo-pdf-link/view?usp=drivesdk" 
+                    }
+                ]
+            },
+            {
+                title: "الرأسية",
+                icon: "vertical_align_top",
+                files: [
+                    { 
+                        name: "DOCX رأسية امتحانات واختبارات", 
+                        url: "https://docs.google.com/file/d/your-docx-header-link/edit?usp=drivesdk" 
+                    }
+                ]
+            },
+            {
+                title: "ألوان الهوية",
+                icon: "palette",
+                colors: [
+                    { name: "الخلفية", code: "#EEECE9", type: "HEX" },
+                    { name: "CMYK", code: "C70 M40 Y60 K20", type: "CMYK" },
+                    { name: "RGB", code: "28,100,89", type: "RGB" },
+                    { name: "الأساسي", code: "#1C6459", type: "HEX" },
+                    { name: "الثانوي", code: "#123740", type: "HEX" },
+                    { name: "التأكيدي", code: "#DBA437", type: "HEX" }
+                ]
+            },
+            {
+                title: "الخطوط الرسمية",
+                icon: "font_download",
+                files: [
+                    { 
+                        name: "Cairo Regular (Zip)", 
+                        url: "https://drive.google.com/file/d/1nZWIWo3LV7RmW_TdAKAc1c6XHtiZRbfc/view?usp=drivesdk" 
+                    }
+                ]
+            }
+        ]
+    }
+};
 
 // بيانات 
 const validCredentials = {
@@ -401,6 +402,7 @@ const validCredentials = {
     mh3: '2143',
     prf: '0911'
 };
+
 
 document.addEventListener('DOMContentLoaded', () => {
     const loginForm = document.getElementById('loginForm');
