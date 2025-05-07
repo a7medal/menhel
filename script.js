@@ -327,7 +327,7 @@ const branches = {
         ]
     },
   
-  prf = {
+  prf: {
   name: "الأساتذة",
   assets: [
     {
