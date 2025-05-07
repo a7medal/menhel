@@ -325,14 +325,65 @@ const branches = {
                 ]
             }
         ]
+    },
+  
+  prf = {
+  name: "الأساتذة",
+  assets: [
+    {
+      title: "دليل الهوية البصرية",
+      icon: "library_books",
+      files: [
+        { name: "PDF", url: "https://drive.google.com/file/d/your-pdf-link/view?usp=drivesdk" },
+        { name: "PPT", url: "https://docs.google.com/presentation/d/your-ppt-link/edit?usp=drivesdk" }
+      ]
+    },
+    {
+      title: "الشعار الرسمي",
+      icon: "format_shapes",
+      files: [
+        { name: "ملون (JPG)", url: "https://drive.google.com/file/d/your-colored-logo-link/view?usp=drivesdk" },
+        { name: "أبيض/أسود (JPG)", url: "https://drive.google.com/file/d/your-bw-logo-link/view?usp=drivesdk" },
+        { name: "لون أحادي (PNG)", url: "https://drive.google.com/file/d/your-mono-logo-link/view?usp=drivesdk" },
+        { name: "PDF", url: "https://drive.google.com/file/d/your-logo-pdf-link/view?usp=drivesdk" }
+      ]
+    },
+    {
+      title: "الرأسية",
+      icon: "vertical_align_top",
+      files: [
+        { name: "DOCX رأسية امتحانات واختبارات", url: "https://docs.google.com/file/d/your-docx-header-link/edit?usp=drivesdk" }      
+      ]
+    },
+    {
+      title: "ألوان الهوية",
+      icon: "palette",
+      colors: [
+        { name: "الخلفية", code: "#EEECE9", type: "HEX" },
+        { name: "CMYK", code: "C70 M40 Y60 K20", type: "CMYK" },
+        { name: "RGB", code: "28,100,89", type: "RGB" },
+        { name: "الأساسي", code: "#1C6459", type: "HEX" },
+        { name: "الثانوي", code: "#123740", type: "HEX" },
+        { name: "التأكيدي", code: "#DBA437", type: "HEX" }
+      ]
+    },
+    {
+      title: "الخطوط الرسمية",
+      icon: "font_download",
+      files: [
+        { name: "Cairo Regular (Zip)", url: "https://drive.google.com/file/d/1nZWIWo3LV7RmW_TdAKAc1c6XHtiZRbfc/view?usp=drivesdk" }
+      ]
     }
+  ]
 };
 
-// بيانات الدخول
+
+// بيانات 
 const validCredentials = {
     mh1: '0987',
     mh2: '6543',
-    mh3: '2143'
+    mh3: '2143',
+    prf: '2143'
 };
 
 document.addEventListener('DOMContentLoaded', () => {
