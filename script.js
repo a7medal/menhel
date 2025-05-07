@@ -220,7 +220,7 @@ const branches = {
                 title: "دليل الهوية البصرية",
                 icon: "library_books",
                 files: [
-                    { name: "PDF", url: "assets/mh3/documents/guide.pdfhttps://drive.google.com/file/d/1i98urqNPc7vRi5eDdgn1b_CjfXT8N2Jd/view?usp=drivesdk" },
+                    { name: "PDF", url: "https://drive.google.com/file/d/1i98urqNPc7vRi5eDdgn1b_CjfXT8N2Jd/view?usp=drivesdk" },
                     { name: "PPT", url: "https://docs.google.com/presentation/d/1-yO4j2MEiGhSVIcmTNCq_-s1btBz_Aen/edit?usp=drivesdk&ouid=110359949235494531611&rtpof=true&sd=true" }
                 ]
             },
@@ -327,36 +327,19 @@ const branches = {
                 title: "دليل الهوية البصرية",
                 icon: "library_books",
                 files: [
-                    { 
-                        name: "PDF", 
-                        url: "https://drive.google.com/file/d/your-pdf-link/view?usp=drivesdk" 
-                    },
-                    { 
-                        name: "PPT", 
-                        url: "https://docs.google.com/presentation/d/your-ppt-link/edit?usp=drivesdk" 
-                    }
+                    { name: "PDF", url: "https://drive.google.com/file/d/1i98urqNPc7vRi5eDdgn1b_CjfXT8N2Jd/view?usp=drivesdk" },
+                    { name: "PPT", url: "https://docs.google.com/presentation/d/1-yO4j2MEiGhSVIcmTNCq_-s1btBz_Aen/edit?usp=drivesdk&ouid=110359949235494531611&rtpof=true&sd=true" }
                 ]
             },
             {
                 title: "الشعار الرسمي",
                 icon: "format_shapes",
                 files: [
-                    { 
-                        name: "ملون (JPG)", 
-                        url: "https://drive.google.com/file/d/your-colored-logo-link/view?usp=drivesdk" 
-                    },
-                    { 
-                        name: "أبيض/أسود (JPG)", 
-                        url: "https://drive.google.com/file/d/your-bw-logo-link/view?usp=drivesdk" 
-                    },
-                    { 
-                        name: "لون أحادي (PNG)", 
-                        url: "https://drive.google.com/file/d/your-mono-logo-link/view?usp=drivesdk" 
-                    },
-                    { 
-                        name: "PDF", 
-                        url: "https://drive.google.com/file/d/your-logo-pdf-link/view?usp=drivesdk" 
-                    }
+                    { name: "ملون (JPJ)", url: "https://drive.google.com/file/d/1iIMFUJeJZ7-L_ZG1nTwH4q7DQI8jHWbs/view?usp=drivesdk" },
+                    { name: "أبيض/أسود (JPG)", url: "https://drive.google.com/file/d/11D1gh2Bp7GYUTER0LC3RU5ZPGSrMbNqB/view?usp=drivesdk" },
+                    { name: "لون أحادي (PNG)", url: "https://drive.google.com/file/d/1Kdxq3tMl0dKp3pnkYnsGkNp5KVrmg_lY/view?usp=drivesdk" },
+                    { name: "PDF", url: "https://drive.google.com/file/d/1iIMFUJeJZ7-L_ZG1nTwH4q7DQI8jHWbs/view?usp=drivesdk" },
+                    { name: "ملون شفاف (PNG)", url: "https://drive.google.com/file/d/1jWrJZeCUVvtIQyw5iVsvMVuDf2bfmpLX/view?usp=drivesdk" }
                 ]
             },
             {
@@ -365,7 +348,7 @@ const branches = {
                 files: [
                     { 
                         name: "DOCX رأسية امتحانات واختبارات", 
-                        url: "https://docs.google.com/file/d/your-docx-header-link/edit?usp=drivesdk" 
+                        url: "https://docs.google.com/file/d/15H6XU52UJC5ertYrpkWT6-Cw6Ygva6bu/edit?usp=docslist_api&filetype=msword" 
                     }
                 ]
             },
