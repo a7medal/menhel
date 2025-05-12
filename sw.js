@@ -11,9 +11,9 @@ const ASSETS = [
   '/logo1.png',
   '/Screen.png',
   '/icon-192192.png',
-  '/offline.html', // صفحة لا يوجد اتصال
-  '/account.html,
-  '/favorites.html,
+  '/offline.html',
+  '/account.html',
+  '/favorites.html',
 ];
 
 self.addEventListener('install', (event) => {
