@@ -8,161 +8,207 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <link rel="manifest" href="/manifest.json">
- <style>
-     #popup {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(18, 55, 64, 0.95);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-  padding: 1rem;
-  backdrop-filter: blur(5px);
-  animation: popupFadeIn 0.4s ease-out;
-}
+  <style>
+    /* النافذة المنبثقة */
+    #popup {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(18, 55, 64, 0.85);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      padding: 1rem;
+      backdrop-filter: blur(8px);
+      animation: popupFadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
 
-.popup-box {
-  background: white;
-  color: var(--text-color);
-  padding: 2.5rem;
-  border-radius: 24px;
-  box-shadow: 
-    0 12px 24px rgba(0, 0, 0, 0.15),
-    0 8px 16px rgba(0, 0, 0, 0.1);
-  max-width: 640px;
-  width: 100%;
-  max-height: 90vh;
-  overflow-y: auto;
-  border: 4px solid var(--primary-color);
-  position: relative;
-  transform: scale(0.98);
-  transition: transform 0.3s ease;
-}
+    .popup-box {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      color: var(--text-color);
+      padding: 2rem;
+      border-radius: 28px;
+      box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.1),
+        0 4px 16px rgba(0, 0, 0, 0.05);
+      max-width: 600px;
+      width: 90%;
+      max-height: 85vh;
+      overflow-y: auto;
+      border: 2px solid rgba(18, 55, 64, 0.3);
+      position: relative;
+      transform: translateY(10px);
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+                  opacity 0.4s ease;
+      opacity: 0;
+      animation: popupBoxSlideIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
 
-.popup-box::before {
-  content: '';
-  position: absolute;
-  top: -12px;
-  left: -12px;
-  right: -12px;
-  bottom: -12px;
-  border: 2px solid var(--primary-color);
-  border-radius: 32px;
-  opacity: 0.15;
-  z-index: -1;
-}
+    .popup-box::before {
+      display: none;
+    }
 
-.popup-title {
-  font-size: 1.75rem;
-  color: var(--primary-color);
-  margin-bottom: 1.5rem;
-  font-weight: 800;
-  letter-spacing: -0.5px;
-  position: relative;
-  display: inline-block;
-  padding-bottom: 0.5rem;
-}
+    .popup-title {
+      font-size: 1.6rem;
+      color: var(--primary-color);
+      margin-bottom: 1.25rem;
+      font-weight: 700;
+      letter-spacing: -0.2px;
+      position: relative;
+      text-align: center;
+      padding-bottom: 0.75rem;
+    }
 
-.popup-title::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60px;
-  height: 3px;
-  background: var(--primary-color);
-  border-radius: 2px;
-}
+    .popup-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 50px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--primary-color), transparent);
+      border-radius: 4px;
+    }
 
-.popup-message {
-  font-size: 1.125rem;
-  color: var(--text-color);
-  margin-bottom: 2.5rem;
-  line-height: 1.7;
-  white-space: pre-wrap;
-  text-align: start;
-  direction: rtl;
-  padding: 0 1rem;
-}
+    .popup-message {
+      font-size: 1.05rem;
+      color: var(--text-color);
+      margin-bottom: 2rem;
+      line-height: 1.8;
+      white-space: pre-wrap;
+      text-align: start;
+      direction: rtl;
+      padding: 0 0.5rem;
+      opacity: 0.9;
+    }
 
-#popup-ok {
-  padding: 1rem 2.5rem;
-  background: linear-gradient(135deg, var(--primary-color) 0%, rgba(18, 55, 64, 0.9) 100%);
-  color: white;
-  border: none;
-  border-radius: 12px;
-  font-size: 1.1rem;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-  position: relative;
-  overflow: hidden;
-  font-weight: 600;
-}
+    #popup-ok {
+      padding: 0.9rem 2.2rem;
+      background: linear-gradient(135deg, var(--primary-color) 0%, rgba(18, 55, 64, 0.8) 100%);
+      color: white;
+      border: none;
+      border-radius: 16px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      box-shadow: 0 4px 12px rgba(18, 55, 64, 0.2);
+    }
 
-#popup-ok::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    120deg,
-    transparent,
-    rgba(255, 255, 255, 0.2),
-    transparent
-  );
-  transition: all 0.6s;
-}
+    #popup-ok::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255, 255, 255, 0.25),
+        transparent
+      );
+      transition: left 0.5s ease;
+    }
 
-#popup-ok:hover {
-  transform: translateY(-2px);
-  box-shadow: 
-    0 6px 15px rgba(18, 55, 64, 0.3),
-    0 3px 8px rgba(18, 55, 64, 0.2);
-}
+    #popup-ok:hover {
+      transform: translateY(-3px);
+      box-shadow: 
+        0 8px 20px rgba(18, 55, 64, 0.3),
+        0 4px 10px rgba(18, 55, 64, 0.2);
+      background: linear-gradient(135deg, var(--primary-color) 0%, rgba(18, 55, 64, 1) 100%);
+    }
 
-#popup-ok:hover::before {
-  left: 100%;
-}
+    #popup-ok:hover::before {
+      left: 100%;
+    }
 
-@keyframes popupFadeIn {
-  from {
-    opacity: 0;
-    backdrop-filter: blur(0);
-  }
-  to {
-    opacity: 1;
-    backdrop-filter: blur(5px);
-  }
-}
+    @keyframes popupFadeIn {
+      from {
+        opacity: 0;
+        backdrop-filter: blur(0);
+      }
+      to {
+        opacity: 1;
+        backdrop-filter: blur(8px);
+      }
+    }
 
-@media (max-width: 640px) {
-  .popup-box {
-    padding: 1.75rem;
-    border-radius: 20px;
-  }
-  
-  .popup-title {
-    font-size: 1.5rem;
-  }
-  
-  .popup-message {
-    font-size: 1rem;
-    padding: 0 0.5rem;
-  }
-  
-  #popup-ok {
-    padding: 0.9rem 2rem;
-    font-size: 1rem;
-  }
-}
-    </style>
+    @keyframes popupBoxSlideIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 640px) {
+      #popup {
+        padding: 0.5rem;
+      }
+
+      .popup-box {
+        padding: 1.5rem;
+        border-radius: 24px;
+        width: 95%;
+        border: 1px solid rgba(18, 55, 64, 0.2);
+      }
+
+      .popup-title {
+        font-size: 1.35rem;
+        margin-bottom: 1rem;
+      }
+
+      .popup-title::after {
+        width: 40px;
+      }
+
+      .popup-message {
+        font-size: 0.95rem;
+        line-height: 1.7;
+        padding: 0 0.25rem;
+      }
+
+      #popup-ok {
+        padding: 0.8rem 1.8rem;
+        font-size: 0.95rem;
+        border-radius: 14px;
+      }
+    }
+
+    @media (min-width: 1200px) {
+      .popup-box {
+        max-width: 680px;
+      }
+
+      .popup-title {
+        font-size: 1.8rem;
+      }
+
+      .popup-message {
+        font-size: 1.15rem;
+      }
+
+      #popup-ok {
+        padding: 1rem 2.5rem;
+        font-size: 1.1rem;
+      }
+    }
+  </style>
 </head>
 <body>
   <!-- الهيدر -->
@@ -176,18 +222,16 @@
     </button>
   </header>
 
-
-<div id="popup">
-  <div class="popup-box">
-    <h2 class="popup-title">تحديث جديد </h2>
-    <p class="popup-message">
-    لقد تم إضافة قسم السوشيل ميديا في المنهل 1
-  </p>
-    <button id="popup-ok">موافق</button>
+  <!-- النافذة المنبثقة -->
+  <div id="popup">
+    <div class="popup-box">
+      <h2 class="popup-title">تحديث جديد</h2>
+      <p class="popup-message">
+        لقد تم إضافة تحديث جديد لتطبيق
+      </p>
+      <button id="popup-ok">موافق</button>
+    </div>
   </div>
-</div>
-
-
 
   <!-- المحتوى الرئيسي -->
   <main class="main-content">
@@ -200,36 +244,55 @@
   <footer class="auto-update-notice">
     <div class="notice-content">
       <span class="material-icons">info</span>
-      <p>HEWIYA MENHEL - الإصدار 1.2.1
-</p>
+      <p>HEWIYA MENHEL - الإصدار 1.2.1</p>
     </div>
   </footer>
 
-  
   <script src="script.js"></script>
- <script>
-document.addEventListener("DOMContentLoaded", () => {
-  const popup = document.getElementById("popup");
-  const okBtn = document.getElementById("popup-ok");
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const popup = document.getElementById("popup");
+      const okBtn = document.getElementById("popup-ok");
 
-  const popupKey = "popup_seen_v5"; // غيّره عند تحديث الرسالة
-  const popupEnabled = localStorage.getItem("popup_enabled") !== "false";
+      // التأكد من وجود العناصر
+      if (!popup || !okBtn) {
+        console.error("خطأ: عناصر النافذة المنبثقة غير موجودة", {
+          popup: !!popup,
+          okBtn: !!okBtn,
+        });
+        return;
+      }
 
-  if (popupEnabled && !localStorage.getItem(popupKey)) {
-    popup.style.display = "flex";
-  }
+      const popupKey = "popup_seen_v7"; // تصحيح المفتاح
+      const popupEnabled = localStorage.getItem("popup_enabled") !== "false";
 
-  okBtn.addEventListener("click", () => {
-    popup.style.display = "none";
-    localStorage.setItem(popupKey, "true");
-  });
-});
+      // تسجيل حالة النافذة
+      console.log("حالة النافذة المنبثقة:", {
+        popupEnabled,
+        popupSeen: localStorage.getItem(popupKey),
+      });
 
-// يمكنك تشغيل أو تعطيل الرسالة هكذا:
-// localStorage.setItem("popup_enabled", "true"); // لتفعيلها
-// localStorage.setItem("popup_enabled", "false"); // لتعطيلها نهائياً
-// localStorage.removeItem("popup_seen_v1"); // لإظهارها من جديد للمستخدم
+      // إظهار النافذة إذا كانت مفعلة ولم تُرَ من قبل
+      if (popupEnabled && !localStorage.getItem(popupKey)) {
+        popup.style.display = "flex";
+        console.log("إظهار النافذة المنبثقة");
+      } else {
+        console.warn("النافذة لم تظهر:", {
+          reason: !popupEnabled ? "popup_enabled=false" : "popup_seen_v2=true",
+        });
+      }
 
-</script>
+      // إغلاق النافذة عند النقر على "موافق"
+      okBtn.addEventListener("click", () => {
+        popup.style.display = "none";
+        localStorage.setItem(popupKey, "true");
+        console.log("تم إغلاق النافذة وحفظ الحالة:", popupKey);
+      });
+    });
+
+    // لإعادة اختبار النافذة، يمكنك استخدام:
+    // localStorage.removeItem("popup_seen_v2"); // إزالة حالة الرؤية
+    // localStorage.setItem("popup_enabled", "true"); // تفعيل النافذة
+  </script>
 </body>
 </html>
