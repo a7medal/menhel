@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حسابي - تطبيق المنهل</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="/manifest.json">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* تنسيق زر المشاركة */
+        .share-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.7rem 1.5rem;
+            margin: 1rem 0;
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .share-btn:hover {
+            transform: translateY(-2px);
+            background: #c99330;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .share-btn .material-icons {
+            font-size: 1.2rem;
+            margin-left: 0.4rem;
+            color: white;
+        }
+
+        /* تنسيق للأجهزة المحمولة */
+        @media (max-width: 480px) {
+            .share-btn {
+                padding: 0.6rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            .share-btn .material-icons {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="dashboard-header">
+        <div class="header-left">
+            <img src="logo1.png" alt="Logo" class="header-logo">
+            <h1 id="branchName">حسابي</h1>
+        </div>
+        <button onclick="logout()" class="logout-btn">
+            <span class="material-icons">logout</span>
+        </button>
+    </header>
+    <main class="main-content">
+        <div class="account-container">
+            <img src="logo.png" alt="Profile Picture" class="profile-pic">
+            <h2 id="branchNameDisplay"></h2>
+            <div class="account-info">
+                <div class="info-item">
+                    <span class="material-icons">person</span>
+                    <label>اسم المستخدم:</label>
+                    <span id="usernameDisplay"></span>
+                </div>
+                <div class="info-item password-item">
+                    <span class="material-icons">lock</span>
+                    <label>كلمة المرور:</label>
+                    <input type="password" id="passwordDisplay" readonly>
+                    <span class="material-icons toggle-password" onclick="togglePasswordVisibility()">visibility</span>
+                </div>
+            </div>
+            <a href="dashboard.html" class="back-btn">
+                <span class="material-icons">arrow_back</span> العودة إلى الرئيسية
+            </a>
+            <button class="share-btn">
+                <span class="material-icons">share</span> مشاركة
+            </button>
+        </div>
+    </main>
+    <script src="script.js"></script>
+    <script>
+        // تحميل بيانات صفحة الحساب
+        document.addEventListener('DOMContentLoaded', function() {
+            const accountContainer = document.querySelector('.account-container');
+            if (!accountContainer) {
+                console.warn('تحذير: .account-container غير موجود');
+                return;
+            }
+
+            // جلب البيانات من sessionStorage
+            const branchKey = sessionStorage.getItem('currentBranch') || 'غير متوفر';
+            const username = sessionStorage.getItem('username') || branchKey;
+            const password = sessionStorage.getItem('password') || 'غير متوفر';
+            let branchName = 'فرع غير معروف';
+
+            // محاولة جلب اسم الفرع من branches إذا كان موجودًا
+            if (typeof branches !== 'undefined' && branches[branchKey]) {
+                branchName = branches[branchKey].name || 'فرع غير معروف';
+            } else {
+                console.warn('تحذير: كائن branches غير معرف أو فرع غير موجود', {
+                    branchKey,
+                    branchesDefined: typeof branches !== 'undefined'
+                });
+            }
+
+            // جلب كلمة المرور من validCredentials إذا كانت متوفرة
+            const finalPassword = (typeof validCredentials !== 'undefined' && validCredentials[branchKey]) || password;
+
+            // تعبئة البيانات في الصفحة
+            const branchNameDisplay = document.getElementById('branchNameDisplay');
+            const usernameDisplay = document.getElementById('usernameDisplay');
+            const passwordDisplay = document.getElementById('passwordDisplay');
+            const branchNameHeader = document.getElementById('branchName');
+
+            if (branchNameDisplay && usernameDisplay && passwordDisplay && branchNameHeader) {
+                branchNameDisplay.textContent = branchName;
+                usernameDisplay.textContent = username;
+                passwordDisplay.value = finalPassword;
+                branchNameHeader.textContent = branchName;
+            } else {
+                console.error('خطأ: عناصر DOM مفقودة', {
+                    branchNameDisplay,
+                    usernameDisplay,
+                    passwordDisplay,
+                    branchNameHeader
+                });
+            }
+
+            // معالجة زر المشاركة
+            const shareBtn = document.querySelector('.share-btn');
+            if (shareBtn) {
+                shareBtn.addEventListener('click', function() {
+                    const message = `
+${branchName}
+اسم المستخدم: ${username}
+كلمة المرور: ${finalPassword}
+الرابط: https://hewiya-menhel.netlify.app
+                    `.trim();
+                    const encodedMessage = encodeURIComponent(message);
+                    const whatsappUrl = `https://api.whatsapp.com/send?text=${encodedMessage}`;
+                    console.log('فتح رابط واتساب:', whatsappUrl);
+                    window.open(whatsappUrl, '_blank');
+                });
+            } else {
+                console.warn('تحذير: زر المشاركة غير موجود');
+            }
+        });
+    </script>
+</body>
+</html>
