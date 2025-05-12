@@ -1,4 +1,4 @@
-// بيانات الفروع  والموارد
+// بيانات الفروع والموارد
 const branches = {
   mh1: { 
     name: "المنهـــــل 1",
@@ -1141,4 +1141,71 @@ function createCardContent(asset) {
   }
   if (asset.colors) {
     content += `<div class="color-grid">`;
-    asset.colors.forEach(color =>
+    asset.colors.forEach(color => {
+      let bgColor = color.type === 'HEX' ? color.code : `rgb(${color.code})`;
+      content += `
+        <div class="color-box" style="background-color: ${bgColor};">
+          <div class="color-code">${color.code}</div>
+          <div class="color-type">${color.type}</div>
+        </div>`;
+    });
+    content += `</div>`;
+  }
+  content += `</div>`;
+  return content;
+}
+
+// دعم تثبيت التطبيق كـ PWA
+let deferredPrompt;
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  showInstallButton();
+});
+
+function showInstallButton() {
+  const installBtn = document.createElement('button');
+  installBtn.className = 'install-btn';
+  installBtn.innerHTML = `<span class="material-icons">download</span> تثبيت التطبيق`;
+  installBtn.onclick = installApp;
+  const loginBox = document.querySelector('.login-box');
+  if (loginBox) loginBox.appendChild(installBtn);
+}
+
+function installApp() {
+  if (deferredPrompt) {
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then(() => {
+      deferredPrompt = null;
+      const installBtn = document.querySelector('.install-btn');
+      if (installBtn) installBtn.remove();
+    });
+  }
+}
+
+// تعطيل Service Worker مؤقتًا للاختبار
+/*
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js?v=1.2')
+      .then(registration => {
+        console.log('Service Worker مسجل بنجاح!', registration);
+      })
+      .catch(err => console.error('فشل تسجيل Service Worker:', err));
+  });
+}
+*/
+
+// فحص حالة الاتصال
+window.addEventListener('load', function () {
+  function checkOnlineStatus() {
+    if (!navigator.onLine) {
+      window.location.href = 'offline.html';
+    }
+  }
+
+  checkOnlineStatus();
+  window.addEventListener('offline', () => {
+    window.location.href = 'offline.html';
+  });
+});
