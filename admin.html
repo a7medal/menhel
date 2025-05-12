@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>لوحة الأدمن - المنهل</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="/manifest.json">
+</head>
+<body>
+  <!-- الهيدر -->
+  <header class="dashboard-header">
+    <div class="header-left">
+      <img src="logo1.png" class="header-logo" alt="شعار المنهل">
+      <h1>لوحة الأدمن</h1>
+    </div>
+    <button class="logout-btn" onclick="logout()">
+      <span class="material-icons">logout</span>
+    </button>
+  </header>
+
+  <!-- المحتوى الرئيسي -->
+  <main class="main-content">
+    <div class="admin-container">
+      <!-- علامات التبويب -->
+      <div class="tabs">
+        <button class="tab-button active" data-tab="mh1">المنهل 1</button>
+        <button class="tab-button" data-tab="mh2">المنهل 2</button>
+        <button class="tab-button" data-tab="mh3">المنهل 3</button>
+        <button class="tab-button" data-tab="prf">الأساتذة</button>
+        <button class="tab-button" data-tab="passwords">كلمات المرور</button>
+      </div>
+
+      <!-- محتوى علامات التبويب -->
+      <div class="tab-content">
+        <!-- محتوى الفروع (يتم تحميله ديناميكيًا) -->
+        <div id="mh1" class="tab-pane active"></div>
+        <div id="mh2" class="tab-pane"></div>
+        <div id="mh3" class="tab-pane"></div>
+        <div id="prf" class="tab-pane"></div>
+        <!-- تبويب كلمات المرور -->
+        <div id="passwords" class="tab-pane">
+          <h2>كلمات المرور</h2>
+          <div class="passwords-container" id="passwordsContainer"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- الفوتر -->
+  <footer class="auto-update-notice">
+    <div class="notice-content">
+      <span class="material-icons">info</span>
+      <p>HEWIYA MENHEL - الإصدار 1.2.1</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
