@@ -1,4 +1,4 @@
-// بيانات الفروع والموارد
+// بيانات الفروع والموار د
 const branches = {
   mh1: { 
     name: "المنهـــــل 1",
@@ -388,6 +388,13 @@ const validCredentials = {
 document.addEventListener('DOMContentLoaded', () => {
   const path = window.location.pathname;
 
+  // التعامل مع روابط بدون .html
+  if (path.endsWith('/dashboard')) {
+    console.warn('تم الكشف عن رابط بدون .html، إعادة توجيه إلى dashboard.html');
+    window.location.replace(`${window.location.origin}/dashboard.html`);
+    return;
+  }
+
   // التعامل مع تسجيل الدخول
   const loginForm = document.getElementById('loginForm');
   if (loginForm) {
@@ -437,7 +444,7 @@ window.addEventListener('pageshow', (event) => {
   }
 });
 
-// التعامل مع تغيرات السجل (history)
+// التعامل مع تغيرات السجل
 window.addEventListener('popstate', () => {
   if (window.location.pathname.includes('dashboard.html')) {
     console.log('تم التنقل إلى الداشبورد عبر السجل');
@@ -868,7 +875,8 @@ function installApp() {
   }
 }
 
-// تسجيل Service Worker
+// تعطيل Service Worker مؤقتًا للاختبار
+/*
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('./sw.js?v=1.2')
@@ -878,6 +886,7 @@ if ('serviceWorker' in navigator) {
       .catch(err => console.error('فشل تسجيل Service Worker:', err));
   });
 }
+*/
 
 // فحص حالة الاتصال
 window.addEventListener('load', function () {
