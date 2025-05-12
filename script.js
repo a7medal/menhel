@@ -1,7 +1,8 @@
-// بيانات الفروع والموارد الكامل
+// بيانات الفروع والموارد
 const branches = {
     mh1: { 
-        name: "المنهـــــل 1",
+        name: "المنهـــل 1",
+        favorites: [],
         assets: [
             {
                 title: "دليل الهوية البصرية",
@@ -108,6 +109,7 @@ const branches = {
     },
     mh2: {
         name: "المنهل 2",
+        favorites: [],
         assets: [
             {
                 title: "دليل الهوية البصرية",
@@ -215,6 +217,7 @@ const branches = {
     },
     mh3: {
         name: "المنهل 3",
+        favorites: [],
         assets: [
             {
                 title: "دليل الهوية البصرية",
@@ -322,8 +325,9 @@ const branches = {
     },
     prf: {
         name: "الأساتذة",
+        favorites: [],
         assets: [
-            {
+        {
                 title: "دليل الهوية البصرية",
                 icon: "library_books",
                 files: [
@@ -378,7 +382,7 @@ const branches = {
     }
 };
 
-// بيانات 
+// بيانات تسجيل الدخول
 const validCredentials = {
     mh1: '0987',
     mh2: '6543',
@@ -386,9 +390,11 @@ const validCredentials = {
     prf: '0911'
 };
 
-
+// إعداد الأحداث عند تحميل الصفحة
 document.addEventListener('DOMContentLoaded', () => {
     const loginForm = document.getElementById('loginForm');
+    
+    // التعامل مع تسجيل الدخول
     if (loginForm) {
         loginForm.addEventListener('submit', function (e) {
             e.preventDefault();
@@ -400,21 +406,35 @@ document.addEventListener('DOMContentLoaded', () => {
                 sessionStorage.setItem('currentBranch', username);
                 window.location.href = 'dashboard.html';
             } else {
-                errorMsg.innerHTML = `<span class="material-icons"></span> اسم المستخدم أو كلمة المرور غير صحيحة!`;
+                errorMsg.innerHTML = `<span class="material-icons">error</span> اسم المستخدم أو كلمة المرور غير صحيحة!`;
                 errorMsg.style.display = 'block';
             }
         });
     }
 
-    // حماية الصفحة
+    // حماية صفحة الداشبورد وتحميل البيانات
     if (window.location.pathname.includes('dashboard.html')) {
         const currentBranch = sessionStorage.getItem('currentBranch');
-        if (!currentBranch) window.location.href = 'index.html';
-        else loadBranchData(currentBranch);
+        if (!currentBranch) {
+            window.location.href = 'index.html';
+        } else {
+            loadFavorites();
+            loadBranchData(currentBranch);
+        }
+    }
+
+    // تحميل صفحة المفضلة
+    if (window.location.pathname.includes('favorites.html')) {
+        loadFavoritesPage();
+    }
+
+    // تحميل صفحة حسابي
+    if (window.location.pathname.includes('account.html')) {
+        loadAccountPage();
     }
 });
 
-// تحميل بيانات الفرع
+// تحميل بيانات الفرع في الداشبورد
 function loadBranchData(branchKey) {
     const branch = branches[branchKey];
     if (!branch) {
@@ -422,7 +442,7 @@ function loadBranchData(branchKey) {
         return;
     }
 
-    // إضافة شريط البحث
+    // إضافة شريط البحث وأزرار المفضلة وحسابي
     const dashboard = document.getElementById('dashboard');
     dashboard.insertAdjacentHTML('afterbegin', `
         <div class="search-bar">
@@ -431,13 +451,23 @@ function loadBranchData(branchKey) {
                 <input type="text" id="searchInput" placeholder="ابحث هنا عن عنصر ...">
             </div>
         </div>
+        <div class="dashboard-buttons">
+            <a href="favorites.html" class="favorites-btn">
+                <span class="material-icons">favorite</span> المفضلة
+            </a>
+            <a href="account.html" class="account-btn">
+                <span class="material-icons">account_circle</span>الحساب
+            </a>
+        </div>
     `);
 
+    // باقي الكود (تحميل اسم الفرع، البطاقات، البحث، إلخ)
     document.getElementById('branchName').textContent = branch.name;
     const container = document.getElementById('cardsContainer');
     container.innerHTML = '';
+    // ... (باقي الكود كما هو)
 
-    // تصفية النتائج
+    // تصفية البطاقات بناءً على البحث
     document.getElementById('searchInput').addEventListener('input', function (e) {
         const searchText = e.target.value.trim().toLowerCase();
         const cards = container.getElementsByClassName('asset-card');
@@ -449,23 +479,22 @@ function loadBranchData(branchKey) {
         });
     });
 
-    // إنشاء البطاقات
-    branch.assets.forEach(asset => {
+    // إنشاء بطاقات الموارد
+    branch.assets.forEach((asset, index) => {
         const card = document.createElement('div');
         card.className = 'asset-card';
 
-        // رأس البطاقة
         const header = document.createElement('div');
         header.className = 'card-header';
         header.innerHTML = `
             <span class="material-icons">${asset.icon}</span>
             <h3>${asset.title}</h3>
+            <span class="material-icons favorite-icon" onclick="toggleFavorite(${index})">${branch.favorites.includes(index) ? 'favorite' : 'favorite_border'}</span>
             <span class="material-icons arrow">expand_more</span>
         `;
         header.addEventListener('click', () => toggleCard(card));
         card.appendChild(header);
 
-        // محتوى البطاقة
         const content = document.createElement('div');
         content.className = 'card-content';
         content.style.maxHeight = '0';
@@ -490,9 +519,7 @@ function loadBranchData(branchKey) {
             asset.colors.forEach(color => {
                 const box = document.createElement('div');
                 box.className = 'color-box';
-                let bgColor = 'transparent';
-                if (color.type === 'HEX') bgColor = color.code;
-                if (color.type === 'RGB') bgColor = `rgb(${color.code})`;
+                let bgColor = color.type === 'HEX' ? color.code : `rgb(${color.code})`;
                 box.style.backgroundColor = bgColor;
                 box.innerHTML = `
                     <div class="color-code">${color.code}</div>
@@ -508,7 +535,45 @@ function loadBranchData(branchKey) {
     });
 }
 
-// تبديل حالة البطاقة
+// تحميل بيانات صفحة حسابي
+function loadAccountPage() {
+    const currentBranch = sessionStorage.getItem('currentBranch');
+    if (!currentBranch || !branches[currentBranch]) {
+        window.location.href = 'index.html';
+        return;
+    }
+
+    // تحديث اسم الفرع في الهيدر والصفحة
+    const branchName = document.getElementById('branchName');
+    const branchNameDisplay = document.getElementById('branchNameDisplay');
+    if (branchName && branchNameDisplay) {
+        branchName.textContent = branches[currentBranch].name + " - حسابي";
+        branchNameDisplay.textContent = branches[currentBranch].name;
+    }
+
+    // تحديث اسم المستخدم وكلمة المرور
+    const usernameDisplay = document.getElementById('usernameDisplay');
+    const passwordDisplay = document.getElementById('passwordDisplay');
+    if (usernameDisplay && passwordDisplay) {
+        usernameDisplay.textContent = currentBranch;
+        passwordDisplay.value = validCredentials[currentBranch] || '';
+    }
+}
+
+// إظهار/إخفاء كلمة المرور
+function togglePasswordVisibility() {
+    const passwordInput = document.getElementById('passwordDisplay');
+    const toggleIcon = document.querySelector('.toggle-password');
+    if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        toggleIcon.textContent = 'visibility_off';
+    } else {
+        passwordInput.type = 'password';
+        toggleIcon.textContent = 'visibility';
+    }
+}
+
+// تبديل حالة البطاقة (فتح/إغلاق)
 function toggleCard(card) {
     const content = card.querySelector('.card-content');
     const arrow = card.querySelector('.arrow');
@@ -523,7 +588,113 @@ function logout() {
     window.location.href = 'index.html';
 }
 
-// PWA تثبيت التطبيق
+// حفظ المفضلة في localStorage
+function saveFavorites() {
+    const currentBranch = sessionStorage.getItem('currentBranch');
+    if (currentBranch && branches[currentBranch]) {
+        localStorage.setItem(`favorites_${currentBranch}`, JSON.stringify(branches[currentBranch].favorites));
+    }
+}
+
+// تحميل المفضلة من localStorage
+function loadFavorites() {
+    const currentBranch = sessionStorage.getItem('currentBranch');
+    if (currentBranch && branches[currentBranch]) {
+        const saved = localStorage.getItem(`favorites_${currentBranch}`);
+        if (saved) {
+            branches[currentBranch].favorites = JSON.parse(saved);
+        }
+    }
+}
+
+// إضافة/إزالة عنصر من المفضلة
+function toggleFavorite(index) {
+    const currentBranch = sessionStorage.getItem('currentBranch');
+    if (!currentBranch || !branches[currentBranch]) return;
+
+    const favorites = branches[currentBranch].favorites;
+    const cards = document.querySelectorAll('.asset-card');
+    if (cards[index]) {
+        const icon = cards[index].querySelector('.favorite-icon');
+        if (favorites.includes(index)) {
+            favorites.splice(favorites.indexOf(index), 1);
+            icon.textContent = 'favorite_border';
+        } else {
+            favorites.push(index);
+            icon.textContent = 'favorite';
+        }
+        saveFavorites();
+    }
+}
+
+// تحميل صفحة المفضلة
+function loadFavoritesPage() {
+    const currentBranch = sessionStorage.getItem('currentBranch');
+    if (!currentBranch || !branches[currentBranch]) {
+        window.location.href = 'index.html';
+        return;
+    }
+
+    const branchName = document.getElementById('branchName');
+    if (branchName) {
+        branchName.textContent = branches[currentBranch].name + " - المفضلة";
+    }
+
+    const container = document.getElementById('favoritesContainer');
+    loadFavorites();
+    container.innerHTML = branches[currentBranch].favorites.length === 0 ? 
+        '<div class="no-favorites">لا توجد عناصر في المفضلة</div>' : 
+        branches[currentBranch].favorites.map(index => `
+            <div class="asset-card">
+                ${createCardContent(branches[currentBranch].assets[index])}
+            </div>
+        `).join('');
+
+    document.querySelectorAll('.card-header').forEach(header => {
+        header.addEventListener('click', () => {
+            const card = header.parentElement;
+            toggleCard(card);
+        });
+    });
+}
+
+// دالة مساعدة لإنشاء محتوى البطاقة
+function createCardContent(asset) {
+    let content = `
+        <div class="card-header">
+            <span class="material-icons">${asset.icon}</span>
+            <h3>${asset.title}</h3>
+            <span class="material-icons arrow">expand_more</span>
+        </div>
+        <div class="card-content">
+    `;
+    if (asset.files) {
+        content += `<div class="file-grid">`;
+        asset.files.forEach(file => {
+            content += `
+                <a href="${file.url}" class="file-item" download>
+                    <span class="material-icons">download</span> ${file.name}
+                </a>`;
+        });
+        content += `</div>`;
+    }
+    if (asset.colors) {
+        content += `<div class="color-grid">`;
+        asset.colors.forEach(color => {
+            let bgColor = color.type === 'HEX' ? color.code : `rgb(${color.code})`;
+            content += `
+                <div class="color-box" style="background-color: ${bgColor};">
+                    <div class="color-code">${color.code}</div>
+                    <div class="color-type">${color.type}</div>
+                </div>`;
+        });
+        content += `</div>`;
+    }
+    content += `</div>`;
+    return content;
+}
+
+// دعم تثبيت التطبيق كـ PWA
 let deferredPrompt;
 window.addEventListener('beforeinstallprompt', (e) => {
     e.preventDefault();
@@ -536,50 +707,44 @@ function showInstallButton() {
     installBtn.className = 'install-btn';
     installBtn.innerHTML = `<span class="material-icons">download</span> تثبيت التطبيق`;
     installBtn.onclick = installApp;
-    document.querySelector('.login-box').appendChild(installBtn);
+    const loginBox = document.querySelector('.login-box');
+    if (loginBox) loginBox.appendChild(installBtn);
 }
 
 function installApp() {
-    deferredPrompt.prompt();
-    deferredPrompt.userChoice.then(() => {
-        deferredPrompt = null;
-        document.querySelector('.install-btn').remove();
-    });
+    if (deferredPrompt) {
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then(() => {
+            deferredPrompt = null;
+            const installBtn = document.querySelector('.install-btn');
+            if (installBtn) installBtn.remove();
+        });
+    }
 }
 
-// تسجيل Service Worker ومراقبة التحديثات
+// تسجيل Service Worker
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
         navigator.serviceWorker.register('./sw.js?v=1.1')
             .then(registration => {
                 console.log('Service Worker مسجل بنجاح!', registration);
-
-                registration.onupdatefound = () => {
-                    const installingWorker = registration.installing;
-                    installingWorker.onstatechange = () => {
-                        if (installingWorker.state === 'installed') {
-                            if (navigator.serviceWorker.controller) {
-                                showUpdateBanner();
-                            }
-                        }
-                    };
-                };
             })
             .catch(err => console.error('فشل تسجيل Service Worker:', err));
     });
 }
+
+// فحص حالة الاتصال
 window.addEventListener('load', function () {
-  function checkOnlineStatus() {
-    if (!navigator.onLine) {
-      window.location.href = 'offline.html';
+    function checkOnlineStatus() {
+        if (!navigator.onLine) {
+            window.location.href = 'offline.html';
+        }
     }
-  }
 
-  // تحقق عند تحميل الصفحة
-  checkOnlineStatus();
-
-  // استمع لأي تغيّر في حالة الاتصال
-  window.addEventListener('offline', function () {
-    window.location.href = 'offline.html';
-  });
+    checkOnlineStatus();
+    window.addEventListener('offline', () => {
+        window.location.href = 'offline.html';
+    });
 });
+
+
