@@ -759,31 +759,48 @@ function loadPasswords() {
     return;
   }
 
+  function loadPasswords() {
+  const passwordsContainer = document.getElementById('passwordsContainer');
+  if (!passwordsContainer) {
+    console.error('خطأ: passwordsContainer غير موجود');
+    return;
+  }
+
   passwordsContainer.innerHTML = Object.keys(validCredentials).map(branchKey => `
-  <div class="password-item">
-    <div class="password-details">
-      <label>اسم الفرع:</label>
-      <span>${branches[branchKey]?.name || branchKey}</span>
-    </div>
-    <div class="password-details">
-      <label>اسم المستخدم:</label>
-      <span>${branchKey}</span>
-    </div>
-    <div class="password-details">
-      <label>كلمة المرور:</label>
-      <div class="password-container">
-        <input type="password" value="${validCredentials[branchKey]}" readonly id="password-${branchKey}">
-        <span class="material-icons toggle-password" onclick="togglePasswordVisibility('password-${branchKey}')">visibility</span>
-        <button class="copy-btn" onclick="copyPassword('${validCredentials[branchKey]}')">
-          <span class="material-icons">content_copy</span>
-        </button>
-        <button class="share-btn" onclick="sharePassword('${branchKey}', '${validCredentials[branchKey]}')">
-          <span class="material-icons">share</span>
-        </button>
+    <div class="password-item">
+      <div class="password-details">
+        <label>اسم الفرع:</label>
+        <span>${branches[branchKey]?.name || branchKey}</span>
+      </div>
+      <div class="password-details">
+        <label>اسم المستخدم:</label>
+        <span>${branchKey}</span>
+      </div>
+      <div class="password-details">
+        <label>كلمة المرور:</label>
+        <div class="password-container">
+          <input type="password" value="${validCredentials[branchKey]}" readonly id="password-${branchKey}">
+          <span class="material-icons toggle-password" data-input-id="password-${branchKey}">visibility</span>
+          <button class="copy-btn" onclick="copyPassword('${validCredentials[branchKey]}')">
+            <span class="material-icons">content_copy</span>
+          </button>
+          <button class="share-btn" onclick="sharePassword('${branchKey}', '${validCredentials[branchKey]}')">
+            <span class="material-icons">share</span>
+          </button>
+        </div>
       </div>
     </div>
-  </div>
-`).join('');
+  `).join('');
+
+  // تفويض الأحداث للتعامل مع النقر على أيقونة التبديل
+  passwordsContainer.addEventListener('click', (e) => {
+    const toggleIcon = e.target.closest('.toggle-password');
+    if (toggleIcon) {
+      const inputId = toggleIcon.getAttribute('data-input-id');
+      console.log('تم النقر على أيقونة التبديل للحقل:', inputId);
+      togglePasswordVisibility(inputId);
+    }
+  });
 }
 
 // مشاركة تفاصيل الفرع
@@ -1003,19 +1020,25 @@ function loadAccountPage() {
 // إظهار/إخفاء كلمة المرور
 function togglePasswordVisibility(inputId) {
   const passwordInput = document.getElementById(inputId);
-  const toggleIcon = passwordInput?.nextElementSibling;
+  const passwordContainer = passwordInput?.closest('.password-container');
+  const toggleIcon = passwordContainer?.querySelector('.toggle-password[data-input-id="' + inputId + '"]');
+
   if (passwordInput && toggleIcon) {
     if (passwordInput.type === 'password') {
       passwordInput.type = 'text';
       toggleIcon.textContent = 'visibility_off';
+      console.log(`تم إظهار كلمة المرور للحقل: ${inputId}`);
     } else {
       passwordInput.type = 'password';
       toggleIcon.textContent = 'visibility';
+      console.log(`تم إخفاء كلمة المرور للحقل: ${inputId}`);
     }
   } else {
     console.error('خطأ: حقل كلمة المرور أو أيقونة التبديل غير موجودة', {
-      passwordInput,
-      toggleIcon
+      inputId,
+      passwordInput: !!passwordInput,
+      passwordContainer: !!passwordContainer,
+      toggleIcon: !!toggleIcon
     });
   }
 }
