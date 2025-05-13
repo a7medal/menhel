@@ -789,8 +789,23 @@ function loadPasswords() {
 // إظهار/إخفاء كلمة المرور
 function togglePasswordVisibility(inputId) {
   const passwordInput = document.getElementById(inputId);
-  const passwordContainer = passwordInput?.closest('.password-container');
-  const toggleIcon = passwordContainer?.querySelector('.toggle-password');
+  let toggleIcon;
+
+  if (passwordInput) {
+    // محاولة العثور على .toggle-password في نفس الحاوية
+    const parentContainer = passwordInput.closest('.password-container') || passwordInput.closest('.password-item');
+    if (parentContainer) {
+      toggleIcon = parentContainer.querySelector('.toggle-password');
+    }
+    // إذا لم يُعثر على .toggle-password في الحاوية، جرب nextElementSibling
+    if (!toggleIcon) {
+      toggleIcon = passwordInput.nextElementSibling;
+      // التحقق من أن nextElementSibling هو بالفعل .toggle-password
+      if (toggleIcon && !toggleIcon.classList.contains('toggle-password')) {
+        toggleIcon = null;
+      }
+    }
+  }
 
   if (passwordInput && toggleIcon) {
     if (passwordInput.type === 'password') {
@@ -806,7 +821,7 @@ function togglePasswordVisibility(inputId) {
     console.error('خطأ: حقل كلمة المرور أو أيقونة التبديل غير موجودة', {
       inputId,
       passwordInput: !!passwordInput,
-      passwordContainer: !!passwordContainer,
+      parentContainer: !!parentContainer,
       toggleIcon: !!toggleIcon
     });
   }
