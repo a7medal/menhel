@@ -1,4 +1,4 @@
-// بيانات  .. الفروع والموارد
+// بيانات الفروع والموارد
 const branches = {
   mh1: { 
     name: "المنهـــــل 1",
@@ -16,7 +16,7 @@ const branches = {
         title: "الشعار الرسمي",
         icon: "format_shapes",
         files: [
-          { name: "ملون (JPJ)", url: "https://drive.google.com/file/d/1iIMFUJeJZ7-L_ZG1nTwH4q7DQI8jHWbs/view?usp=drivesdk" },
+          { name: "ملون (JPG)", url: "https://drive.google.com/file/d/1iIMFUJeJZ7-L_ZG1nTwH4q7DQI8jHWbs/view?usp=drivesdk" },
           { name: "أبيض/أسود (JPG)", url: "https://drive.google.com/file/d/11D1gh2Bp7GYUTER0LC3RU5ZPGSrMbNqB/view?usp=drivesdk" },
           { name: "لون أحادي (PNG)", url: "https://drive.google.com/file/d/1Kdxq3tMl0dKp3pnkYnsGkNp5KVrmg_lY/view?usp=drivesdk" },
           { name: "PDF", url: "https://drive.google.com/file/d/1iIMFUJeJZ7-L_ZG1nTwH4q7DQI8jHWbs/view?usp=drivesdk" },
@@ -51,7 +51,7 @@ const branches = {
         title: "الرأسية",
         icon: "vertical_align_top",
         files: [
-          { name: "DOCX رأسية امتحانات واختبارات ", url: "https://docs.google.com/file/d/15H6XU52UJC5ertYrpkWT6-Cw6Ygva6bu/edit?usp=docslist_api&filetype=msword" },
+          { name: "DOCX رأسية امتحانات واختبارات", url: "https://docs.google.com/file/d/15H6XU52UJC5ertYrpkWT6-Cw6Ygva6bu/edit?usp=docslist_api&filetype=msword" },
           { name: "JPEG رأسية نتيجة", url: "https://drive.google.com/file/d/1lDorlAfRFdLiXSagIfYWrtVwkZNe_Fb6/view?usp=drivesdk" }
         ]
       },
@@ -90,7 +90,7 @@ const branches = {
         icon: "groups",
         files: [
           { name: "PNG", url: "https://drive.google.com/file/d/1HSnoY64Vd1-mYEqkAYs7LhEn0EjW8D66/view?usp=drivesdk" },
-          { name: "للإستخدام الرقمي (JPJ)", url: "https://drive.google.com/file/d/1UZe6B3kd_ThfSCsymV_Vv7JWwYXqp9m0/view?usp=drivesdk" }
+          { name: "للإستخدام الرقمي (JPG)", url: "https://drive.google.com/file/d/1UZe6B3kd_ThfSCsymV_Vv7JWwYXqp9m0/view?usp=drivesdk" }
         ]
       },
       {
@@ -123,7 +123,7 @@ const branches = {
         title: "الشعار الرسمي",
         icon: "format_shapes",
         files: [
-          { name: "ملون (JPJ)", url: "https://drive.google.com/file/d/1iIMFUJeJZ7-L_ZG1nTwH4q7DQI8jHWbs/view?usp=drivesdk" },
+          { name: "ملون (JPG)", url: "https://drive.google.com/file/d/1iIMFUJeJZ7-L_ZG1nTwH4q7DQI8jHWbs/view?usp=drivesdk" },
           { name: "أبيض/أسود (JPG)", url: "https://drive.google.com/file/d/11D1gh2Bp7GYUTER0LC3RU5ZPGSrMbNqB/view?usp=drivesdk" },
           { name: "لون أحادي (PNG)", url: "https://drive.google.com/file/d/1Kdxq3tMl0dKp3pnkYnsGkNp5KVrmg_lY/view?usp=drivesdk" },
           { name: "PDF", url: "https://drive.google.com/file/d/1iIMFUJeJZ7-L_ZG1nTwH4q7DQI8jHWbs/view?usp=drivesdk" },
@@ -198,7 +198,7 @@ const branches = {
         icon: "groups",
         files: [
           { name: "PNG", url: "https://drive.google.com/file/d/1HSnoY64Vd1-mYEqkAYs7LhEn0EjW8D66/view?usp=drivesdk" },
-          { name: "للإستخدام الرقمي (JPJ)", url: "https://drive.google.com/file/d/1UZe6B3kd_ThfSCsymV_Vv7JWwYXqp9m0/view?usp=drivesdk" }
+          { name: "للإستخدام الرقمي (JPG)", url: "https://drive.google.com/file/d/1UZe6B3kd_ThfSCsymV_Vv7JWwYXqp9m0/view?usp=drivesdk" }
         ]
       },
       {
@@ -231,7 +231,7 @@ const branches = {
         title: "الشعار الرسمي",
         icon: "format_shapes",
         files: [
-          { name: "ملون (JPJ)", url: "https://drive.google.com/file/d/1iIMFUJeJZ7-L_ZG1nTwH4q7DQI8jHWbs/view?usp=drivesdk" },
+          { name: "ملون (JPG)", url: "https://drive.google.com/file/d/1iIMFUJeJZ7-L_ZG1nTwH4q7DQI8jHWbs/view?usp=drivesdk" },
           { name: "أبيض/أسود (JPG)", url: "https://drive.google.com/file/d/11D1gh2Bp7GYUTER0LC3RU5ZPGSrMbNqB/view?usp=drivesdk" },
           { name: "لون أحادي (PNG)", url: "https://drive.google.com/file/d/1Kdxq3tMl0dKp3pnkYnsGkNp5KVrmg_lY/view?usp=drivesdk" },
           { name: "PDF", url: "https://drive.google.com/file/d/1iIMFUJeJZ7-L_ZG1nTwH4q7DQI8jHWbs/view?usp=drivesdk" },
@@ -267,7 +267,7 @@ const branches = {
         icon: "vertical_align_top",
         files: [
           { name: "(DOCX) رأسية امتحانات واختبارات", url: "https://docs.google.com/file/d/15H6XU52UJC5ertYrpkWT6-Cw6Ygva6bu/edit?usp=docslist_api&filetype=msword" },
-          { name: "رأسية نتيجة (JPJ)", url: "https://drive.google.com/file/d/1SeUSI2vlxr7NfbAKKqGNDqUX4Q65Jz7D/view?usp=drivesdk" }
+          { name: "رأسية نتيجة (JPG)", url: "https://drive.google.com/file/d/1SeUSI2vlxr7NfbAKKqGNDqUX4Q65Jz7D/view?usp=drivesdk" }
         ]
       },
       {
@@ -306,7 +306,7 @@ const branches = {
         icon: "groups",
         files: [
           { name: "PNG", url: "https://drive.google.com/file/d/1HSnoY64Vd1-mYEqkAYs7LhEn0EjW8D66/view?usp=drivesdk" },
-          { name: "للإستخدام الرقمي (JPJ)", url: "https://drive.google.com/file/d/1UZe6B3kd_ThfSCsymV_Vv7JWwYXqp9m0/view?usp=drivesdk" }
+          { name: "للإستخدام الرقمي (JPG)", url: "https://drive.google.com/file/d/1UZe6B3kd_ThfSCsymV_Vv7JWwYXqp9m0/view?usp=drivesdk" }
         ]
       },
       {
@@ -339,7 +339,7 @@ const branches = {
         title: "الشعار الرسمي",
         icon: "format_shapes",
         files: [
-          { name: "ملون (JPJ)", url: "https://drive.google.com/file/d/1iIMFUJeJZ7-L_ZG1nTwH4q7DQI8jHWbs/view?usp=drivesdk" },
+          { name: "ملون (JPG)", url: "https://drive.google.com/file/d/1iIMFUJeJZ7-L_ZG1nTwH4q7DQI8jHWbs/view?usp=drivesdk" },
           { name: "أبيض/أسود (JPG)", url: "https://drive.google.com/file/d/11D1gh2Bp7GYUTER0LC3RU5ZPGSrMbNqB/view?usp=drivesdk" },
           { name: "لون أحادي (PNG)", url: "https://drive.google.com/file/d/1Kdxq3tMl0dKp3pnkYnsGkNp5KVrmg_lY/view?usp=drivesdk" },
           { name: "PDF", url: "https://drive.google.com/file/d/1iIMFUJeJZ7-L_ZG1nTwH4q7DQI8jHWbs/view?usp=drivesdk" },
@@ -760,30 +760,56 @@ function loadPasswords() {
   }
 
   passwordsContainer.innerHTML = Object.keys(validCredentials).map(branchKey => `
-  <div class="password-item">
-    <div class="password-details">
-      <label>اسم الفرع:</label>
-      <span>${branches[branchKey]?.name || branchKey}</span>
-    </div>
-    <div class="password-details">
-      <label>اسم المستخدم:</label>
-      <span>${branchKey}</span>
-    </div>
-    <div class="password-details">
-      <label>كلمة المرور:</label>
-      <div class="password-container">
-        <input type="password" value="${validCredentials[branchKey]}" readonly id="password-${branchKey}">
-        <span class="material-icons toggle-password" onclick="togglePasswordVisibility('password-${branchKey}')">visibility</span>
-        <button class="copy-btn" onclick="copyPassword('${validCredentials[branchKey]}')">
-          <span class="material-icons">content_copy</span>
-        </button>
-        <button class="share-btn" onclick="sharePassword('${branchKey}', '${validCredentials[branchKey]}')">
-          <span class="material-icons">share</span>
-        </button>
+    <div class="password-item">
+      <div class="password-details">
+        <label>اسم الفرع:</label>
+        <span>${branches[branchKey]?.name || branchKey}</span>
+      </div>
+      <div class="password-details">
+        <label>اسم المستخدم:</label>
+        <span>${branchKey}</span>
+      </div>
+      <div class="password-details">
+        <label>كلمة المرور:</label>
+        <div class="password-container">
+          <input type="password" value="${validCredentials[branchKey]}" readonly id="password-${branchKey}">
+          <span class="material-icons toggle-password" onclick="togglePasswordVisibility('password-${branchKey}')">visibility</span>
+          <button class="copy-btn" onclick="copyPassword('${validCredentials[branchKey]}')">
+            <span class="material-icons">content_copy</span>
+          </button>
+          <button class="share-btn" onclick="sharePassword('${branchKey}', '${validCredentials[branchKey]}')">
+            <span class="material-icons">share</span>
+          </button>
+        </div>
       </div>
     </div>
-  </div>
-`).join('');
+  `).join('');
+}
+
+// إظهار/إخفاء كلمة المرور
+function togglePasswordVisibility(inputId) {
+  const passwordInput = document.getElementById(inputId);
+  const passwordContainer = passwordInput?.closest('.password-container');
+  const toggleIcon = passwordContainer?.querySelector('.toggle-password');
+
+  if (passwordInput && toggleIcon) {
+    if (passwordInput.type === 'password') {
+      passwordInput.type = 'text';
+      toggleIcon.textContent = 'visibility_off';
+      console.log(`تم إظهار كلمة المرور للحقل: ${inputId}`);
+    } else {
+      passwordInput.type = 'password';
+      toggleIcon.textContent = 'visibility';
+      console.log(`تم إخفاء كلمة المرور للحقل: ${inputId}`);
+    }
+  } else {
+    console.error('خطأ: حقل كلمة المرور أو أيقونة التبديل غير موجودة', {
+      inputId,
+      passwordInput: !!passwordInput,
+      passwordContainer: !!passwordContainer,
+      toggleIcon: !!toggleIcon
+    });
+  }
 }
 
 // مشاركة تفاصيل الفرع
@@ -1000,26 +1026,6 @@ function loadAccountPage() {
   }
 }
 
-// إظهار/إخفاء كلمة المرور
-function togglePasswordVisibility(inputId) {
-  const passwordInput = document.getElementById(inputId);
-  const toggleIcon = passwordInput?.nextElementSibling;
-  if (passwordInput && toggleIcon) {
-    if (passwordInput.type === 'password') {
-      passwordInput.type = 'text';
-      toggleIcon.textContent = 'visibility_off';
-    } else {
-      passwordInput.type = 'password';
-      toggleIcon.textContent = 'visibility';
-    }
-  } else {
-    console.error('خطأ: حقل كلمة المرور أو أيقونة التبديل غير موجودة', {
-      passwordInput,
-      toggleIcon
-    });
-  }
-}
-    
 // تبديل حالة البطاقة (فتح/إغلاق)
 function toggleCard(card) {
   console.log('تشغيل toggleCard للبطاقة:', card.querySelector('h3')?.textContent || 'غير معروف');
