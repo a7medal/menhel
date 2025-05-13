@@ -10,274 +10,161 @@
   <link rel="manifest" href="/manifest.json">
 <style>
 /* نظام التصميم الحديث */
+/* نظام الألوان المُحدّث مع تدرجات حديثة */
 :root {
     --primary-color: #1C6459;
-    --secondary-color: #123740;
-    --accent-color: #DBA437;
-    --background-color: #f8f9fa;
-    --error-color: #E74C3C;
-    --text-color: #2d3436;
-    --card-bg: #ffffff;
-    --border-radius: 16px;
-    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --secondary-color: #0F2A33;
+    --accent-color: #FFC857;
+    --background-color: #F5F7FB;
+    --error-color: #FF6B6B;
+    --text-color: #2D3436;
+    --card-bg: #FFFFFF;
+    --border-radius: 20px;
+    --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-/* إعادة الضبط الأساسية مع تحسينات حديثة */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
+/* تحسينات الطباعة الأساسية */
 body {
-    font-family: 'Cairo', system-ui, -apple-system, sans-serif;
-    direction: rtl;
+    font-family: 'Cairo', -apple-system, BlinkMacSystemFont, sans-serif;
     background: var(--background-color);
     color: var(--text-color);
-    line-height: 1.7;
-    overflow-x: hidden;
+    line-height: 1.8;
 }
 
-/* تحسينات المظهر العام */
+/* تصميم الهيدر مع تأثير الزجاج */
 .dashboard-header {
-    background: var(--primary-color);
-    backdrop-filter: blur(10px);
-    padding: 1rem 2.5rem;
+    background: rgba(28, 100, 89, 0.95);
+    backdrop-filter: blur(15px);
+    padding: 1.5rem 3rem;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .header-logo {
-    width: 48px;
-    height: 48px;
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+    width: 50px;
+    height: 50px;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
 }
 
-.dashboard-header h1 {
-    font-size: 1.75rem;
-    font-weight: 800;
-    letter-spacing: -0.5px;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-/* تحسينات الأزرار والتأثيرات */
-.logout-btn {
-    background: rgba(255, 255, 255, 0.1);
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    padding: 0.75rem 1.5rem;
-    border-radius: 50px;
-    backdrop-filter: blur(5px);
-    transition: var(--transition);
-}
-
-.logout-btn:hover {
-    background: var(--accent-color);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(219, 164, 55, 0.3);
-}
-
-/* تحسين نظام التبويب */
+/* نظام تبويب متطور */
 .tabs {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 2rem;
-    padding: 0.5rem;
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.9);
     border-radius: var(--border-radius);
-    backdrop-filter: blur(5px);
+    padding: 0.5rem;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
 }
 
 .tab-button {
-    padding: 1rem 2rem;
-    border-radius: 12px;
-    background: transparent;
+    padding: 1.2rem 2.5rem;
+    border-radius: 14px;
     transition: var(--transition);
     position: relative;
-    overflow: hidden;
 }
 
 .tab-button.active {
-    background: var(--primary-color);
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
     color: white;
-    box-shadow: 0 4px 12px rgba(28, 100, 89, 0.25);
+    box-shadow: 0 10px 20px rgba(28, 100, 89, 0.2);
 }
 
-.tab-button::before {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background: var(--accent-color);
-    transform: scaleX(0);
-    transition: var(--transition);
-}
-
-.tab-button.active::before {
-    transform: scaleX(1);
-}
-
-/* تصميم البطاقات المحدث */
+/* بطاقات بتصميم نيومورفيك */
 .asset-card {
     background: var(--card-bg);
     border-radius: var(--border-radius);
-    margin-bottom: 1.5rem;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+    box-shadow: 8px 8px 16px #d1d9e6, 
+                -8px -8px 16px #ffffff;
     transition: var(--transition);
 }
 
 .asset-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+    box-shadow: 12px 12px 24px #d1d9e6, 
+                -12px -12px 24px #ffffff;
 }
 
 .card-header {
-    padding: 1.5rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    background: linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-    color: white;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    padding: 1.8rem;
     border-radius: var(--border-radius) var(--border-radius) 0 0;
 }
 
-.card-header h3 {
-    font-weight: 700;
-    font-size: 1.25rem;
-}
-
-/* تحسينات شبكة الملفات */
+/* شبكة ملفات تفاعلية */
 .file-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 1.5rem;
-    padding: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
 }
 
 .file-item {
-    padding: 1.5rem;
     background: var(--card-bg);
-    border-radius: 12px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
+    border-radius: 16px;
+    padding: 2rem;
     transition: var(--transition);
+    text-align: center;
 }
 
 .file-item:hover {
     background: var(--primary-color);
-    color: white;
     transform: scale(1.05);
+    box-shadow: 0 10px 30px rgba(28, 100, 89, 0.2);
 }
 
-.file-item .material-icons {
-    font-size: 2.5rem;
-}
-
-/* تصميم كلمات المرور المحسن */
-.password-item {
-    background: var(--card-bg);
-    border-radius: var(--border-radius);
-    padding: 2rem;
-    margin-bottom: 1.5rem;
-    position: relative;
-    overflow: hidden;
-}
-
-.password-item::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 4px;
-    height: 100%;
-    background: var(--accent-color);
-}
-
+/* تحسينات إدخال كلمة المرور */
 .password-container input {
-    background: rgba(255, 255, 255, 0.1);
-    border: 2px solid rgba(0, 0, 0, 0.1);
-    padding: 1rem;
+    background: rgba(245, 247, 251, 0.8);
+    border: 2px solid #e0e5ec;
+    padding: 1.2rem;
     font-size: 1.1rem;
-    border-radius: 8px;
-    width: 100%;
+    border-radius: 12px;
     transition: var(--transition);
 }
 
 .password-container input:focus {
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(28, 100, 89, 0.2);
+    box-shadow: 0 0 0 4px rgba(28, 100, 89, 0.15);
 }
 
-/* تحسينات شريط البحث */
+/* شريط بحث حديث */
 .search-container {
     background: var(--card-bg);
     border-radius: 50px;
-    padding: 0.75rem 1.5rem;
-    width: 100%;
-    max-width: 600px;
-    margin: 2rem auto;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    padding: 1rem 2rem;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+    max-width: 700px;
 }
 
-.search-container input {
-    font-size: 1.1rem;
-    padding: 0.5rem;
-}
-
-/* تصميم حديث للإشعارات */
+/* تصميم إشعارات متحرك */
 .auto-update-notice {
-    background: linear-gradient(90deg, var(--secondary-color) 0%, var(--primary-color) 100%);
-    padding: 1.5rem;
+    background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);
     border-radius: var(--border-radius);
-    margin: 2rem 0;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    animation: pulse 2s infinite;
 }
 
-/* تحسينات الاستجابة */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+    100% { transform: scale(1); }
+}
+
+/* تحسينات للهواتف */
 @media (max-width: 768px) {
     .dashboard-header {
-        padding: 1rem;
+        padding: 1.2rem;
         flex-direction: column;
-        gap: 1rem;
+        gap: 1.5rem;
     }
     
     .tabs {
         flex-direction: column;
+        gap: 0.5rem;
     }
     
-    .file-grid {
-        grid-template-columns: 1fr;
+    .tab-button {
+        width: 100%;
+        text-align: center;
     }
-}
-
-/* تأثيرات حركية */
-@keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.tab-pane.active {
-    animation: slideIn 0.4s ease-out;
 }
 </style>
 </head>
