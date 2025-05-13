@@ -415,7 +415,7 @@ document.addEventListener('DOMContentLoaded', () => {
         sessionStorage.setItem('username', username);
         sessionStorage.setItem('password', password);
         console.log('تم تسجيل الدخول بنجاح:', { username });
-        
+
         // إذا كان المستخدم هو الأدمن، انتقل إلى admin.html
         if (username === 'admin') {
           window.location.href = 'admin.html';
@@ -446,7 +446,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // تحميل صفحة الأدمن
-  if (path.includes('admin.html')) {
+  if (path.includes('admin.html') || path.endsWith('/admin')) {
+    console.log('بدء تهيئة صفحة الأدمن');
     initializeAdmin();
   }
 });
@@ -579,6 +580,8 @@ function initializeAdmin() {
     return;
   }
 
+  console.log('تهيئة صفحة الأدمن');
+
   // تحميل محتوى الفروع
   Object.keys(branches).forEach(branchKey => {
     loadAdminBranchData(branchKey);
@@ -602,7 +605,18 @@ function initializeAdmin() {
       // إضافة الفئة active للزر واللوح المحدد
       button.classList.add('active');
       document.getElementById(tabId).classList.add('active');
+      console.log(`تم تفعيل علامة التبويب: ${tabId}`);
     });
+  });
+
+  // تفويض الأحداث للتعامل مع النقر على رؤوس البطاقات
+  adminContainer.addEventListener('click', (e) => {
+    const header = e.target.closest('.card-header');
+    if (header && !e.target.classList.contains('favorite-icon')) {
+      const card = header.parentElement;
+      console.log('تم النقر على بطاقة:', card.querySelector('h3').textContent);
+      toggleCard(card);
+    }
   });
 }
 
@@ -615,6 +629,7 @@ function loadAdminBranchData(branchKey) {
     console.error('خطأ: بيانات الفرع أو tab-pane غير موجودة', {
       branch: !!branch,
       tabPane: !!tabPane,
+      branchKey,
     });
     return;
   }
@@ -645,6 +660,7 @@ function loadAdminBranchData(branchKey) {
     console.error('خطأ: cardsContainer أو favoritesContainer غير موجود', {
       cardsContainer: !!cardsContainer,
       favoritesContainer: !!favoritesContainer,
+      branchKey,
     });
     return;
   }
@@ -660,10 +676,9 @@ function loadAdminBranchData(branchKey) {
       header.innerHTML = `
         <span class="material-icons">${asset.icon}</span>
         <h3>${asset.title}</h3>
-        <span class="material-icons favorite-icon" onclick="toggleFavorite('${branchKey}', ${index})">${branches[branchKey].favorites.includes(index) ? 'favorite' : 'favorite_border'}</span>
+        <span class="material-icons favorite-icon" onclick="toggleFavorite('${branchKey}', ${index}, event)">${branches[branchKey].favorites.includes(index) ? 'favorite' : 'favorite_border'}</span>
         <span class="material-icons arrow">expand_more</span>
       `;
-      header.addEventListener('click', () => toggleCard(card));
       card.appendChild(header);
 
       const content = document.createElement('div');
@@ -717,13 +732,6 @@ function loadAdminBranchData(branchKey) {
         ${createCardContent(branches[branchKey].assets[index])}
       </div>
     `).join('');
-
-  document.querySelectorAll(`#${branchKey} .card-header`).forEach(header => {
-    header.addEventListener('click', () => {
-      const card = header.parentElement;
-      toggleCard(card);
-    });
-  });
 
   // تصفية البطاقات بناءً على البحث
   const searchInput = document.getElementById(`searchInput-${branchKey}`);
@@ -882,10 +890,9 @@ function loadBranchData(branchKey) {
       header.innerHTML = `
         <span class="material-icons">${asset.icon}</span>
         <h3>${asset.title}</h3>
-        <span class="material-icons favorite-icon" onclick="toggleFavorite('${branchKey}', ${index})">${branch.favorites.includes(index) ? 'favorite' : 'favorite_border'}</span>
+        <span class="material-icons favorite-icon" onclick="toggleFavorite('${branchKey}', ${index}, event)">${branch.favorites.includes(index) ? 'favorite' : 'favorite_border'}</span>
         <span class="material-icons arrow">expand_more</span>
       `;
-      header.addEventListener('click', () => toggleCard(card));
       card.appendChild(header);
 
       const content = document.createElement('div');
@@ -929,6 +936,16 @@ function loadBranchData(branchKey) {
   } catch (error) {
     console.error('خطأ أثناء تحميل بطاقات الموارد:', error);
   }
+
+  // تفويض الأحداث للتعامل مع النقر على رؤوس البطاقات
+  newCardsContainer.addEventListener('click', (e) => {
+    const header = e.target.closest('.card-header');
+    if (header && !e.target.classList.contains('favorite-icon')) {
+      const card = header.parentElement;
+      console.log('تم النقر على بطاقة في الداشبورد:', card.querySelector('h3').textContent);
+      toggleCard(card);
+    }
+  });
 
   // تصفية البطاقات بناءً على البحث
   const searchInput = document.getElementById('searchInput');
@@ -1005,11 +1022,21 @@ function togglePasswordVisibility(inputId) {
 
 // تبديل حالة البطاقة (فتح/إغلاق)
 function toggleCard(card) {
+  console.log('تشغيل toggleCard للبطاقة:', card.querySelector('h3')?.textContent || 'غير معروف');
   const content = card.querySelector('.card-content');
   const arrow = card.querySelector('.arrow');
+  if (!content || !arrow) {
+    console.error('خطأ: عناصر البطاقة غير موجودة', {
+      content: !!content,
+      arrow: !!arrow,
+      card,
+    });
+    return;
+  }
   const isActive = card.classList.toggle('active');
   content.style.maxHeight = isActive ? `${content.scrollHeight}px` : '0';
   arrow.textContent = isActive ? 'expand_less' : 'expand_more';
+  console.log('حالة البطاقة:', isActive ? 'مفتوحة' : 'مغلقة');
 }
 
 // تسجيل الخروج
@@ -1024,6 +1051,7 @@ function logout() {
 function saveFavorites(branchKey) {
   if (branchKey && branches[branchKey]) {
     localStorage.setItem(`favorites_${branchKey}`, JSON.stringify(branches[branchKey].favorites));
+    console.log(`تم حفظ المفضلة للفرع ${branchKey}:`, branches[branchKey].favorites);
   }
 }
 
@@ -1033,12 +1061,14 @@ function loadFavorites(branchKey) {
     const saved = localStorage.getItem(`favorites_${branchKey}`);
     if (saved) {
       branches[branchKey].favorites = JSON.parse(saved);
+      console.log(`تم تحميل المفضلة للفرع ${branchKey}:`, branches[branchKey].favorites);
     }
   }
 }
 
 // إضافة/إزالة عنصر من المفضلة
-function toggleFavorite(branchKey, index) {
+function toggleFavorite(branchKey, index, event) {
+  event.stopPropagation(); // منع تشغيل toggleCard عند النقر على أيقونة المفضلة
   if (!branchKey || !branches[branchKey]) {
     console.error('خطأ: الفرع غير موجود عند تبديل المفضلة', { branchKey });
     return;
@@ -1052,9 +1082,11 @@ function toggleFavorite(branchKey, index) {
     if (favorites.includes(index)) {
       favorites.splice(favorites.indexOf(index), 1);
       icon.textContent = 'favorite_border';
+      console.log(`تمت إزالة العنصر ${index} من المفضلة للفرع ${branchKey}`);
     } else {
       favorites.push(index);
       icon.textContent = 'favorite';
+      console.log(`تمت إضافة العنصر ${index} إلى المفضلة للفرع ${branchKey}`);
     }
     saveFavorites(branchKey);
     // إعادة تحميل المفضلة في صفحة الأدمن
@@ -1068,12 +1100,7 @@ function toggleFavorite(branchKey, index) {
               ${createCardContent(branches[branchKey].assets[idx])}
             </div>
           `).join('');
-        favoritesContainer.querySelectorAll('.card-header').forEach(header => {
-          header.addEventListener('click', () => {
-            const card = header.parentElement;
-            toggleCard(card);
-          });
-        });
+        console.log(`تم تحديث قسم المفضلة للفرع ${branchKey}`);
       }
     }
   } else {
@@ -1111,11 +1138,14 @@ function loadFavoritesPage() {
       </div>
     `).join('');
 
-  document.querySelectorAll('.card-header').forEach(header => {
-    header.addEventListener('click', () => {
+  // تفويض الأحداث للتعامل مع النقر على رؤوس البطاقات
+  container.addEventListener('click', (e) => {
+    const header = e.target.closest('.card-header');
+    if (header) {
       const card = header.parentElement;
+      console.log('تم النقر على بطاقة في صفحة المفضلة:', card.querySelector('h3').textContent);
       toggleCard(card);
-    });
+    }
   });
 }
 
@@ -1127,7 +1157,7 @@ function createCardContent(asset) {
       <h3>${asset.title}</h3>
       <span class="material-icons arrow">expand_more</span>
     </div>
-    <div class="card-content">
+    <div class="card-content" style="max-height: 0;">
   `;
   if (asset.files) {
     content += `<div class="file-grid">`;
