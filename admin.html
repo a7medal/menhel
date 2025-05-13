@@ -9,489 +9,275 @@
   <link rel="stylesheet" href="style.css">
   <link rel="manifest" href="/manifest.json">
 <style>
-/* إعادة ضبط التنسيقات الأساسية */
+/* نظام التصميم الحديث */
+:root {
+    --primary-color: #1C6459;
+    --secondary-color: #123740;
+    --accent-color: #DBA437;
+    --background-color: #f8f9fa;
+    --error-color: #E74C3C;
+    --text-color: #2d3436;
+    --card-bg: #ffffff;
+    --border-radius: 16px;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* إعادة الضبط الأساسية مع تحسينات حديثة */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
-  font-family: 'Cairo', sans-serif;
-  direction: rtl;
-  background-color: #f4f4f4;
-  color: #333;
-  line-height: 1.6;
-  overflow-x: hidden;
+    font-family: 'Cairo', system-ui, -apple-system, sans-serif;
+    direction: rtl;
+    background: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.7;
+    overflow-x: hidden;
 }
 
-/* متغيرات الألوان */
-:root {
-  --primary-color: #1C6459;
-  --secondary-color: #123740;
-  --accent-color: #DBA437;
-  --background-color: #EEECE9;
-  --text-color: #333;
-  --card-bg: #ffffff;
-  --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-/* تنسيقات الهيدر */
+/* تحسينات المظهر العام */
 .dashboard-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: var(--primary-color);
-  color: white;
-  padding: 1rem 2rem;
-  box-shadow: var(--shadow);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
-
-.header-left {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
+    background: var(--primary-color);
+    backdrop-filter: blur(10px);
+    padding: 1rem 2.5rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .header-logo {
-  width: 40px;
-  height: 40px;
-  object-fit: contain;
+    width: 48px;
+    height: 48px;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
 }
 
 .dashboard-header h1 {
-  font-size: 1.5rem;
-  font-weight: 700;
+    font-size: 1.75rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+/* تحسينات الأزرار والتأثيرات */
 .logout-btn {
-  background: none;
-  border: none;
-  color: white;
-  font-size: 1.5rem;
-  cursor: pointer;
-  transition: color 0.3s ease;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    backdrop-filter: blur(5px);
+    transition: var(--transition);
 }
 
 .logout-btn:hover {
-  color: var(--accent-color);
+    background: var(--accent-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(219, 164, 55, 0.3);
 }
 
-/* تنسيقات المحتوى الرئيسي */
-.main-content {
-  min-height: calc(100vh - 120px);
-  padding: 2rem 1rem;
-}
-
-/* تنسيقات صفحة الأدمن */
-.admin-container {
-  max-width: 1200px;
-  margin: 2rem auto;
-  padding: 0 1rem;
-}
-
-/* علامات التبويب */
+/* تحسين نظام التبويب */
 .tabs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: 1.5rem;
-  border-bottom: 2px solid #eee;
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    padding: 0.5rem;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: var(--border-radius);
+    backdrop-filter: blur(5px);
 }
 
 .tab-button {
-  background: #f9f9f9;
-  border: none;
-  padding: 0.8rem 1.5rem;
-  font-family: 'Cairo', sans-serif;
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--text-color);
-  cursor: pointer;
-  border-radius: 12px 12px 0 0;
-  transition: all 0.3s ease;
-  position: relative;
-}
-
-.tab-button:hover {
-  background: var(--primary-color);
-  color: white;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    background: transparent;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
 }
 
 .tab-button.active {
-  background: var(--primary-color);
-  color: white;
+    background: var(--primary-color);
+    color: white;
+    box-shadow: 0 4px 12px rgba(28, 100, 89, 0.25);
 }
 
-.tab-button.active::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background: var(--primary-color);
+.tab-button::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--accent-color);
+    transform: scaleX(0);
+    transition: var(--transition);
 }
 
-.tab-pane {
-  display: none;
-  padding: 1.5rem;
-  background: white;
-  border-radius: 12px;
-  box-shadow: var(--shadow);
+.tab-button.active::before {
+    transform: scaleX(1);
 }
 
-.tab-pane.active {
-  display: block;
-  animation: fadeIn 0.5s ease;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* تنسيقات البطاقات */
+/* تصميم البطاقات المحدث */
 .asset-card {
-  background: var(--card-bg);
-  border-radius: 12px;
-  margin-bottom: 1rem;
-  box-shadow: var(--shadow);
-  overflow: hidden;
-  transition: all 0.3s ease;
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    margin-bottom: 1.5rem;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+    transition: var(--transition);
+}
+
+.asset-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
 }
 
 .card-header {
-  display: flex;
-  align-items: center;
-  padding: 1rem;
-  background: #f9f9f9;
-  cursor: pointer;
-  gap: 0.5rem;
-}
-
-.card-header:hover {
-  background: #f1f1f1;
-}
-
-.card-header .material-icons {
-  color: var(--primary-color);
+    padding: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: white;
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
 }
 
 .card-header h3 {
-  flex: 1;
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: var(--text-color);
+    font-weight: 700;
+    font-size: 1.25rem;
 }
 
-.favorite-icon {
-  cursor: pointer;
-  color: var(--accent-color);
-}
-
-.arrow {
-  transition: transform 0.3s ease;
-}
-
-.asset-card.active .arrow {
-  transform: rotate(180deg);
-}
-
-.card-content {
-  max-height: 0;
-  overflow: hidden;
-  padding: 0 1rem;
-  transition: max-height 0.3s ease, padding 0.3s ease;
-}
-
-.asset-card.active .card-content {
-  padding: 1rem;
-}
-
-/* تنسيقات شبكة الملفات */
+/* تحسينات شبكة الملفات */
 .file-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 0.5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.5rem;
+    padding: 1.5rem;
 }
 
 .file-item {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem;
-  background: #f1f1f1;
-  border-radius: 8px;
-  text-decoration: none;
-  color: var(--text-color);
-  font-size: 0.9rem;
-  transition: background 0.3s ease;
+    padding: 1.5rem;
+    background: var(--card-bg);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    transition: var(--transition);
 }
 
 .file-item:hover {
-  background: var(--primary-color);
-  color: white;
+    background: var(--primary-color);
+    color: white;
+    transform: scale(1.05);
 }
 
 .file-item .material-icons {
-  font-size: 1.2rem;
+    font-size: 2.5rem;
 }
 
-/* تنسيقات شبكة الألوان */
-.color-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-  gap: 0.5rem;
-}
-
-.color-box {
-  padding: 1rem;
-  border-radius: 8px;
-  text-align: center;
-  color: white;
-  font-size: 0.9rem;
-}
-
-.color-code {
-  font-weight: 600;
-}
-
-.color-type {
-  font-size: 0.8rem;
-  opacity: 0.8;
-}
-
-/* تنسيقات كلمات المرور */
-.passwords-container {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
+/* تصميم كلمات المرور المحسن */
 .password-item {
-  background: #f9f9f9;
-  padding: 1rem;
-  border-radius: 12px;
-  box-shadow: var(--shadow);
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    overflow: hidden;
 }
 
-.password-details {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 0.5rem;
-}
-
-.password-details label {
-  font-weight: 600;
-  color: var(--text-color);
-  min-width: 100px;
-}
-
-.password-details span {
-  color: var(--primary-color);
-}
-
-.password-container {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+.password-item::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--accent-color);
 }
 
 .password-container input {
-  padding: 0.5rem;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  font-family: 'Cairo', sans-serif;
-  width: 150px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    width: 100%;
+    transition: var(--transition);
 }
 
-.toggle-password {
-  cursor: pointer;
-  color: var(--primary-color);
-  transition: color 0.3s ease;
+.password-container input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(28, 100, 89, 0.2);
 }
 
-.toggle-password:hover {
-  color: var(--text-color);
-}
-
-.copy-btn, .share-btn {
-  background: var(--primary-color);
-  border: none;
-  padding: 0.5rem;
-  border-radius: 8px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  color: white;
-  transition: all 0.3s ease;
-}
-
-.copy-btn:hover, .share-btn:hover {
-  background: var(--secondary-color);
-  transform: translateY(-2px);
-}
-
-.share-branch {
-  margin: 1rem 0;
-}
-
-.share-btn {
-  padding: 0.8rem 1.5rem;
-  font-family: 'Cairo', sans-serif;
-  font-size: 1rem;
-  font-weight: 600;
-}
-
-/* تنسيقات شريط البحث */
-.search-bar {
-  margin: 1.5rem 0;
-}
-
+/* تحسينات شريط البحث */
 .search-container {
-  display: flex;
-  align-items: center;
-  background: white;
-  border-radius: 12px;
-  padding: 0.5rem 1rem;
-  box-shadow: var(--shadow);
-  max-width: 500px;
-  margin: 0 auto;
-}
-
-.search-container .material-icons {
-  color: var(--primary-color);
-  margin-left: 0.5rem;
+    background: var(--card-bg);
+    border-radius: 50px;
+    padding: 0.75rem 1.5rem;
+    width: 100%;
+    max-width: 600px;
+    margin: 2rem auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 .search-container input {
-  border: none;
-  outline: none;
-  font-family: 'Cairo', sans-serif;
-  font-size: 1rem;
-  width: 100%;
-  background: transparent;
-}
-
-/* تنسيقات الفوتر */
-.auto-update-notice {
-  background: var(--secondary-color);
-  color: white;
-  text-align: center;
-  padding: 1rem;
-  position: relative;
-  bottom: 0;
-  width: 100%;
-}
-
-.notice-content {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-}
-
-.notice-content .material-icons {
-  font-size: 1.2rem;
-}
-
-/* تنسيقات المفضلة */
-.favorites-container {
-  margin-top: 1rem;
-}
-
-.no-favorites {
-  text-align: center;
-  color: var(--text-color);
-  font-size: 1rem;
-  padding: 1rem;
-  background: #f9f9f9;
-  border-radius: 12px;
-}
-
-/* تنسيقات متجاوبة */
-@media (max-width: 768px) {
-  .dashboard-header {
-    padding: 1rem;
-  }
-
-  .dashboard-header h1 {
-    font-size: 1.2rem;
-  }
-
-  .header-logo {
-    width: 30px;
-    height: 30px;
-  }
-
-  .main-content {
-    padding: 1rem;
-  }
-
-  .tabs {
-    flex-direction: column;
-    gap: 0.3rem;
-  }
-
-  .tab-button {
-    border-radius: 12px;
-    padding: 0.7rem 1rem;
-  }
-
-  .tab-pane {
-    padding: 1rem;
-  }
-
-  .password-container input {
-    width: 100px;
-  }
-
-  .file-grid {
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-  }
-
-  .color-grid {
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-  }
-}
-
-@media (max-width: 480px) {
-  .dashboard-header {
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .logout-btn {
-    position: absolute;
-    top: 1rem;
-    left: 1rem;
-  }
-
-  .password-details {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .password-details label {
-    min-width: auto;
-  }
-
-  .password-container {
-    flex-wrap: wrap;
-  }
-
-  .search-container {
+    font-size: 1.1rem;
     padding: 0.5rem;
-  }
+}
 
-  .search-container input {
-    font-size: 0.9rem;
-  }
+/* تصميم حديث للإشعارات */
+.auto-update-notice {
+    background: linear-gradient(90deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    margin: 2rem 0;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+/* تحسينات الاستجابة */
+@media (max-width: 768px) {
+    .dashboard-header {
+        padding: 1rem;
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .tabs {
+        flex-direction: column;
+    }
+    
+    .file-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* تأثيرات حركية */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.tab-pane.active {
+    animation: slideIn 0.4s ease-out;
 }
 </style>
 </head>
