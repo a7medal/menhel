@@ -1,4 +1,4 @@
-// بيانات الفروع والموارد
+// بيانات   الفروع والموارد
 const branches = {
   mh1: { 
     name: "المنهـــــل 1",
@@ -760,30 +760,30 @@ function loadPasswords() {
   }
 
   passwordsContainer.innerHTML = Object.keys(validCredentials).map(branchKey => `
-    <div class="password-item">
-      <div class="password-details">
-        <label>اسم الفرع:</label>
-        <span>${branches[branchKey]?.name || branchKey}</span>
-      </div>
-      <div class="password-details">
-        <label>اسم المستخدم:</label>
-        <span>${branchKey}</span>
-      </div>
-      <div class="password-details">
-        <label>كلمة المرور:</label>
-        <div class="password-container">
-          <input type="password" value="${validCredentials[branchKey]}" readonly id="password-${branchKey}">
-          <span class="material-icons toggle-password" onclick="togglePasswordVisibility('password-${branchKey}')">visibility</span>
-          <button class="copy-btn" onclick="copyPassword('${validCredentials[branchKey]}')">
-            <span class="material-icons">content_copy</span>
-          </button>
-          <button class="share-btn" onclick="sharePassword('${branchKey}', '${validCredentials[branchKey]}')">
-            <span class="material-icons">share</span>
-          </button>
-        </div>
+  <div class="password-item">
+    <div class="password-details">
+      <label>اسم الفرع:</label>
+      <span>${branches[branchKey]?.name || branchKey}</span>
+    </div>
+    <div class="password-details">
+      <label>اسم المستخدم:</label>
+      <span>${branchKey}</span>
+    </div>
+    <div class="password-details">
+      <label>كلمة المرور:</label>
+      <div class="password-container">
+        <input type="password" value="${validCredentials[branchKey]}" readonly id="password-${branchKey}">
+        <span class="material-icons toggle-password" onclick="togglePasswordVisibility('password-${branchKey}')">visibility</span>
+        <button class="copy-btn" onclick="copyPassword('${validCredentials[branchKey]}')">
+          <span class="material-icons">content_copy</span>
+        </button>
+        <button class="share-btn" onclick="sharePassword('${branchKey}', '${validCredentials[branchKey]}')">
+          <span class="material-icons">share</span>
+        </button>
       </div>
     </div>
-  `).join('');
+  </div>
+`).join('');
 }
 
 // مشاركة تفاصيل الفرع
@@ -1019,7 +1019,7 @@ function togglePasswordVisibility(inputId) {
     });
   }
 }
-
+    
 // تبديل حالة البطاقة (فتح/إغلاق)
 function toggleCard(card) {
   console.log('تشغيل toggleCard للبطاقة:', card.querySelector('h3')?.textContent || 'غير معروف');
