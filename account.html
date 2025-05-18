@@ -281,14 +281,14 @@ document.addEventListener('DOMContentLoaded', function() {
       loginHistoryContainer.innerHTML = '<div class="no-logins">لا توجد سجلات تسجيل دخول</div>';
     } else {
       loginHistoryContainer.innerHTML = loginHistory.reverse().map(login => `
-        <div class="login-card">
-          <div class="login-info">
-            <span class="material-icons">login</span>
-            <span class="username">${login.username}</span>
-          </div>
-          <span class="time">${login.time}</span>
-        </div>
-      `).join('');
+  <div class="login-card">
+    <div class="login-info">
+      <span class="material-icons">login</span>
+      <span class="username">${login.username}</span>
+    </div>
+    <span class="time">${convertToEnglishNumbers(login.time)}</span>
+  </div>
+`).join('');
     }
   } else {
     console.error('خطأ: loginHistoryContainer غير موجود');
