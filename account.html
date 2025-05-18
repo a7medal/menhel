@@ -242,91 +242,100 @@
     </main>
     <script src="script.js"></script>
     <script>
-        // تحميل بيانات صفحة الحساب
-        document.addEventListener('DOMContentLoaded', function() {
-            const accountContainer = document.querySelector('.account-container');
-            if (!accountContainer) {
-                console.warn('تحذير: .account-container غير موجود');
-                return;
-            }
+        // دالة لتحويل الأرقام العربية إلى إنجليزية
+function convertToEnglishNumbers(str) {
+  const arabicNumbers = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
+  const englishNumbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+  return str.replace(/[٠-٩]/g, (char) => {
+    return englishNumbers[arabicNumbers.indexOf(char)];
+  });
+}
 
-            // جلب البيانات من localStorage
-            const branchKey = localStorage.getItem('currentBranch') || 'غير متوفر';
-            const username = localStorage.getItem('username') || branchKey;
-            const password = localStorage.getItem('password') || 'غير متوفر';
-            let branchName = 'فرع غير معروف';
+// تحميل بيانات صفحة الحساب
+document.addEventListener('DOMContentLoaded', function() {
+  const accountContainer = document.querySelector('.account-container');
+  if (!accountContainer) {
+    console.warn('تحذير: .account-container غير موجود');
+    return;
+  }
 
-            if (typeof branches !== 'undefined' && branches[branchKey]) {
-                branchName = branches[branchKey].name || 'فرع غير معروف';
-            } else {
-                console.warn('تحذير: كائن branches غير معرف أو فرع غير موجود', {
-                    branchKey,
-                    branchesDefined: typeof branches !== 'undefined'
-                });
-            }
+  // جلب البيانات من localStorage
+  const branchKey = localStorage.getItem('currentBranch') || 'غير متوفر';
+  const username = localStorage.getItem('username') || branchKey;
+  const password = localStorage.getItem('password') || 'غير متوفر';
+  let branchName = 'فرع غير معروف';
 
-            const finalPassword = (typeof validCredentials !== 'undefined' && validCredentials[branchKey]) || password;
+  if (typeof branches !== 'undefined' && branches[branchKey]) {
+    branchName = branches[branchKey].name || 'فرع غير معروف';
+  } else {
+    console.warn('تحذير: كائن branches غير معرف أو فرع غير موجود', {
+      branchKey,
+      branchesDefined: typeof branches !== 'undefined'
+    });
+  }
 
-            // تعبئة البيانات في الصفحة
-            const branchNameDisplay = document.getElementById('branchNameDisplay');
-            const usernameDisplay = document.getElementById('usernameDisplay');
-            const passwordDisplay = document.getElementById('passwordDisplay');
-            const branchNameHeader = document.getElementById('branchName');
+  const finalPassword = (typeof validCredentials !== 'undefined' && validCredentials[branchKey]) || password;
 
-            if (branchNameDisplay && usernameDisplay && passwordDisplay && branchNameHeader) {
-                branchNameDisplay.textContent = branchName;
-                usernameDisplay.textContent = username;
-                passwordDisplay.value = finalPassword;
-                branchNameHeader.textContent = branchName + ' - حسابي';
-            } else {
-                console.error('خطأ: عناصر DOM مفقودة', {
-                    branchNameDisplay: !!branchNameDisplay,
-                    usernameDisplay: !!usernameDisplay,
-                    passwordDisplay: !!passwordDisplay,
-                    branchNameHeader: !!branchNameHeader
-                });
-            }
+  // تعبئة البيانات في الصفحة
+  const branchNameDisplay = document.getElementById('branchNameDisplay');
+  const usernameDisplay = document.getElementById('usernameDisplay');
+  const passwordDisplay = document.getElementById('passwordDisplay');
+  const branchNameHeader = document.getElementById('branchName');
 
-            // تحميل سجل تسجيل الدخول
-            const loginHistoryContainer = document.getElementById('loginHistoryContainer');
-            if (loginHistoryContainer) {
-                const loginHistory = JSON.parse(localStorage.getItem('loginHistory')) || [];
-                if (loginHistory.length === 0) {
-                    loginHistoryContainer.innerHTML = '<div class="no-logins">لا توجد سجلات تسجيل دخول</div>';
-                } else {
-                    loginHistoryContainer.innerHTML = loginHistory.reverse().map(login => `
-                        <div class="login-card">
-                            <div class="login-info">
-                                <span class="material-icons">login</span>
-                                <span class="username">${login.username}</span>
-                            </div>
-                            <span class="time">${login.time}</span>
-                        </div>
-                    `).join('');
-                }
-            } else {
-                console.error('خطأ: loginHistoryContainer غير موجود');
-            }
+  if (branchNameDisplay && usernameDisplay && passwordDisplay && branchNameHeader) {
+    branchNameDisplay.textContent = branchName;
+    usernameDisplay.textContent = username;
+    passwordDisplay.value = finalPassword;
+    branchNameHeader.textContent = branchName + ' - حسابي';
+  } else {
+    console.error('خطأ: عناصر DOM مفقودة', {
+      branchNameDisplay: !!branchNameDisplay,
+      usernameDisplay: !!usernameDisplay,
+      passwordDisplay: !!passwordDisplay,
+      branchNameHeader: !!branchNameHeader
+    });
+  }
 
-            // معالجة زر المشاركة
-            const shareBtn = document.querySelector('.share-btn');
-            if (shareBtn) {
-                shareBtn.addEventListener('click', function() {
-                    const message = `
+  // تحميل سجل تسجيل الدخول
+  const loginHistoryContainer = document.getElementById('loginHistoryContainer');
+  if (loginHistoryContainer) {
+    const loginHistory = JSON.parse(localStorage.getItem('loginHistory')) || [];
+    if (loginHistory.length === 0) {
+      loginHistoryContainer.innerHTML = '<div class="no-logins">لا توجد سجلات تسجيل دخول</div>';
+    } else {
+      loginHistoryContainer.innerHTML = loginHistory.reverse().map(login => `
+        <div class="login-card">
+          <div class="login-info">
+            <span class="material-icons">login</span>
+            <span class="username">${login.username}</span>
+          </div>
+          <span class="time">${login.time}</span>
+        </div>
+      `).join('');
+    }
+  } else {
+    console.error('خطأ: loginHistoryContainer غير موجود');
+  }
+
+  // معالجة زر المشاركة
+  const shareBtn = document.querySelector('.share-btn');
+  if (shareBtn) {
+    shareBtn.addEventListener('click', function() {
+      const message = `
 ${branchName}
 اسم المستخدم: ${username}
 كلمة المرور: ${finalPassword}
 الرابط: https://hewiya-menhel.netlify.app
-                    `.trim();
-                    const encodedMessage = encodeURIComponent(message);
-                    const whatsappUrl = `https://api.whatsapp.com/send?text=${encodedMessage}`;
-                    console.log('فتح رابط واتساب:', whatsappUrl);
-                    window.open(whatsappUrl, '_blank');
-                });
-            } else {
-                console.warn('تحذير: زر المشاركة غير موجود');
-            }
-        });
+      `.trim();
+      const encodedMessage = encodeURIComponent(message);
+      const whatsappUrl = `https://api.whatsapp.com/send?text=${encodedMessage}`;
+      console.log('فتح رابط واتساب:', whatsappUrl);
+      window.open(whatsappUrl, '_blank');
+    });
+  } else {
+    console.warn('تحذير: زر المشاركة غير موجود');
+  }
+});
     </script>
 </body>
 </html>
