@@ -544,6 +544,7 @@ body:has(.login-container) .install-btn {
     }
     .install-btn .material-icons {
         font-size: 20px;
+        color: white;
     }
 }
 /* تنسيق أيقونة الإشعارات */
