@@ -9,13 +9,81 @@
     <link rel="manifest" href="/manifest.json">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        /* تنسيقات حقل كلمة المرور */
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #7f8c8d;
+            --accent-color: #e67e22;
+            --text-color: #333;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: #f5f6fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        .dashboard-header {
+            background: white;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .header-logo {
+            height: 40px;
+        }
+
+        .main-content {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .account-container {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            position: relative;
+        }
+
+        .profile-pic {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            display: block;
+            margin: 0 auto 1rem;
+        }
+
+        .account-info {
+            margin: 2rem 0;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
         .password-item {
             display: flex;
             align-items: center;
             gap: 0.5rem;
             flex-wrap: wrap;
-            padding: 0.5rem;
+            padding: 1rem;
             background: #f9f9f9;
             border-radius: 8px;
             border: 1px solid #ddd;
@@ -24,35 +92,19 @@
         .password-item label {
             font-weight: 600;
             color: var(--secondary-color);
-            margin-left: 0.5rem;
         }
 
-        .password-item .material-icons:not(.toggle-password) {
-            color: var(--accent-color);
-            font-size: 24px;
-        }
-
-        .password-item input[type="password"],
-        .password-item input[type="text"] {
+        .password-item input {
             border: 1px solid #ccc;
             padding: 0.5rem 0.75rem;
             font-size: 1rem;
             border-radius: 4px;
             width: 150px;
             background: #fff;
-            color: var(--text-color);
-            outline: none;
-        }
-
-        .password-item input[readonly] {
-            background: #f5f5f5;
-            cursor: default;
         }
 
         .toggle-password {
             cursor: pointer;
-            user-select: none;
-            font-size: 24px;
             color: var(--secondary-color);
             transition: color 0.3s ease;
         }
@@ -61,142 +113,119 @@
             color: var(--accent-color);
         }
 
-        /* تنسيقات زر المشاركة */
-        .share-btn {
-            display: inline-flex;
-            align-items: center;
-            padding: 0.7rem 1.5rem;
-            margin: 1rem 0;
-            background: var(--accent-color);
-            color: white;
-            border: none;
-            border-radius: 25px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-        }
-
-        .share-btn:hover {
-            transform: translateY(-2px);
-            background: #c99330;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
-        }
-
-        .share-btn .material-icons {
-            font-size: 1.2rem;
-            margin-left: 0.4rem;
-            color: white;
-        }
-
-        /* تنسيقات بطاقات تسجيل الدخول */
         .login-history {
-            margin-top: 2rem;
-            width: 100%;
-            max-width: 600px;
-        }
-
-        .login-history h3 {
-            font-size: 1.5rem;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-            text-align: center;
+            margin-top: 3rem;
+            border-top: 1px solid #eee;
+            padding-top: 2rem;
         }
 
         .login-card {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
             background: #fff;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 1rem;
+            border: 1px solid #eee;
+            border-radius: 12px;
+            padding: 1.5rem;
             margin-bottom: 1rem;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            transition: transform 0.2s ease;
+            position: relative;
+            transition: all 0.3s ease;
         }
 
         .login-card:hover {
             transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
         }
 
-        .login-card .login-info {
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .time-ago {
+            background: #f8f9fa;
+            color: var(--primary-color);
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .info-icon {
+            color: var(--secondary-color);
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .info-icon:hover {
+            background: rgba(230, 126, 34, 0.1);
+        }
+
+        .login-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+            animation: modalOpen 0.3s ease;
+        }
+
+        @keyframes modalOpen {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .modal-grid {
+            display: grid;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .modal-item {
             display: flex;
             align-items: center;
             gap: 1rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 10px;
         }
 
-        .login-card .material-icons {
-            color: var(--accent-color);
-            font-size: 24px;
-        }
-
-        .login-card .username,
-        .login-card .time {
-            font-size: 1rem;
-            color: var(--text-color);
-        }
-
-        .login-card .username {
-            font-weight: 600;
-        }
-
-        .no-logins {
-            text-align: center;
-            color: #888;
-            font-size: 1rem;
-            margin-top: 1rem;
-        }
-
-        /* تنسيقات متجاوبة */
-        @media (max-width: 480px) {
-            .password-item {
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 1rem;
+            }
+            
+            .account-container {
+                padding: 1.5rem;
+            }
+            
+            .info-item {
                 flex-direction: column;
                 align-items: flex-start;
-                padding: 0.75rem;
-            }
-
-            .password-item input[type="password"],
-            .password-item input[type="text"] {
-                width: 100%;
-                font-size: 0.9rem;
-                padding: 0.4rem 0.6rem;
-            }
-
-            .password-item label {
-                font-size: 0.9rem;
-                margin-bottom: 0.25rem;
-            }
-
-            .toggle-password {
-                font-size: 20px;
-            }
-
-            .share-btn {
-                padding: 0.6rem 1rem;
-                font-size: 0.9rem;
-            }
-
-            .share-btn .material-icons {
-                font-size: 1rem;
-            }
-
-            .login-card {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 0.5rem;
-                padding: 0.75rem;
-            }
-
-            .login-card .login-info {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .login-card .username,
-            .login-card .time {
-                font-size: 0.9rem;
             }
         }
     </style>
@@ -204,138 +233,196 @@
 <body>
     <header class="dashboard-header">
         <div class="header-left">
-            <img src="logo1.png" alt="Logo" class="header-logo">
+            <img src="logo1.png" alt="الشعار" class="header-logo">
             <h1 id="branchName">حسابي</h1>
         </div>
         <button onclick="logout()" class="logout-btn">
             <span class="material-icons">logout</span>
         </button>
     </header>
+
     <main class="main-content">
         <div class="account-container">
-            <img src="logo.png" alt="Profile Picture" class="profile-pic">
+            <img src="logo.png" alt="صورة البروفايل" class="profile-pic">
             <h2 id="branchNameDisplay"></h2>
+            
             <div class="account-info">
                 <div class="info-item">
                     <span class="material-icons">person</span>
-                    <label>اسم المستخدم:</label>
-                    <span id="usernameDisplay"></span>
+                    <div>
+                        <label>اسم المستخدم:</label>
+                        <span id="usernameDisplay" class="user-data"></span>
+                    </div>
                 </div>
+                
                 <div class="info-item password-item">
                     <span class="material-icons">lock</span>
-                    <label>كلمة المرور:</label>
-                    <input type="password" id="passwordDisplay" readonly>
+                    <div style="flex-grow: 1;">
+                        <label>كلمة المرور:</label>
+                        <input type="password" id="passwordDisplay" readonly>
+                    </div>
                     <span class="material-icons toggle-password" onclick="togglePasswordVisibility('passwordDisplay')">visibility</span>
                 </div>
             </div>
+
             <div class="login-history">
                 <h3>سجل تسجيل الدخول</h3>
                 <div id="loginHistoryContainer"></div>
             </div>
-            <a href="dashboard.html" class="back-btn">
-                <span class="material-icons">arrow_back</span> العودة إلى الرئيسية
-            </a>
-            <button class="share-btn">
-                <span class="material-icons">share</span> مشاركة
-            </button>
+
+            <div class="action-buttons">
+                <a href="dashboard.html" class="back-btn">
+                    <span class="material-icons">arrow_back</span> العودة
+                </a>
+                <button class="share-btn" onclick="shareCredentials()">
+                    <span class="material-icons">share</span> مشاركة
+                </button>
+            </div>
         </div>
     </main>
-    <script src="script.js"></script>
+
     <script>
-        // دالة لتحويل الأرقام العربية إلى إنجليزية
-function convertToEnglishNumbers(str) {
-  const arabicNumbers = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
-  const englishNumbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
-  return str.replace(/[٠-٩]/g, (char) => {
-    return englishNumbers[arabicNumbers.indexOf(char)];
-  });
-}
+        // الدوال الأساسية
+        function togglePasswordVisibility(id) {
+            const input = document.getElementById(id);
+            const icon = document.querySelector(`#${id} + .toggle-password`);
+            input.type = input.type === 'password' ? 'text' : 'password';
+            icon.textContent = input.type === 'password' ? 'visibility' : 'visibility_off';
+        }
 
-// تحميل بيانات صفحة الحساب
-document.addEventListener('DOMContentLoaded', function() {
-  const accountContainer = document.querySelector('.account-container');
-  if (!accountContainer) {
-    console.warn('تحذير: .account-container غير موجود');
-    return;
-  }
+        function logout() {
+            localStorage.clear();
+            window.location.href = 'login.html';
+        }
 
-  // جلب البيانات من localStorage
-  const branchKey = localStorage.getItem('currentBranch') || 'غير متوفر';
-  const username = localStorage.getItem('username') || branchKey;
-  const password = localStorage.getItem('password') || 'غير متوفر';
-  let branchName = 'فرع غير معروف';
+        function formatArabicDate(date) {
+            const options = {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: 'numeric',
+                minute: 'numeric',
+                hour12: true
+            };
+            return new Intl.DateTimeFormat('ar-EG', options).format(date);
+        }
 
-  if (typeof branches !== 'undefined' && branches[branchKey]) {
-    branchName = branches[branchKey].name || 'فرع غير معروف';
-  } else {
-    console.warn('تحذير: كائن branches غير معرف أو فرع غير موجود', {
-      branchKey,
-      branchesDefined: typeof branches !== 'undefined'
-    });
-  }
+        function getTimeAgo(timestamp) {
+            const now = new Date();
+            const diff = now - new Date(timestamp);
+            
+            const minutes = Math.floor(diff / 60000);
+            const hours = Math.floor(minutes / 60);
+            const days = Math.floor(hours / 24);
 
-  const finalPassword = (typeof validCredentials !== 'undefined' && validCredentials[branchKey]) || password;
+            if (days > 0) return `منذ ${days} يوم${days > 1 ? 'ين' : ''}`;
+            if (hours > 0) return `منذ ${hours} ساعة${hours > 1 ? 'ات' : ''}`;
+            return `منذ ${minutes} دقيقة${minutes > 1 ? 'ات' : ''}`;
+        }
 
-  // تعبئة البيانات في الصفحة
-  const branchNameDisplay = document.getElementById('branchNameDisplay');
-  const usernameDisplay = document.getElementById('usernameDisplay');
-  const passwordDisplay = document.getElementById('passwordDisplay');
-  const branchNameHeader = document.getElementById('branchName');
+        // إدارة النوافذ المنبثقة
+        function showLoginDetails(id) {
+            const modal = document.getElementById(`modal-${id}`);
+            if (modal) modal.style.display = 'flex';
+        }
 
-  if (branchNameDisplay && usernameDisplay && passwordDisplay && branchNameHeader) {
-    branchNameDisplay.textContent = branchName;
-    usernameDisplay.textContent = username;
-    passwordDisplay.value = finalPassword;
-    branchNameHeader.textContent = branchName + ' - حسابي';
-  } else {
-    console.error('خطأ: عناصر DOM مفقودة', {
-      branchNameDisplay: !!branchNameDisplay,
-      usernameDisplay: !!usernameDisplay,
-      passwordDisplay: !!passwordDisplay,
-      branchNameHeader: !!branchNameHeader
-    });
-  }
+        function closeModal(id) {
+            const modal = document.getElementById(`modal-${id}`);
+            if (modal) modal.style.display = 'none';
+        }
 
-  // تحميل سجل تسجيل الدخول
-  const loginHistoryContainer = document.getElementById('loginHistoryContainer');
-  if (loginHistoryContainer) {
-    const loginHistory = JSON.parse(localStorage.getItem('loginHistory')) || [];
-    if (loginHistory.length === 0) {
-      loginHistoryContainer.innerHTML = '<div class="no-logins">لا توجد سجلات تسجيل دخول</div>';
-    } else {
-      loginHistoryContainer.innerHTML = loginHistory.reverse().map(login => `
-        <div class="login-card">
-          <div class="login-info">
-            <span class="material-icons">login</span>
-            <span class="username">${login.username}</span>
-          </div>
-          <span class="time">${login.time}</span>
-        </div>
-      `).join('');
-    }
-  } else {
-    console.error('خطأ: loginHistoryContainer غير موجود');
-  }
+        function closeModalOnBackground(event, id) {
+            if (event.target.classList.contains('login-modal')) {
+                closeModal(id);
+            }
+        }
 
-  // معالجة زر المشاركة
-  const shareBtn = document.querySelector('.share-btn');
-  if (shareBtn) {
-    shareBtn.addEventListener('click', function() {
-      const message = `
-${branchName}
+        // تحميل البيانات وعرضها
+        document.addEventListener('DOMContentLoaded', () => {
+            // تحميل بيانات الحساب
+            const branchKey = localStorage.getItem('currentBranch') || 'default';
+            const username = localStorage.getItem('username') || 'مستخدم';
+            const password = localStorage.getItem('password') || '********';
+            const branchName = localStorage.getItem('branchName') || 'الفرع الرئيسي';
+
+            // تعبئة البيانات
+            document.getElementById('branchNameDisplay').textContent = branchName;
+            document.getElementById('usernameDisplay').textContent = username;
+            document.getElementById('passwordDisplay').value = password;
+            document.getElementById('branchName').textContent = `${branchName} - حسابي`;
+
+            // تحميل سجل الدخول
+            const loginHistory = JSON.parse(localStorage.getItem('loginHistory')) || [];
+            const container = document.getElementById('loginHistoryContainer');
+            
+            if (loginHistory.length === 0) {
+                container.innerHTML = '<div class="no-logins">لا توجد سجلات دخول</div>';
+            } else {
+                container.innerHTML = loginHistory.reverse().map((login, index) => `
+                    <div class="login-card">
+                        <div class="card-header">
+                            <span class="material-icons info-icon" onclick="showLoginDetails(${index})">info</span>
+                            <span class="time-ago">${getTimeAgo(login.timestamp)}</span>
+                        </div>
+                        <div class="login-modal" id="modal-${index}" onclick="closeModalOnBackground(event, ${index})">
+                            <div class="modal-content">
+                                <button class="modal-close" onclick="closeModal(${index})">
+                                    <span class="material-icons">close</span>
+                                </button>
+                                <div class="modal-grid">
+                                    <div class="modal-item">
+                                        <span class="material-icons">person</span>
+                                        <div>
+                                            <p><strong>اسم المستخدم:</strong></p>
+                                            <p>${login.username}</p>
+                                        </div>
+                                    </div>
+                                    <div class="modal-item">
+                                        <span class="material-icons">calendar_today</span>
+                                        <div>
+                                            <p><strong>التاريخ:</strong></p>
+                                            <p>${formatArabicDate(new Date(login.timestamp))}</p>
+                                        </div>
+                                    </div>
+                                    <div class="modal-item">
+                                        <span class="material-icons">devices</span>
+                                        <div>
+                                            <p><strong>الجهاز:</strong></p>
+                                            <p>${login.device || 'غير معروف'}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        });
+
+        // مشاركة البيانات
+        function shareCredentials() {
+            const branchName = document.getElementById('branchNameDisplay').textContent;
+            const username = document.getElementById('usernameDisplay').textContent;
+            const password = document.getElementById('passwordDisplay').value;
+            
+            const message = `
+اسم الفرع: ${branchName}
 اسم المستخدم: ${username}
-كلمة المرور: ${finalPassword}
-الرابط: https://hewiya-menhel.netlify.app
-      `.trim();
-      const encodedMessage = encodeURIComponent(message);
-      const whatsappUrl = `https://api.whatsapp.com/send?text=${encodedMessage}`;
-      console.log('فتح رابط واتساب:', whatsappUrl);
-      window.open(whatsappUrl, '_blank');
-    });
-  } else {
-    console.warn('تحذير: زر المشاركة غير موجود');
-  }
-});
+كلمة المرور: ${password}
+رابط الدخول: https://example.com
+            `.trim();
+
+            if (navigator.share) {
+                navigator.share({
+                    title: 'معلومات الدخول',
+                    text: message
+                });
+            } else {
+                // Fallback for desktop
+                const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(message)}`;
+                window.open(url, '_blank');
+            }
+        }
     </script>
 </body>
 </html>
