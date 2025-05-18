@@ -124,7 +124,7 @@ const branches = {
         icon: "format_shapes",
         files: [
           { name: "ملون (JPG)", url: "https://drive.google.com/file/d/1iIMFUJeJZ7-L_ZG1nTwH4q7DQI8jHWbs/view?usp=drivesdk" },
-          { name: "أبيض/أسود (JPG)", url: "https://drive.google.com/file/d/11D1gh2Bp7GYUTER0LC3RU5ZPGSrMbNqB/view?usp=drivesdk" },
+          { name: "أبيض/أسود (JPG)", url: "https://drive.google.com/file/d/11D1gh2Bp7GYUTER0LC3RU5ZPGSrMbNqB/view?usp=dr dippedsdk" },
           { name: "لون أحادي (PNG)", url: "https://drive.google.com/file/d/1Kdxq3tMl0dKp3pnkYnsGkNp5KVrmg_lY/view?usp=drivesdk" },
           { name: "PDF", url: "https://drive.google.com/file/d/1iIMFUJeJZ7-L_ZG1nTwH4q7DQI8jHWbs/view?usp=drivesdk" },
           { name: "ملون شفاف (PNG)", url: "https://drive.google.com/file/d/1jWrJZeCUVvtIQyw5iVsvMVuDf2bfmpLX/view?usp=drivesdk" }
@@ -411,12 +411,29 @@ document.addEventListener('DOMContentLoaded', () => {
       const errorMsg = document.getElementById('errorMsg');
 
       if (validCredentials[username] && validCredentials[username] === password) {
-        sessionStorage.setItem('currentBranch', username);
-        sessionStorage.setItem('username', username);
-        sessionStorage.setItem('password', password);
+        localStorage.setItem('currentBranch', username);
+        localStorage.setItem('username', username);
+        localStorage.setItem('password', password);
+
+        // حفظ بيانات تسجيل الدخول
+        const loginTime = new Date().toLocaleString('ar-EG', {
+          year: 'numeric',
+          month: 'numeric',
+          day: 'numeric',
+          hour: 'numeric',
+          minute: 'numeric',
+          hour12: true
+        });
+        let loginHistory = JSON.parse(localStorage.getItem('loginHistory')) || [];
+        loginHistory.push({ username, time: loginTime });
+        if (loginHistory.length > 10) {
+          loginHistory = loginHistory.slice(-10);
+        }
+        localStorage.setItem('loginHistory', JSON.stringify(loginHistory));
+        console.log('تم حفظ بيانات تسجيل الدخول:', { username, time: loginTime });
+
         console.log('تم تسجيل الدخول بنجاح:', { username });
 
-        // إذا كان المستخدم هو الأدمن، انتقل إلى admin.html
         if (username === 'admin') {
           window.location.href = 'admin.html';
         } else {
@@ -480,12 +497,11 @@ window.addEventListener('popstate', () => {
 
 // تهيئة الداشبورد
 function initializeDashboard() {
-  const currentBranch = sessionStorage.getItem('currentBranch');
+  const currentBranch = localStorage.getItem('currentBranch');
   const dashboard = document.getElementById('dashboard');
   const cardsContainer = document.getElementById('cardsContainer');
   const branchNameElement = document.getElementById('branchName');
 
-  // التحقق من وجود العناصر
   if (!dashboard || !cardsContainer || !branchNameElement) {
     console.error('خطأ: عناصر الداشبورد غير موجودة', {
       dashboard: !!dashboard,
@@ -495,7 +511,6 @@ function initializeDashboard() {
     return;
   }
 
-  // التحقق من وجود الفرع
   if (!currentBranch || !branches[currentBranch]) {
     console.warn('تحذير: currentBranch غير موجود أو غير صالح', { currentBranch });
     window.location.href = 'index.html';
@@ -504,13 +519,10 @@ function initializeDashboard() {
 
   console.log('تهيئة الداشبورد للفرع:', currentBranch);
 
-  // تحميل اسم الفرع
   branchNameElement.textContent = branches[currentBranch].name;
 
-  // تحميل النافذة المنبثقة
   initializePopup();
 
-  // تحميل بيانات الفرع
   loadBranchData(currentBranch);
 }
 
@@ -566,7 +578,7 @@ function initializePopup() {
 
 // تهيئة صفحة الأدمن
 function initializeAdmin() {
-  const currentBranch = sessionStorage.getItem('currentBranch');
+  const currentBranch = localStorage.getItem('currentBranch');
   if (currentBranch !== 'admin') {
     console.warn('تحذير: محاولة وصول غير مصرح بها إلى صفحة الأدمن', { currentBranch });
     window.location.href = 'index.html';
@@ -582,34 +594,26 @@ function initializeAdmin() {
 
   console.log('تهيئة صفحة الأدمن');
 
-  // تحميل محتوى الفروع
   Object.keys(branches).forEach(branchKey => {
     loadAdminBranchData(branchKey);
   });
 
-  // تحميل كلمات المرور
   loadPasswords();
 
-  // إعداد علامات التبويب
   const tabButtons = document.querySelectorAll('.tab-button');
   const tabPanes = document.querySelectorAll('.tab-pane');
 
   tabButtons.forEach(button => {
     button.addEventListener('click', () => {
       const tabId = button.getAttribute('data-tab');
-
-      // إزالة الفئة active من جميع الأزرار والألواح
       tabButtons.forEach(btn => btn.classList.remove('active'));
       tabPanes.forEach(pane => pane.classList.remove('active'));
-
-      // إضافة الفئة active للزر واللوح المحدد
       button.classList.add('active');
       document.getElementById(tabId).classList.add('active');
       console.log(`تم تفعيل علامة التبويب: ${tabId}`);
     });
   });
 
-  // تفويض الأحداث للتعامل مع النقر على رؤوس البطاقات
   adminContainer.addEventListener('click', (e) => {
     const header = e.target.closest('.card-header');
     if (header && !e.target.classList.contains('favorite-icon')) {
@@ -665,7 +669,6 @@ function loadAdminBranchData(branchKey) {
     return;
   }
 
-  // تحميل الموارد
   try {
     branch.assets.forEach((asset, index) => {
       const card = document.createElement('div');
@@ -723,7 +726,6 @@ function loadAdminBranchData(branchKey) {
     console.error('خطأ أثناء تحميل بطاقات الموارد:', error);
   }
 
-  // تحميل المفضلة
   loadFavorites(branchKey);
   favoritesContainer.innerHTML = branches[branchKey].favorites.length === 0 ? 
     '<div class="no-favorites">لا توجد عناصر في المفضلة</div>' : 
@@ -733,7 +735,6 @@ function loadAdminBranchData(branchKey) {
       </div>
     `).join('');
 
-  // تصفية البطاقات بناءً على البحث
   const searchInput = document.getElementById(`searchInput-${branchKey}`);
   if (searchInput) {
     searchInput.addEventListener('input', function (e) {
@@ -792,15 +793,12 @@ function togglePasswordVisibility(inputId) {
   let toggleIcon;
 
   if (passwordInput) {
-    // محاولة العثور على .toggle-password في نفس الحاوية
     const parentContainer = passwordInput.closest('.password-container') || passwordInput.closest('.password-item');
     if (parentContainer) {
       toggleIcon = parentContainer.querySelector('.toggle-password');
     }
-    // إذا لم يُعثر على .toggle-password في الحاوية، جرب nextElementSibling
     if (!toggleIcon) {
       toggleIcon = passwordInput.nextElementSibling;
-      // التحقق من أن nextElementSibling هو بالفعل .toggle-password
       if (toggleIcon && !toggleIcon.classList.contains('toggle-password')) {
         toggleIcon = null;
       }
@@ -893,7 +891,6 @@ function loadBranchData(branchKey) {
     return;
   }
 
-  // إضافة شريط البحث وأزرار التنقل
   dashboard.innerHTML = `
     <div class="search-bar">
       <div class="search-container">
@@ -912,7 +909,6 @@ function loadBranchData(branchKey) {
     <div class="cards-container" id="cardsContainer"></div>
   `;
 
-  // إعادة الحصول على cardsContainer بعد تحديث DOM
   const newCardsContainer = document.getElementById('cardsContainer');
   if (!newCardsContainer) {
     console.error('خطأ: cardsContainer غير موجود بعد التحديث');
@@ -978,7 +974,6 @@ function loadBranchData(branchKey) {
     console.error('خطأ أثناء تحميل بطاقات الموارد:', error);
   }
 
-  // تفويض الأحداث للتعامل مع النقر على رؤوس البطاقات
   newCardsContainer.addEventListener('click', (e) => {
     const header = e.target.closest('.card-header');
     if (header && !e.target.classList.contains('favorite-icon')) {
@@ -988,7 +983,6 @@ function loadBranchData(branchKey) {
     }
   });
 
-  // تصفية البطاقات بناءً على البحث
   const searchInput = document.getElementById('searchInput');
   if (searchInput) {
     searchInput.addEventListener('input', function (e) {
@@ -1005,15 +999,14 @@ function loadBranchData(branchKey) {
     console.warn('تحذير: searchInput غير موجود');
   }
 
-  // تحميل المفضلة
   loadFavorites(branchKey);
 }
 
 // تحميل بيانات صفحة حسابي
 function loadAccountPage() {
-  const currentBranch = sessionStorage.getItem('currentBranch') || 'غير متوفر';
-  const username = sessionStorage.getItem('username') || currentBranch;
-  const password = sessionStorage.getItem('password') || (validCredentials[currentBranch] || 'غير متوفر');
+  const currentBranch = localStorage.getItem('currentBranch') || 'غير متوفر';
+  const username = localStorage.getItem('username') || currentBranch;
+  const password = localStorage.getItem('password') || (validCredentials[currentBranch] || 'غير متوفر');
   let branchName = 'فرع غير معروف';
 
   if (branches[currentBranch]) {
@@ -1062,9 +1055,9 @@ function toggleCard(card) {
 
 // تسجيل الخروج
 function logout() {
-  sessionStorage.removeItem('currentBranch');
-  sessionStorage.removeItem('username');
-  sessionStorage.removeItem('password');
+  localStorage.removeItem('currentBranch');
+  localStorage.removeItem('username');
+  localStorage.removeItem('password');
   window.location.href = 'index.html';
 }
 
@@ -1089,7 +1082,7 @@ function loadFavorites(branchKey) {
 
 // إضافة/إزالة عنصر من المفضلة
 function toggleFavorite(branchKey, index, event) {
-  event.stopPropagation(); // منع تشغيل toggleCard عند النقر على أيقونة المفضلة
+  event.stopPropagation();
   if (!branchKey || !branches[branchKey]) {
     console.error('خطأ: الفرع غير موجود عند تبديل المفضلة', { branchKey });
     return;
@@ -1110,7 +1103,6 @@ function toggleFavorite(branchKey, index, event) {
       console.log(`تمت إضافة العنصر ${index} إلى المفضلة للفرع ${branchKey}`);
     }
     saveFavorites(branchKey);
-    // إعادة تحميل المفضلة في صفحة الأدمن
     if (window.location.pathname.includes('admin.html')) {
       const favoritesContainer = document.getElementById(`favoritesContainer-${branchKey}`);
       if (favoritesContainer) {
@@ -1131,7 +1123,7 @@ function toggleFavorite(branchKey, index, event) {
 
 // تحميل صفحة المفضلة
 function loadFavoritesPage() {
-  const currentBranch = sessionStorage.getItem('currentBranch');
+  const currentBranch = localStorage.getItem('currentBranch');
   if (!currentBranch || !branches[currentBranch]) {
     console.warn('تحذير: الفرع غير موجود عند تحميل صفحة المفضلة', { currentBranch });
     window.location.href = 'index.html';
@@ -1159,7 +1151,6 @@ function loadFavoritesPage() {
       </div>
     `).join('');
 
-  // تفويض الأحداث للتعامل مع النقر على رؤوس البطاقات
   container.addEventListener('click', (e) => {
     const header = e.target.closest('.card-header');
     if (header) {
