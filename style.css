@@ -437,34 +437,72 @@ body {
 /* تنسيق زر التثبيت */
 .install-btn {
     position: fixed;
-    bottom: 30px;
-    left: 30px;
-    background: var(--accent-color);
+    bottom: 20px;
+    left: 20px;
+    background: linear-gradient(135deg, var(--accent-color) 0%, #c28d2e 100%);
     color: white;
-    padding: 14px 28px;
+    padding: 12px 24px;
     border: none;
-    border-radius: 35px;
-    font-size: 16px;
+    border-radius: 50px;
+    font-size: 15px;
     font-weight: 600;
     cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 12px;
-    transition: all 0.3s ease;
+    gap: 10px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15), 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 1000;
-    border: 2px solid rgba(255, 255, 255, 0.1);
+    opacity: 0.95;
 }
 
 .install-btn:hover {
-    transform: translateY(-2px);
-    background: #c28d2e;
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(135deg, #c99330 0%, var(--accent-color) 100%);
+    opacity: 1;
+}
+
+.install-btn:active {
+    transform: translateY(0) scale(0.98);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .install-btn .material-icons {
-    font-size: 24px;
-    color: rgba(255, 255, 255, 0.9);
+    font-size: 22px;
+    transition: transform 0.3s ease;
 }
 
+.install-btn:hover .material-icons {
+    transform: rotate(20deg);
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(219, 164, 55, 0.7); }
+    70% { box-shadow: 0 0 0 12px rgba(219, 164, 55, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(219, 164, 55, 0); }
+}
+
+.install-btn.pulse {
+    animation: pulse 2s infinite;
+}
+
+@media (max-width: 768px) {
+    .install-btn {
+        padding: 10px 18px;
+        font-size: 14px;
+        bottom: 15px;
+        left: 15px;
+    }
+    .install-btn .material-icons {
+        font-size: 20px;
+    }
+}
+
+/* إخفاء الزر في صفحة تسجيل الدخول */
+.login-container .install-btn {
+    display: none;
+}
 /* تنسيق أيقونة الإشعارات */
 #notification-icon {
     position: relative;
