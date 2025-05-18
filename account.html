@@ -92,10 +92,13 @@
 
         /* تنسيقات بطاقات تسجيل الدخول */
         .login-history {
-    margin-top: 2rem;
+    margin: 2rem auto;
     width: 100%;
     max-width: 600px;
     padding: 0 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* هذا يضمن توسيط البطاقات */
 }
 
 .login-history h3 {
@@ -116,6 +119,8 @@
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
     transition: all 0.3s ease;
     border-left: 6px solid var(--accent-color);
+    width: 100%;
+    max-width: 500px; /* عرض أقصى للبطاقة */
 }
 
 .login-card:hover {
