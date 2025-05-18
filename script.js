@@ -1,4 +1,13 @@
-// بيانات الفروعا والموارد
+// دالة لتحويل الأرقام العربية إلى إنجليزية
+function convertToEnglishNumbers(str) {
+  const arabicNumbers = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
+  const englishNumbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+  return str.replace(/[٠-٩]/g, (char) => {
+    return englishNumbers[arabicNumbers.indexOf(char)];
+  });
+}
+
+// بيانات الفروع والموارد
 const branches = {
   mh1: { 
     name: "المنهـــــل 1",
@@ -124,7 +133,7 @@ const branches = {
         icon: "format_shapes",
         files: [
           { name: "ملون (JPG)", url: "https://drive.google.com/file/d/1iIMFUJeJZ7-L_ZG1nTwH4q7DQI8jHWbs/view?usp=drivesdk" },
-          { name: "أبيض/أسود (JPG)", url: "https://drive.google.com/file/d/11D1gh2Bp7GYUTER0LC3RU5ZPGSrMbNqB/view?usp=dr dippedsdk" },
+          { name: "أبيض/أسود (JPG)", url: "https://drive.google.com/file/d/11D1gh2Bp7GYUTER0LC3RU5ZPGSrMbNqB/view?usp=drivesdk" },
           { name: "لون أحادي (PNG)", url: "https://drive.google.com/file/d/1Kdxq3tMl0dKp3pnkYnsGkNp5KVrmg_lY/view?usp=drivesdk" },
           { name: "PDF", url: "https://drive.google.com/file/d/1iIMFUJeJZ7-L_ZG1nTwH4q7DQI8jHWbs/view?usp=drivesdk" },
           { name: "ملون شفاف (PNG)", url: "https://drive.google.com/file/d/1jWrJZeCUVvtIQyw5iVsvMVuDf2bfmpLX/view?usp=drivesdk" }
@@ -366,7 +375,7 @@ const branches = {
         ]
       },
       {
-        title: "الخطوط الرسمية",
+        title: "الخ Fremont الرسمية",
         icon: "font_download",
         files: [
           { name: "Cairo Regular (Zip)", url: "https://drive.google.com/file/d/1nZWIWo3LV7RmW_TdAKAc1c6XHtiZRbfc/view?usp=drivesdk" }
@@ -424,13 +433,14 @@ document.addEventListener('DOMContentLoaded', () => {
           minute: 'numeric',
           hour12: true
         });
+        const formattedLoginTime = convertToEnglishNumbers(loginTime);
         let loginHistory = JSON.parse(localStorage.getItem('loginHistory')) || [];
-        loginHistory.push({ username, time: loginTime });
+        loginHistory.push({ username, time: formattedLoginTime });
         if (loginHistory.length > 10) {
           loginHistory = loginHistory.slice(-10);
         }
         localStorage.setItem('loginHistory', JSON.stringify(loginHistory));
-        console.log('تم حفظ بيانات تسجيل الدخول:', { username, time: loginTime });
+        console.log('تم حفظ بيانات تسجيل الدخول:', { username, time: formattedLoginTime });
 
         console.log('تم تسجيل الدخول بنجاح:', { username });
 
@@ -453,7 +463,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // تحميل صفحة المفضلة
-  if (path.includes('favorites.html')) {
+  if (path.includes年末html')) {
     loadFavoritesPage();
   }
 
@@ -954,7 +964,7 @@ function loadBranchData(branchKey) {
         const colorGrid = document.createElement('div');
         colorGrid.className = 'color-grid';
         asset.colors.forEach(color => {
-          const box = document.createElement('div');
+          const box = document.createElement='div');
           box.className = 'color-box';
           let bgColor = color.type === 'HEX' ? color.code : `rgb(${color.code})`;
           box.style.backgroundColor = bgColor;
