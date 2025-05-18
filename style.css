@@ -435,41 +435,74 @@ body {
 }
 
 /* تنسيق زر التثبيت */
-.install-btn {
+/* تنسيق حاوية الرسالة العلوية */
+.install-message {
     position: fixed;
-    bottom: 20px; /* تغيير الموقع إلى أسفل اليمين */
-    right: 20px; /* الركن الأيمن */
-    background: linear-gradient(135deg, var(--accent-color) 0%, #c28d2e 100%); /* تدرج لوني */
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%); /* تدرج من #1C6459 إلى #DBA437 */
     color: white;
-    padding: 12px 24px; /* تقليل الحشوة لمظهر أنيق */
-    border: none;
-    border-radius: 50px; /* زوايا دائرية ناعمة */
-    font-size: 15px;
+    padding: 12px 20px;
+    display: none; /* مخفي افتراضيًا */
+    align-items: center;
+    justify-content: center; /* الزر والنص في المنتصف */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 2000; /* فوق زر تسجيل الدخول وجميع العناصر */
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    opacity: 0.95;
+}
+
+/* إظهار الرسالة فقط في صفحة تسجيل الدخول */
+body:has(.login-container) .install-message {
+    display: flex;
+}
+
+/* النص داخل الرسالة */
+.install-message-text {
+    font-size: 16px;
     font-weight: 600;
+    margin-right: 15px;
+}
+
+/* تنسيق زر التثبيت */
+.install-btn {
+    background: var(--accent-color); /* #DBA437 */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px; /* زوايا دائرية مثل login-btn */
+    font-size: 15px;
+    font-weight: 700;
     cursor: pointer;
     display: flex;
     align-items: center;
     gap: 10px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15), 0 2px 6px rgba(0, 0, 0, 0.1); /* ظل ناعم */
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 1000;
-    opacity: 0.95; /* شفافية طفيفة */
 }
 
+/* إخفاء الزر افتراضيًا */
+.install-btn {
+    display: none;
+}
 
+/* إظهار الزر فقط في صفحة تسجيل الدخول */
+body:has(.login-container) .install-btn {
+    display: flex;
+}
 
 /* تأثيرات عند التمرير */
 .install-btn:hover {
-    transform: translateY(-3px) scale(1.05); /* رفع وتكبير */
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-    background: linear-gradient(135deg, #c99330 0%, var(--accent-color) 100%); /* تبديل التدرج */
-    opacity: 1;
+    background: #c99330; /* لون أغمق */
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
 }
 
 /* تأثير عند النقر */
 .install-btn:active {
     transform: translateY(0) scale(0.98);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 /* تنسيق الأيقونة */
@@ -479,7 +512,7 @@ body {
 }
 
 .install-btn:hover .material-icons {
-    transform: rotate(20deg); /* دوران خفيف للأيقونة */
+    transform: rotate(20deg);
 }
 
 /* تأثير النبض */
@@ -495,11 +528,19 @@ body {
 
 /* استجابة للأجهزة الصغيرة */
 @media (max-width: 768px) {
-    .install-btn {
-        padding: 10px 18px;
+    .install-message {
+        padding: 10px 15px;
+        flex-direction: column;
+        gap: 10px;
+    }
+    .install-message-text {
         font-size: 14px;
-        bottom: 15px;
-        right: 15px; /* الحفاظ على الموقع في اليمين */
+        margin-right: 0;
+        text-align: center;
+    }
+    .install-btn {
+        padding: 8px 16px;
+        font-size: 14px;
     }
     .install-btn .material-icons {
         font-size: 20px;
