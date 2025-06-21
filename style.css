@@ -18,6 +18,22 @@
     --dark-border-color: #34495E; /* لون الحدود */
 }
 
+/* Dark mode for password input in account.html */
+/* This was moved to account.html directly for specificity, but can be here too */
+body.dark-mode .password-item input[type="password"],
+body.dark-mode .password-item input[type="text"] {
+    background: var(--dark-input-background);
+    color: var(--dark-text-color);
+    border: 1px solid var(--dark-border-color); /* Added border for consistency */
+}
+
+body.dark-mode .password-item input[type="password"]:focus,
+body.dark-mode .password-item input[type="text"]:focus {
+    background: var(--dark-card-background);
+    box-shadow: 0 0 0 2px var(--dark-accent-color);
+}
+
+
 /* أنماط الوضع المظلم */
 body.dark-mode {
     background-color: var(--dark-background-color);
@@ -699,57 +715,312 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 2rem;
+    padding: 0.8rem 1.5rem;
     background: var(--primary-color);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
     position: sticky;
     top: 0;
-    z-index: 1000;
+    z-index: 1050;
 }
 
-.header-left {
+.header-left-content { /* Renamed for clarity */
     display: flex;
     align-items: center;
-    gap: 1.5rem;
+    gap: 1rem;
+}
+
+.menu-icon {
+    background: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+}
+
+.menu-icon .material-icons {
+    font-size: 28px;
+    color: white;
+}
+
+.menu-icon:hover {
+    background-color: rgba(255, 255, 255, 0.15);
 }
 
 .header-logo {
-    height: 50px;
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+    height: 45px; /* Slightly smaller logo */
+    filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.1));
 }
 
-#branchName {
+#branchNameHeader { /* Updated ID */
     color: white;
-    font-size: 1.5rem;
+    font-size: 1.4rem; /* Adjusted font size */
+    margin: 0;
+    font-weight: 600;
+}
+
+/* Styles for elements previously in .header-right, now potentially outside .header-content or within sidebar */
+.header-right-content { /* New container for theme switcher */
+    display: flex;
+    align-items: center;
+    gap: 1rem; /* Adjust as needed */
+}
+
+.theme-switch-wrapper {
+    /* Removed absolute positioning, will be part of .header-right-content flow */
+    display: flex; /* Already has this, but good to ensure */
+    align-items: center;
+    gap: 10px; /* From original styles */
+    /* margin-left: 20px; */ /* Original margin, adjust if needed within .header-right-content */
+}
+
+/* Sidebar Styles */
+.sidebar {
+    height: 100%;
+    width: 280px; /* Adjust width as needed */
+    position: fixed;
+    top: 0;
+    right: -300px; /* Start off-screen to the right for RTL */
+    background-color: var(--background-color); /* Light mode background */
+    box-shadow: -2px 0 15px rgba(0, 0, 0, 0.15); /* Shadow on the left for RTL */
+    padding: 1.5rem 1rem;
+    z-index: 1100; /* Highest z-index */
+    transition: right 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    display: flex;
+    flex-direction: column;
+    color: var(--text-color); /* Light mode text */
+}
+
+.sidebar.active {
+    right: 0; /* Slide in from the right */
+}
+
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e0e0e0; /* Light mode border */
+}
+
+.sidebar-header h2 {
+    font-size: 1.2rem;
+    color: var(--primary-color); /* Primary color for heading */
+    margin: 0;
+    font-weight: 600;
+}
+
+.close-sidebar-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0.3rem;
+}
+
+.close-sidebar-btn .material-icons {
+    font-size: 26px;
+    color: var(--secondary-color); /* Secondary color for close icon */
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.close-sidebar-btn:hover .material-icons {
+    color: var(--error-color); /* Error color on hover for emphasis */
+    transform: rotate(90deg);
+}
+
+.sidebar-nav {
+    flex-grow: 1;
+}
+
+.sidebar-nav ul {
+    list-style: none;
+    padding: 0;
     margin: 0;
 }
 
-.logout-btn {
-    background: var(--accent-color);
+.sidebar-nav li a {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.9rem 1rem;
+    text-decoration: none;
+    color: var(--secondary-color); /* Secondary color for links */
+    border-radius: 8px;
+    font-size: 1.05rem;
+    font-weight: 500;
+    transition: background-color 0.3s ease, color 0.3s ease, padding-right 0.3s ease; /* padding-right for RTL */
+}
+
+.sidebar-nav li a .material-icons {
+    font-size: 22px;
+    color: var(--accent-color); /* Accent color for icons */
+    transition: transform 0.3s ease;
+}
+
+.sidebar-nav li a:hover {
+    background-color: var(--accent-color); /* Accent color background on hover */
     color: white;
-    padding: 0.7rem 1.5rem;
+    padding-right: 1.5rem; /* Indent on hover for RTL */
+}
+
+.sidebar-nav li a:hover .material-icons {
+    color: white;
+    transform: scale(1.1);
+}
+
+.sidebar-footer {
+    margin-top: auto; /* Pushes footer to the bottom */
+    padding-top: 1.5rem;
+    border-top: 1px solid #e0e0e0; /* Light mode border */
+}
+
+.language-switcher {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.lang-btn {
+    background: transparent;
+    border: 1px solid var(--primary-color); /* Primary color border */
+    color: var(--primary-color); /* Primary color text */
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.lang-btn.active {
+    background-color: var(--primary-color); /* Primary color background for active */
+    color: white;
+}
+
+.lang-btn:not(.active):hover {
+    background-color: rgba(28, 100, 89, 0.1); /* Light primary color tint on hover */
+}
+
+.sidebar-logout-btn {
+    width: 100%;
+    padding: 0.9rem;
+    background: var(--error-color); /* Error color for logout */
+    color: white;
     border: none;
-    border-radius: 25px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
     cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 0.8rem;
-    font-size: 1rem;
-    transition: all 0.3s ease;
+    justify-content: center;
+    gap: 0.7rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.logout-btn:hover {
-    transform: translateY(-2px);
-    background: #c99330;
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
-}
-
-.logout-btn .material-icons {
-    font-size: 1.2rem;
+.sidebar-logout-btn .material-icons {
+    font-size: 20px;
     color: white;
 }
 
+.sidebar-logout-btn:hover {
+    background-color: #c0392b; /* Darker error color on hover */
+    transform: translateY(-2px);
+}
+
+/* Overlay for when sidebar is active */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0; /* Start from left for RTL to cover the whole screen */
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1040; /* Below sidebar but above main content */
+    display: none; /* Hidden by default */
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.overlay.active {
+    display: block;
+    opacity: 1;
+}
+
+
+/* Dark Mode Styles for Sidebar */
+body.dark-mode .sidebar {
+    background-color: var(--dark-card-background); /* Dark mode card background */
+    color: var(--dark-text-color);
+    box-shadow: -2px 0 15px rgba(0, 0, 0, 0.3); /* Darker shadow */
+}
+
+body.dark-mode .sidebar-header {
+    border-bottom: 1px solid var(--dark-border-color); /* Dark mode border */
+}
+
+body.dark-mode .sidebar-header h2 {
+    color: var(--dark-accent-color); /* Dark mode accent for heading */
+}
+
+body.dark-mode .close-sidebar-btn .material-icons {
+    color: var(--dark-text-color); /* Dark mode text for close icon */
+}
+body.dark-mode .close-sidebar-btn:hover .material-icons {
+    color: var(--error-color); /* Error color on hover remains */
+}
+
+body.dark-mode .sidebar-nav li a {
+    color: var(--dark-text-color); /* Dark mode text for links */
+}
+
+body.dark-mode .sidebar-nav li a .material-icons {
+    color: var(--dark-accent-color); /* Dark mode accent for icons */
+}
+
+body.dark-mode .sidebar-nav li a:hover {
+    background-color: var(--dark-accent-color); /* Dark mode accent background on hover */
+    color: var(--dark-card-background); /* Contrasting text for hover */
+}
+body.dark-mode .sidebar-nav li a:hover .material-icons {
+    color: var(--dark-card-background); /* Contrasting icon color for hover */
+}
+
+body.dark-mode .sidebar-footer {
+    border-top: 1px solid var(--dark-border-color); /* Dark mode border */
+}
+
+body.dark-mode .lang-btn {
+    border: 1px solid var(--dark-accent-color); /* Dark mode accent border */
+    color: var(--dark-accent-color); /* Dark mode accent text */
+}
+
+body.dark-mode .lang-btn.active {
+    background-color: var(--dark-accent-color); /* Dark mode accent background for active */
+    color: var(--dark-card-background); /* Contrasting text for active */
+}
+
+body.dark-mode .lang-btn:not(.active):hover {
+    background-color: rgba(219, 164, 55, 0.15); /* Light accent color tint on hover */
+}
+
+body.dark-mode .sidebar-logout-btn {
+    background: var(--error-color); /* Error color remains */
+    color: white;
+}
+body.dark-mode .sidebar-logout-btn:hover {
+    background-color: #c0392b; /* Darker error color on hover */
+}
+
+/* Ensure main content is not overlapped by fixed header/sidebar */
 .main-content {
+    padding-top: 1rem; /* Adjust if header height changes */
     padding: 2rem;
     max-width: 1400px;
     margin: 0 auto;

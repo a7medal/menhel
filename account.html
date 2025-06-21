@@ -9,6 +9,20 @@
     <link rel="manifest" href="/manifest.json">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
+        /* Dark mode for password input */
+        body.dark-mode .password-item input[type="password"],
+        body.dark-mode .password-item input[type="text"] {
+            background: var(--dark-input-background, #3A475A); /* Fallback if var not defined */
+            color: var(--dark-text-color, #ECF0F1);
+            border: 1px solid var(--dark-border-color, #34495E);
+        }
+
+        body.dark-mode .password-item input[type="password"]:focus,
+        body.dark-mode .password-item input[type="text"]:focus {
+            background: var(--dark-card-background, #2D3748); /* Slightly different for focus */
+            box-shadow: 0 0 0 2px var(--dark-accent-color, #DBA437);
+        }
+
         /* تنسيقات حقل كلمة المرور */
         .password-item {
     display: flex;
@@ -197,11 +211,14 @@
 </head>
 <body>
     <header class="dashboard-header">
-        <div class="header-left">
-            <img src="logo1.png" alt="Logo" class="header-logo">
-            <h1 id="branchName">حسابي</h1>
+        <div class="header-left-content"> <!-- Updated class -->
+            <button class="menu-icon" id="menuIcon">
+                <span class="material-icons">menu</span>
+            </button>
+            <img src="logo1.png" class="header-logo" alt="شعار المنهل">
+            <h1 id="branchNameHeader">حسابي</h1>
         </div>
-        <div class="header-right" style="display: flex; align-items: center;">
+        <div class="header-right-content"> <!-- New container for theme switcher -->
             <div class="theme-switch-wrapper">
                 <span class="material-icons" style="color: white;">wb_sunny</span>
                 <label class="theme-switch" for="themeToggle">
@@ -210,12 +227,36 @@
                 </label>
                 <span class="material-icons" style="color: white;">nights_stay</span>
             </div>
-            <button onclick="logout()" class="logout-btn" style="margin-left: 15px;">
-                <span class="material-icons">logout</span>
-                تسجيل الخروج
-            </button>
         </div>
     </header>
+
+    <!-- القائمة الجانبية -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2 id="sidebarBranchName">مرحباً بك, </h2>
+            <button class="close-sidebar-btn" id="closeSidebarBtn">
+                <span class="material-icons">close</span>
+            </button>
+        </div>
+        <nav class="sidebar-nav">
+            <ul>
+                <li><a href="#" id="modesLink"><span class="material-icons">tune</span> الأوضاع</a></li>
+                <li><a href="favorites.html" id="favoritesLink"><span class="material-icons">favorite</span> المفضلة</a></li>
+                <li><a href="account.html" id="accountLink"><span class="material-icons">account_circle</span> حسابي</a></li>
+            </ul>
+        </nav>
+        <div class="sidebar-footer">
+            <div class="language-switcher">
+                <button id="langArabic" class="lang-btn active">العربية</button>
+                <button id="langFrench" class="lang-btn">Français</button>
+            </div>
+            <button class="sidebar-logout-btn" id="sidebarLogoutBtn">
+                <span class="material-icons">logout</span> تسجيل الخروج
+            </button>
+        </div>
+    </aside>
+    <div class="overlay" id="overlay"></div>
+
     <main class="main-content">
         <div class="account-container">
             <img src="logo.png" alt="Profile Picture" class="profile-pic">

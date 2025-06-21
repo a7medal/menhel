@@ -449,17 +449,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // تحميل الداشبورد
   if (path.includes('dashboard.html')) {
-    initializeDashboard();
+    initializeDashboard(); // This already calls initializeSidebar
   }
 
   // تحميل صفحة المفضلة
   if (path.includes('favorites.html')) {
     loadFavoritesPage();
+    initializeSidebar(); // Call sidebar initialization here too
   }
 
   // تحميل صفحة حسابي
   if (path.includes('account.html')) {
     loadAccountPage();
+    initializeSidebar(); // And here
   }
 
   // تحميل صفحة الأدمن
@@ -498,15 +500,18 @@ window.addEventListener('popstate', () => {
 // تهيئة الداشبورد
 function initializeDashboard() {
   const currentBranch = localStorage.getItem('currentBranch');
-  const dashboard = document.getElementById('dashboard');
-  const cardsContainer = document.getElementById('cardsContainer');
-  const branchNameElement = document.getElementById('branchName');
+  const dashboard = document.getElementById('dashboard'); // This is the main content area for cards
+  const cardsContainer = document.getElementById('cardsContainer'); // This is where cards are actually rendered
+  const branchNameHeaderElement = document.getElementById('branchNameHeader'); // For the main header
+  const sidebarBranchNameElement = document.getElementById('sidebarBranchName'); // For the sidebar welcome
 
-  if (!dashboard || !cardsContainer || !branchNameElement) {
-    console.error('خطأ: عناصر الداشبورد غير موجودة', {
+  // Check for essential elements for dashboard rendering
+  if (!dashboard || !cardsContainer || !branchNameHeaderElement || !sidebarBranchNameElement) {
+    console.error('خطأ: عناصر الداشبورد أو الهيدر أو القائمة الجانبية غير موجودة', {
       dashboard: !!dashboard,
       cardsContainer: !!cardsContainer,
-      branchNameElement: !!branchNameElement,
+      branchNameHeaderElement: !!branchNameHeaderElement,
+      sidebarBranchNameElement: !!sidebarBranchNameElement,
     });
     return;
   }
@@ -519,12 +524,84 @@ function initializeDashboard() {
 
   console.log('تهيئة الداشبورد للفرع:', currentBranch);
 
-  branchNameElement.textContent = branches[currentBranch].name;
+  // Set branch names in header and sidebar
+  branchNameHeaderElement.textContent = branches[currentBranch].name;
+  sidebarBranchNameElement.textContent = `مرحباً بك, ${branches[currentBranch].name}`;
+
 
   initializePopup();
-
-  loadBranchData(currentBranch);
+  initializeSidebar(); // Initialize sidebar functionality
+  loadBranchData(currentBranch); // Load actual dashboard content
 }
+
+// تهيئة القائمة الجانبية
+function initializeSidebar() {
+  const menuIcon = document.getElementById('menuIcon');
+  const sidebar = document.getElementById('sidebar');
+  const closeSidebarBtn = document.getElementById('closeSidebarBtn');
+  const overlay = document.getElementById('overlay');
+  const sidebarLogoutBtn = document.getElementById('sidebarLogoutBtn');
+
+  if (!menuIcon || !sidebar || !closeSidebarBtn || !overlay || !sidebarLogoutBtn) {
+    console.error('خطأ: واحد أو أكثر من عناصر القائمة الجانبية غير موجود.');
+    return;
+  }
+
+  menuIcon.addEventListener('click', () => {
+    sidebar.classList.add('active');
+    overlay.classList.add('active');
+  });
+
+  closeSidebarBtn.addEventListener('click', () => {
+    sidebar.classList.remove('active');
+    overlay.classList.remove('active');
+  });
+
+  overlay.addEventListener('click', () => {
+    sidebar.classList.remove('active');
+    overlay.classList.remove('active');
+  });
+
+  sidebarLogoutBtn.addEventListener('click', logout); // Use existing logout function
+
+  // Language Switcher Logic (Basic)
+  const langArabicBtn = document.getElementById('langArabic');
+  const langFrenchBtn = document.getElementById('langFrench');
+
+  if (langArabicBtn && langFrenchBtn) {
+    langArabicBtn.addEventListener('click', () => switchLanguage('ar'));
+    langFrenchBtn.addEventListener('click', () => switchLanguage('fr'));
+    // Load saved language preference
+    const savedLang = localStorage.getItem('selectedLanguage') || 'ar';
+    switchLanguage(savedLang);
+  }
+}
+
+function switchLanguage(lang) {
+  // Basic language switching - update button active state
+  const langArabicBtn = document.getElementById('langArabic');
+  const langFrenchBtn = document.getElementById('langFrench');
+
+  if (lang === 'ar') {
+    document.documentElement.lang = 'ar';
+    document.documentElement.dir = 'rtl';
+    if (langArabicBtn) langArabicBtn.classList.add('active');
+    if (langFrenchBtn) langFrenchBtn.classList.remove('active');
+    // Add more specific text updates here if needed
+    // e.g., document.getElementById('modesLink').textContent = 'الأوضاع';
+  } else if (lang === 'fr') {
+    document.documentElement.lang = 'fr';
+    document.documentElement.dir = 'ltr'; // Assuming LTR for French
+    if (langFrenchBtn) langFrenchBtn.classList.add('active');
+    if (langArabicBtn) langArabicBtn.classList.remove('active');
+    // Add more specific text updates here
+    // e.g., document.getElementById('modesLink').textContent = 'Modes';
+  }
+  localStorage.setItem('selectedLanguage', lang);
+  console.log(`Language switched to: ${lang}`);
+  // Potentially, call a function here to update all translatable text on the page.
+}
+
 
 // تهيئة النافذة المنبثقة
 function initializePopup() {
@@ -1015,14 +1092,20 @@ function loadAccountPage() {
     console.warn('تحذير: الفرع غير موجود في branches', { currentBranch });
   }
 
-  const branchNameElement = document.getElementById('branchName');
-  const branchNameDisplay = document.getElementById('branchNameDisplay');
-  if (branchNameElement && branchNameDisplay) {
-    branchNameElement.textContent = branchName + " - حسابي";
-    branchNameDisplay.textContent = branchName;
-  } else {
-    console.error('خطأ: عناصر branchName أو branchNameDisplay غير موجودة');
+  const branchNameHeaderElement = document.getElementById('branchNameHeader');
+  const sidebarBranchNameElement = document.getElementById('sidebarBranchName');
+  const branchNameDisplay = document.getElementById('branchNameDisplay'); // This is for the main content of account page
+
+  if (branchNameHeaderElement) {
+    branchNameHeaderElement.textContent = "حسابي"; // Or "branchName - حسابي" if preferred
   }
+  if (sidebarBranchNameElement && branches[currentBranch]) {
+    sidebarBranchNameElement.textContent = `مرحباً بك, ${branches[currentBranch].name}`;
+  }
+  if (branchNameDisplay && branches[currentBranch]) {
+    branchNameDisplay.textContent = branches[currentBranch].name;
+  }
+
 
   const usernameDisplay = document.getElementById('usernameDisplay');
   const passwordDisplay = document.getElementById('passwordDisplay');
@@ -1130,12 +1213,16 @@ function loadFavoritesPage() {
     return;
   }
 
-  const branchName = document.getElementById('branchName');
-  if (branchName) {
-    branchName.textContent = branches[currentBranch].name + " - المفضلة";
-  } else {
-    console.error('خطأ: branchName غير موجود');
+  const branchNameHeaderElement = document.getElementById('branchNameHeader');
+  const sidebarBranchNameElement = document.getElementById('sidebarBranchName');
+
+  if (branchNameHeaderElement && branches[currentBranch]) {
+    branchNameHeaderElement.textContent = "المفضلة"; // Or "branches[currentBranch].name - المفضلة"
   }
+  if (sidebarBranchNameElement && branches[currentBranch]) {
+    sidebarBranchNameElement.textContent = `مرحباً بك, ${branches[currentBranch].name}`;
+  }
+
 
   const container = document.getElementById('favoritesContainer');
   if (!container) {
