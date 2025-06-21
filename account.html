@@ -201,9 +201,20 @@
             <img src="logo1.png" alt="Logo" class="header-logo">
             <h1 id="branchName">حسابي</h1>
         </div>
-        <button onclick="logout()" class="logout-btn">
-            <span class="material-icons">logout</span>
-        </button>
+        <div class="header-right" style="display: flex; align-items: center;">
+            <div class="theme-switch-wrapper">
+                <span class="material-icons" style="color: white;">wb_sunny</span>
+                <label class="theme-switch" for="themeToggle">
+                    <input type="checkbox" id="themeToggle" onchange="toggleDarkMode()">
+                    <span class="slider round"></span>
+                </label>
+                <span class="material-icons" style="color: white;">nights_stay</span>
+            </div>
+            <button onclick="logout()" class="logout-btn" style="margin-left: 15px;">
+                <span class="material-icons">logout</span>
+                تسجيل الخروج
+            </button>
+        </div>
     </header>
     <main class="main-content">
         <div class="account-container">
