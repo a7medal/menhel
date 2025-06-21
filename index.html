@@ -14,6 +14,14 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="theme-switch-wrapper" style="position: absolute; top: 20px; left: 20px; z-index: 9999;">
+        <span class="material-icons">wb_sunny</span>
+        <label class="theme-switch" for="themeToggle">
+            <input type="checkbox" id="themeToggle" onchange="toggleDarkMode()" />
+            <span class="slider round"></span>
+        </label>
+        <span class="material-icons">nights_stay</span>
+    </div>
     <div class="login-container">
         <div class="login-box">
             <img src="logo.png" alt="شعار المنهل" class="logo">
