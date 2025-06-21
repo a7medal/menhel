@@ -1254,6 +1254,21 @@ window.addEventListener('load', function () {
 
 // دالة لتبديل الوضع المظلم/الفاتح
 function toggleDarkMode() {
+  const isLoginPage = window.location.pathname.endsWith('/') || window.location.pathname.endsWith('index.html');
+  if (isLoginPage) {
+    // في صفحة تسجيل الدخول، فقط قم بحفظ التفضيل ولكن لا تطبق الوضع المظلم على الفور
+    const currentPreference = localStorage.getItem('darkMode') === 'true';
+    localStorage.setItem('darkMode', !currentPreference);
+     // تحديث حالة مفتاح التبديل إذا كان موجودًا ليعكس التفضيل المحفوظ
+    const themeToggle = document.getElementById('themeToggle');
+    if (themeToggle) {
+        themeToggle.checked = !currentPreference;
+    }
+    // (اختياري) يمكنك إزالة الفئة إذا كانت موجودة بالخطأ
+    // document.body.classList.remove('dark-mode'); 
+    return; 
+  }
+
   document.body.classList.toggle('dark-mode');
   const isDarkMode = document.body.classList.contains('dark-mode');
   localStorage.setItem('darkMode', isDarkMode);
@@ -1266,7 +1281,20 @@ function toggleDarkMode() {
 
 // دالة لتحميل تفضيل الوضع عند تحميل الصفحة
 function loadThemePreference() {
+  const isLoginPage = window.location.pathname.endsWith('/') || window.location.pathname.endsWith('index.html');
   const darkMode = localStorage.getItem('darkMode') === 'true';
+
+  if (isLoginPage) {
+    // تأكد من أن الوضع المظلم غير مطبق على صفحة تسجيل الدخول عند التحميل
+    document.body.classList.remove('dark-mode');
+    // اضبط مفتاح التبديل ليعكس التفضيل المحفوظ، حتى لو لم يتم تطبيقه
+    const themeToggle = document.getElementById('themeToggle');
+    if (themeToggle) {
+      themeToggle.checked = darkMode;
+    }
+    return;
+  }
+
   if (darkMode) {
     document.body.classList.add('dark-mode');
   }
