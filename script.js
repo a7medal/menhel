@@ -541,8 +541,13 @@ function initializeSidebar() {
   const closeSidebarBtn = document.getElementById('closeSidebarBtn');
   const overlay = document.getElementById('overlay');
   const sidebarLogoutBtn = document.getElementById('sidebarLogoutBtn');
+  const modesLink = document.getElementById('modesLink');
+  const lightModeBtn = document.getElementById('lightModeBtn');
+  const darkModeBtn = document.getElementById('darkModeBtn');
+  const favoritesLink = document.getElementById('favoritesLink');
+  const accountLink = document.getElementById('accountLink');
 
-  if (!menuIcon || !sidebar || !closeSidebarBtn || !overlay || !sidebarLogoutBtn) {
+  if (!menuIcon || !sidebar || !closeSidebarBtn || !overlay || !sidebarLogoutBtn || !modesLink || !lightModeBtn || !darkModeBtn || !favoritesLink || !accountLink) {
     console.error('خطأ: واحد أو أكثر من عناصر القائمة الجانبية غير موجود.');
     return;
   }
@@ -562,9 +567,46 @@ function initializeSidebar() {
     overlay.classList.remove('active');
   });
 
-  sidebarLogoutBtn.addEventListener('click', logout); // Use existing logout function
+  sidebarLogoutBtn.addEventListener('click', logout);
 
-  // Language Switcher Logic (Basic)
+  // Submenu for Modes
+  modesLink.addEventListener('click', (e) => {
+    e.preventDefault();
+    const parentLi = modesLink.closest('.has-submenu');
+    parentLi.classList.toggle('open');
+  });
+
+  lightModeBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (document.body.classList.contains('dark-mode')) {
+      toggleDarkMode(); // Switch to light
+    }
+    sidebar.classList.remove('active'); // Close sidebar
+    overlay.classList.remove('active');
+  });
+
+  darkModeBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (!document.body.classList.contains('dark-mode')) {
+      toggleDarkMode(); // Switch to dark
+    }
+    sidebar.classList.remove('active'); // Close sidebar
+    overlay.classList.remove('active');
+  });
+  
+  // Ensure correct navigation for favorites and account pages
+  favoritesLink.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.location.href = 'favorites.html';
+  });
+
+  accountLink.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.location.href = 'account.html';
+  });
+
+
+  // Language Switcher Logic
   const langArabicBtn = document.getElementById('langArabic');
   const langFrenchBtn = document.getElementById('langFrench');
 
@@ -573,12 +615,180 @@ function initializeSidebar() {
     langFrenchBtn.addEventListener('click', () => switchLanguage('fr'));
     // Load saved language preference
     const savedLang = localStorage.getItem('selectedLanguage') || 'ar';
-    switchLanguage(savedLang);
+    switchLanguage(savedLang); // This will also apply translations
   }
 }
 
+let translations = {}; // To store loaded translations
+
+async function fetchTranslations() {
+  try {
+    const response = await fetch('translations.json');
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    translations = await response.json();
+    console.log("Translations loaded successfully:", translations);
+  } catch (error) {
+    console.error("Could not load translations:", error);
+  }
+}
+
+// Call fetchTranslations once when the script loads or on DOMContentLoaded
+document.addEventListener('DOMContentLoaded', async () => {
+  await fetchTranslations();
+  // After translations are fetched, apply the saved language
+  const savedLang = localStorage.getItem('selectedLanguage') || 'ar';
+  switchLanguage(savedLang); // Apply initial language based on saved preference or default
+  
+  // Other DOMContentLoaded logic...
+  if (window.location.pathname.endsWith('/') || window.location.pathname.endsWith('index.html')) {
+    // Logic for login page
+  } else if (window.location.pathname.includes('dashboard.html')) {
+    initializeDashboard();
+  } else if (window.location.pathname.includes('favorites.html')) {
+    loadFavoritesPage();
+    initializeSidebar();
+  } else if (window.location.pathname.includes('account.html')) {
+    loadAccountPage();
+    initializeSidebar();
+  } else if (window.location.pathname.includes('admin.html')) {
+    initializeAdmin();
+  }
+  loadThemePreference(); // Ensure theme is loaded after other initializations
+});
+
+
+function applyTranslations(lang) {
+  if (!translations[lang]) {
+    console.warn(`No translations found for language: ${lang}`);
+    return;
+  }
+  const trans = translations[lang];
+
+  // Helper function to set text content if element exists
+  const setText = (id, textKey) => {
+    const element = document.getElementById(id);
+    if (element) {
+      // If it's a link-text span, update that, otherwise the element itself
+      const linkTextSpan = element.querySelector('.link-text');
+      if (linkTextSpan) {
+          linkTextSpan.textContent = trans[textKey];
+      } else if (element.tagName === 'INPUT' && element.type === 'text' && element.placeholder !== undefined && trans[textKey]) {
+          element.placeholder = trans[textKey];
+      } else if (trans[textKey]) {
+          element.textContent = trans[textKey];
+      }
+    } else {
+        // console.warn(`Element with ID '${id}' not found for translation key '${textKey}'`);
+    }
+  };
+  
+  const setContent = (id, textKey) => {
+    const element = document.getElementById(id);
+    if (element && trans[textKey]) {
+        element.textContent = trans[textKey];
+    }
+  };
+
+
+  // Sidebar
+  setText('modesLink', 'modes');
+  setText('lightModeBtn', 'light_mode');
+  setText('darkModeBtn', 'dark_mode');
+  setText('favoritesLink', 'favorites');
+  setText('accountLink', 'account');
+  setText('languageLabel', 'language');
+  setText('sidebarLogoutBtn', 'logout');
+  
+  const sidebarBranchNameElement = document.getElementById('sidebarBranchName');
+  if (sidebarBranchNameElement && branches[localStorage.getItem('currentBranch')]) {
+      sidebarBranchNameElement.textContent = trans.welcome_message + branches[localStorage.getItem('currentBranch')].name;
+  }
+
+
+  // Page specific titles and common elements
+  const path = window.location.pathname;
+  if (path.includes('dashboard.html')) {
+    document.title = trans.dashboard_title;
+    setContent('branchNameHeader', branches[localStorage.getItem('currentBranch')] ? branches[localStorage.getItem('currentBranch')].name : trans.dashboard_title); // Keep branch name if available
+    setText('searchInput', 'search_placeholder'); // For dashboard search
+    // The buttons for favorites and account on dashboard page are within HTML that gets re-rendered
+    // So, this might need to be handled in loadBranchData or ensure IDs are stable
+  } else if (path.includes('favorites.html')) {
+    document.title = trans.favorites_title;
+    setContent('branchNameHeader', trans.favorites_title);
+    // Check for no_favorites_message
+    const noFavsMsg = document.querySelector('.no-favorites');
+    if (noFavsMsg) noFavsMsg.textContent = trans.no_favorites_message;
+  } else if (path.includes('account.html')) {
+    document.title = trans.account_title;
+    setContent('branchNameHeader', trans.account_title);
+    const branchNameDisplay = document.getElementById('branchNameDisplay');
+    if (branchNameDisplay && branches[localStorage.getItem('currentBranch')]) {
+        branchNameDisplay.textContent = branches[localStorage.getItem('currentBranch')].name;
+    }
+    setText('usernameDisplay', 'username_label'); // This is a label, the value comes from JS
+    const usernameElement = document.getElementById('usernameDisplay');
+    if (usernameElement) usernameElement.previousElementSibling.textContent = trans.username_label;
+
+    const passwordElement = document.getElementById('passwordDisplay');
+    if (passwordElement) passwordElement.previousElementSibling.previousElementSibling.textContent = trans.password_label;
+    
+    setContent('backToMainBtn', 'back_to_main_button'); // Assuming back-btn has this ID or class
+    const backToMainBtn = document.querySelector('a.back-btn');
+    if(backToMainBtn) backToMainBtn.childNodes[2].nodeValue = ` ${trans.back_to_main_button}`;
+
+
+    const shareBtn = document.querySelector('.share-btn');
+    if (shareBtn) shareBtn.childNodes[2].nodeValue = ` ${trans.share_button}`;
+    
+    const loginHistoryTitle = document.querySelector('.login-history h3');
+    if(loginHistoryTitle) loginHistoryTitle.textContent = trans.login_history_title;
+
+    const noLoginHistory = document.querySelector('.no-logins');
+    if(noLoginHistory) noLoginHistory.textContent = trans.no_login_history;
+
+  } else if (path.includes('admin.html')) {
+    document.title = trans.admin_page_title;
+    // ... more admin specific translations
+  }
+
+  // Common elements that might appear on multiple pages
+  const popupInstallTitle = document.getElementById('popupInstallTitle'); // Assuming this ID for install popup
+  if (popupInstallTitle) popupInstallTitle.textContent = trans.popup_install_title;
+  const popupInstallText = document.getElementById('popupInstallText');
+  if (popupInstallText) popupInstallText.textContent = trans.popup_install_text;
+  const popupInstallConfirm = document.getElementById('popupInstallConfirm');
+  if (popupInstallConfirm) popupInstallConfirm.textContent = trans.popup_install_confirm;
+  const popupInstallLater = document.getElementById('popupInstallLater');
+  if (popupInstallLater) popupInstallLater.textContent = trans.popup_install_later;
+
+  // Update for the existing popup in dashboard.html
+  const popupTitleDashboard = document.querySelector('#popup .popup-title');
+  if(popupTitleDashboard && path.includes('dashboard.html')) popupTitleDashboard.textContent = trans.popup_update_title;
+  const popupMessageDashboard = document.querySelector('#popup .popup-message');
+  if(popupMessageDashboard && path.includes('dashboard.html')) popupMessageDashboard.textContent = trans.popup_update_text;
+  const popupOkDashboard = document.getElementById('popup-ok');
+  if(popupOkDashboard && path.includes('dashboard.html')) popupOkDashboard.textContent = trans.popup_ok_button;
+
+
+  // Offline page
+  if (path.includes('offline.html')) {
+    document.title = trans.offline_title;
+    const offlineH1 = document.querySelector('.offline-container h1');
+    if(offlineH1) offlineH1.textContent = trans.offline_title;
+    const offlineP = document.querySelector('.offline-container p');
+    if(offlineP) offlineP.textContent = trans.offline_message;
+    const offlineRetry = document.querySelector('.offline-container .retry-btn');
+    if(offlineRetry) {
+        offlineRetry.childNodes[2].nodeValue = ` ${trans.offline_retry_button}`;
+    }
+  }
+
+}
+
 function switchLanguage(lang) {
-  // Basic language switching - update button active state
   const langArabicBtn = document.getElementById('langArabic');
   const langFrenchBtn = document.getElementById('langFrench');
 
@@ -587,19 +797,15 @@ function switchLanguage(lang) {
     document.documentElement.dir = 'rtl';
     if (langArabicBtn) langArabicBtn.classList.add('active');
     if (langFrenchBtn) langFrenchBtn.classList.remove('active');
-    // Add more specific text updates here if needed
-    // e.g., document.getElementById('modesLink').textContent = 'الأوضاع';
   } else if (lang === 'fr') {
     document.documentElement.lang = 'fr';
-    document.documentElement.dir = 'ltr'; // Assuming LTR for French
+    document.documentElement.dir = 'ltr';
     if (langFrenchBtn) langFrenchBtn.classList.add('active');
     if (langArabicBtn) langArabicBtn.classList.remove('active');
-    // Add more specific text updates here
-    // e.g., document.getElementById('modesLink').textContent = 'Modes';
   }
   localStorage.setItem('selectedLanguage', lang);
   console.log(`Language switched to: ${lang}`);
-  // Potentially, call a function here to update all translatable text on the page.
+  applyTranslations(lang); // Apply translations after switching
 }
 
 
@@ -1289,25 +1495,67 @@ let deferredPrompt;
 window.addEventListener('beforeinstallprompt', (e) => {
   e.preventDefault();
   deferredPrompt = e;
-  showInstallButton();
+  // Only show the install prompt on the login page
+  if (window.location.pathname.endsWith('/') || window.location.pathname.endsWith('index.html')) {
+    showInstallPrompt();
+  }
 });
 
-function showInstallButton() {
-  const installBtn = document.createElement('button');
-  installBtn.className = 'install-btn';
-  installBtn.innerHTML = `<span class="material-icons">download</span> تثبيت التطبيق`;
-  installBtn.onclick = installApp;
-  const loginBox = document.querySelector('.login-box');
-  if (loginBox) loginBox.appendChild(installBtn);
+function showInstallPrompt() {
+  // Check if the prompt is already shown
+  if (document.getElementById('installPwaModal')) {
+    return;
+  }
+
+  const modalHTML = `
+    <div id="installPwaModal" class="install-pwa-modal">
+      <div class="install-pwa-modal-content">
+        <img src="logo.png" alt="App Logo" class="install-pwa-logo">
+        <h3 id="popupInstallTitle">تثبيت التطبيق</h3>
+        <p id="popupInstallText">هل تريد تثبيت التطبيق للحصول على تجربة أفضل؟</p>
+        <div class="install-pwa-buttons">
+          <button id="popupInstallConfirm" class="install-pwa-btn confirm">تثبيت</button>
+          <button id="popupInstallLater" class="install-pwa-btn later">لاحقًا</button>
+        </div>
+      </div>
+    </div>
+  `;
+
+  document.body.insertAdjacentHTML('beforeend', modalHTML);
+  applyTranslations(localStorage.getItem('selectedLanguage') || 'ar'); // Apply translations to the new modal
+
+  const modal = document.getElementById('installPwaModal');
+  const confirmBtn = document.getElementById('popupInstallConfirm');
+  const laterBtn = document.getElementById('popupInstallLater');
+
+  modal.style.display = 'flex';
+
+  confirmBtn.onclick = () => {
+    modal.style.display = 'none';
+    installApp();
+    document.body.removeChild(modal);
+  };
+
+  laterBtn.onclick = () => {
+    modal.style.display = 'none';
+    document.body.removeChild(modal);
+  };
 }
 
 function installApp() {
   if (deferredPrompt) {
     deferredPrompt.prompt();
-    deferredPrompt.userChoice.then(() => {
+    deferredPrompt.userChoice.then((choiceResult) => {
+      if (choiceResult.outcome === 'accepted') {
+        console.log('User accepted the A2HS prompt');
+      } else {
+        console.log('User dismissed the A2HS prompt');
+      }
       deferredPrompt = null;
-      const installBtn = document.querySelector('.install-btn');
-      if (installBtn) installBtn.remove();
+      const modal = document.getElementById('installPwaModal');
+      if (modal) {
+        document.body.removeChild(modal);
+      }
     });
   }
 }
