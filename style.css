@@ -795,6 +795,63 @@ body {
     color: var(--text-color); /* Light mode text */
 }
 
+/* Styles for submenu in sidebar */
+.sidebar-nav .has-submenu > a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sidebar-nav .submenu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+    background-color: rgba(0,0,0,0.03); /* Slightly different background for submenu */
+    border-radius: 6px;
+    margin-top: 0.25rem;
+}
+
+.sidebar-nav .has-submenu.open > .submenu {
+    max-height: 200px; /* Adjust as needed */
+    padding: 0.5rem 0; /* Add padding when open */
+}
+
+.sidebar-nav .submenu li a {
+    padding: 0.7rem 1.5rem 0.7rem 2.5rem; /* Indent submenu items, adjust for RTL */
+    font-size: 0.95rem; /* Slightly smaller font for submenu items */
+}
+html[dir="rtl"] .sidebar-nav .submenu li a {
+    padding: 0.7rem 2.5rem 0.7rem 1.5rem; /* RTL padding */
+}
+
+
+.sidebar-nav .submenu li a .material-icons {
+    font-size: 20px; /* Smaller icons for submenu */
+}
+
+.sidebar-nav .submenu-arrow {
+    font-size: 20px;
+    transition: transform 0.3s ease;
+}
+
+.sidebar-nav .has-submenu.open > a .submenu-arrow {
+    transform: rotate(90deg);
+}
+
+.sidebar-nav .link-text {
+    flex-grow: 1;
+    margin: 0 0.5rem; /* Space between icon and text, and text and arrow */
+}
+
+
+body.dark-mode .sidebar-nav .submenu {
+    background-color: rgba(255,255,255,0.05); /* Dark mode submenu background */
+}
+
+
 .sidebar.active {
     right: 0; /* Slide in from the right */
 }
@@ -879,11 +936,25 @@ body {
     border-top: 1px solid #e0e0e0; /* Light mode border */
 }
 
+.language-switcher-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.language-switcher-label {
+    font-size: 0.9rem;
+    color: var(--secondary-color);
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
 .language-switcher {
     display: flex;
     justify-content: center;
     gap: 0.5rem;
-    margin-bottom: 1.5rem;
+    /* margin-bottom: 1.5rem; */ /* Moved to container */
 }
 
 .lang-btn {
@@ -994,6 +1065,10 @@ body.dark-mode .sidebar-nav li a:hover .material-icons {
 
 body.dark-mode .sidebar-footer {
     border-top: 1px solid var(--dark-border-color); /* Dark mode border */
+}
+
+body.dark-mode .language-switcher-label {
+    color: var(--dark-text-color); /* Dark mode text for label */
 }
 
 body.dark-mode .lang-btn {
@@ -1238,119 +1313,124 @@ body.dark-mode .sidebar-logout-btn:hover {
     font-weight: bold;
 }
 
-/* تنسيق زر التثبيت */
-/* تنسيق حاوية الرسالة العلوية */
-.install-message {
+/* تنسيق زر التثبيت - نافذة عائمة */
+.install-pwa-modal {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%); /* تدرج من #1C6459 إلى #DBA437 */
-    color: white;
-    padding: 12px 20px;
-    display: none; /* مخفي افتراضيًا */
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: none; /* Hidden by default */
     align-items: center;
-    justify-content: center; /* الزر والنص في المنتصف */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    z-index: 2000; /* فوق زر تسجيل الدخول وجميع العناصر */
-    transition: transform 0.3s ease, opacity 0.3s ease;
-    opacity: 0.95;
+    justify-content: center;
+    z-index: 10000; /* Ensure it's on top */
+    backdrop-filter: blur(5px);
+    padding: 1rem;
 }
 
-/* إظهار الرسالة فقط في صفحة تسجيل الدخول */
-body:has(.login-container) .install-message {
+.install-pwa-modal-content {
+    background-color: var(--background-color);
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+    animation: fadeInModal 0.3s ease-out;
+}
+
+@keyframes fadeInModal {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.install-pwa-logo {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 1rem;
+    border-radius: 12px;
+    object-fit: contain;
+}
+
+.install-pwa-modal-content h3 {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.install-pwa-modal-content p {
+    color: var(--text-color);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.install-pwa-buttons {
     display: flex;
+    gap: 1rem;
+    justify-content: center;
 }
 
-/* النص داخل الرسالة */
-.install-message-text {
-    font-size: 16px;
-    font-weight: 600;
-    margin-right: 15px;
-}
-
-/* تنسيق زر التثبيت */
-.install-btn {
-    background: var(--accent-color); /* #DBA437 */
-    color: white;
-    padding: 10px 20px;
+.install-pwa-btn {
+    padding: 0.75rem 1.5rem;
     border: none;
-    border-radius: 20px; /* زوايا دائرية مثل login-btn */
-    font-size: 15px;
-    font-weight: 700;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-/* إخفاء الزر افتراضيًا */
-.install-btn {
-    display: none;
+.install-pwa-btn.confirm {
+    background-color: var(--accent-color);
+    color: white;
 }
 
-/* إظهار الزر فقط في صفحة تسجيل الدخول */
-body:has(.login-container) .install-btn {
-    display: flex;
+.install-pwa-btn.confirm:hover {
+    background-color: #c99330; /* Darker accent */
+    transform: translateY(-2px);
 }
 
-/* تأثيرات عند التمرير */
-.install-btn:hover {
-    background: #c99330; /* لون أغمق */
-    transform: translateY(-2px) scale(1.05);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+.install-pwa-btn.later {
+    background-color: #e0e0e0;
+    color: var(--text-color);
 }
 
-/* تأثير عند النقر */
-.install-btn:active {
-    transform: translateY(0) scale(0.98);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+.install-pwa-btn.later:hover {
+    background-color: #bdbdbd;
+    transform: translateY(-2px);
 }
 
-/* تنسيق الأيقونة */
-.install-btn .material-icons {
-    font-size: 22px;
-    transition: transform 0.3s ease;
+/* Dark mode for PWA install modal */
+body.dark-mode .install-pwa-modal-content {
+    background-color: var(--dark-card-background);
 }
 
-.install-btn:hover .material-icons {
-    transform: rotate(20deg);
+body.dark-mode .install-pwa-modal-content h3 {
+    color: var(--dark-accent-color);
 }
 
-/* تأثير النبض */
-@keyframes pulse {
-    0% { box-shadow: 0 0 0 0 rgba(219, 164, 55, 0.7); }
-    70% { box-shadow: 0 0 0 12px rgba(219, 164, 55, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(219, 164, 55, 0); }
+body.dark-mode .install-pwa-modal-content p {
+    color: var(--dark-text-color);
 }
 
-.install-btn.pulse {
-    animation: pulse 2s infinite;
+body.dark-mode .install-pwa-btn.confirm {
+    background-color: var(--dark-accent-color);
+    color: var(--dark-background-color); /* Or white if accent is dark enough */
+}
+body.dark-mode .install-pwa-btn.confirm:hover {
+    background-color: #c99330;
 }
 
-/* استجابة للأجهزة الصغيرة */
-@media (max-width: 768px) {
-    .install-message {
-        padding: 10px 15px;
-        flex-direction: column;
-        gap: 10px;
-    }
-    .install-message-text {
-        font-size: 14px;
-        margin-right: 0;
-        text-align: center;
-    }
-    .install-btn {
-        padding: 8px 16px;
-        font-size: 14px;
-    }
-    .install-btn .material-icons {
-        font-size: 20px;
-        color: white;
-    }
+body.dark-mode .install-pwa-btn.later {
+    background-color: var(--dark-input-background);
+    color: var(--dark-text-color);
 }
+body.dark-mode .install-pwa-btn.later:hover {
+    background-color: var(--dark-secondary-color);
+}
+
 /* تنسيق أيقونة الإشعارات */
 #notification-icon {
     position: relative;
