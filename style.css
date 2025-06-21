@@ -6,6 +6,424 @@
     --background-color: #EEECE9; /* الخلفية */
     --error-color: #E74C3C; /* لون الخطأ */
     --text-color: #333333; /* لون النصوص */
+
+    /* متغيرات الوضع المظلم */
+    --dark-primary-color: #1C6459; /* الأساسي */
+    --dark-secondary-color: #2C3E50; /* الثانوي */
+    --dark-accent-color: #DBA437; /* التأكيدي */
+    --dark-background-color: #1A1A1A; /* الخلفية */
+    --dark-text-color: #ECF0F1; /* لون النصوص */
+    --dark-card-background: #2C3E50; /* خلفية البطاقات */
+    --dark-input-background: #34495E; /* خلفية حقول الإدخال */
+    --dark-border-color: #34495E; /* لون الحدود */
+}
+
+/* أنماط الوضع المظلم */
+body.dark-mode {
+    background-color: var(--dark-background-color);
+    color: var(--dark-text-color);
+}
+
+body.dark-mode .login-container {
+    background: linear-gradient(135deg, var(--dark-primary-color) 0%, var(--dark-secondary-color) 100%);
+}
+
+body.dark-mode .login-box {
+    background: rgba(44, 62, 80, 0.85); /* --dark-secondary-color with opacity */
+    backdrop-filter: blur(14px) saturate(1.3);
+    border: 1.5px solid rgba(219, 164, 55, 0.15); /* --dark-accent-color with opacity */
+}
+
+body.dark-mode .login-box::before {
+    background: linear-gradient(135deg, var(--dark-accent-color) 10%, transparent 80%);
+    opacity: 0.2;
+}
+
+body.dark-mode .input-group label {
+    color: var(--dark-accent-color);
+}
+
+body.dark-mode .input-group input {
+    background: var(--dark-input-background);
+    color: var(--dark-text-color);
+    box-shadow: 0 1px 6px rgba(219, 164, 55, 0.07), 0 0.5px 2px #DBA43711;
+}
+
+body.dark-mode .input-group input:focus {
+    background: rgba(52, 73, 94, 0.9); /* Lighter version of --dark-input-background */
+    box-shadow: 0 0 0 2px rgba(219, 164, 55, 0.6), 0 4px 16px rgba(219, 164, 55, 0.15);
+}
+
+body.dark-mode .input-group input::placeholder {
+    color: #bdc3c7; /* Lighter gray for dark mode */
+}
+
+body.dark-mode .login-btn {
+    background: var(--dark-accent-color);
+    color: var(--dark-background-color);
+    box-shadow: 0 4px 15px rgba(219, 164, 55, 0.3);
+}
+
+body.dark-mode .login-btn:hover {
+    background: #c99330; /* Darker accent */
+    box-shadow: 0 6px 20px rgba(219, 164, 55, 0.4);
+}
+
+body.dark-mode .error-msg {
+    color: var(--error-color);
+    background: #4E3431; /* Darker background for error */
+    box-shadow: 0 2px 8px rgba(231, 76, 60, 0.15);
+}
+
+body.dark-mode .dashboard-header {
+    background: var(--dark-secondary-color);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+}
+
+body.dark-mode #branchName {
+    color: var(--dark-text-color);
+}
+
+body.dark-mode .logout-btn {
+    background: var(--dark-accent-color);
+    color: var(--dark-background-color);
+}
+
+body.dark-mode .logout-btn:hover {
+    background: #c99330;
+}
+
+body.dark-mode .search-container {
+    background: var(--dark-input-background);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode .search-container input {
+    color: var(--dark-text-color);
+}
+
+body.dark-mode .search-container input:focus {
+    outline: none;
+}
+
+body.dark-mode .search-container .material-icons {
+    color: var(--dark-accent-color);
+}
+
+body.dark-mode .favorites-btn,
+body.dark-mode .account-btn {
+    background: var(--dark-accent-color);
+    color: var(--dark-background-color);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+body.dark-mode .favorites-btn:hover,
+body.dark-mode .account-btn:hover {
+    background: #c99330;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+}
+
+body.dark-mode .asset-card {
+    background: var(--dark-card-background);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border: 1px solid var(--dark-border-color);
+}
+
+body.dark-mode .card-header h3 {
+    color: var(--dark-text-color);
+}
+
+body.dark-mode .material-icons {
+    color: var(--dark-accent-color);
+}
+
+body.dark-mode .file-item {
+    background: var(--dark-input-background);
+    color: var(--dark-text-color);
+}
+
+body.dark-mode .file-item:hover {
+    background: var(--dark-accent-color);
+    color: var(--dark-background-color);
+}
+
+body.dark-mode .color-box {
+    color: var(--dark-text-color); /* Or a contrasting color if needed */
+    border: 1px solid var(--dark-border-color);
+}
+
+body.dark-mode .install-message {
+    background: linear-gradient(135deg, var(--dark-primary-color) 0%, var(--dark-accent-color) 100%);
+    color: var(--dark-text-color); /* Ensure text is readable */
+}
+
+body.dark-mode .install-btn {
+    background: var(--dark-accent-color);
+    color: var(--dark-background-color);
+}
+
+body.dark-mode .install-btn:hover {
+    background: #c99330;
+}
+
+body.dark-mode #notification-icon {
+    color: var(--dark-accent-color);
+}
+
+body.dark-mode #notification-icon.new-notifications {
+    color: var(--error-color);
+}
+
+body.dark-mode .back-btn {
+    background: var(--dark-accent-color);
+    color: var(--dark-background-color);
+}
+
+body.dark-mode .back-btn:hover {
+    background: #c99330;
+}
+
+body.dark-mode .no-favorites {
+    color: var(--dark-text-color);
+    background: var(--dark-card-background);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+body.dark-mode .auto-update-notice {
+    background: var(--dark-secondary-color); /* Darker than main background */
+    border-top: 1px solid var(--dark-border-color);
+    color: var(--dark-text-color);
+}
+
+body.dark-mode .notice-content .material-icons {
+    color: var(--dark-accent-color);
+}
+
+body.dark-mode .account-container {
+    background: var(--dark-card-background);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border: 1px solid var(--dark-border-color);
+}
+
+body.dark-mode .profile-pic {
+    background: var(--dark-secondary-color); /* Darker background for profile pic */
+    border: 2px solid var(--dark-accent-color); /* Accent border */
+}
+
+body.dark-mode .account-container h2 {
+    color: var(--dark-accent-color);
+}
+
+body.dark-mode .info-item {
+    background: var(--dark-input-background);
+    color: var(--dark-text-color);
+}
+
+body.dark-mode .info-item label {
+    color: var(--dark-accent-color);
+}
+
+body.dark-mode .info-item span:not(.material-icons),
+body.dark-mode .info-item input {
+    color: var(--dark-text-color);
+}
+
+body.dark-mode .toggle-password {
+    color: var(--dark-accent-color);
+}
+
+body.dark-mode .toggle-password:hover {
+    color: var(--dark-text-color); /* Lighter for hover */
+}
+
+/* Adjustments for offline page in dark mode */
+body.dark-mode.offline-page {
+    background-color: var(--dark-background-color);
+    color: var(--dark-text-color);
+}
+
+body.dark-mode.offline-page .offline-container {
+    background: var(--dark-card-background);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode.offline-page h1 {
+    color: var(--dark-accent-color);
+}
+
+body.dark-mode.offline-page p {
+    color: var(--dark-text-color);
+}
+
+body.dark-mode.offline-page .retry-btn {
+    background-color: var(--dark-accent-color);
+    color: var(--dark-background-color);
+}
+
+body.dark-mode.offline-page .retry-btn:hover {
+    background-color: #c99330;
+}
+
+/* Adjustments for admin page in dark mode */
+body.dark-mode .admin-container {
+    background-color: var(--dark-background-color);
+    color: var(--dark-text-color);
+}
+
+body.dark-mode .admin-header {
+    background: var(--dark-secondary-color);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode .admin-header h1 {
+    color: var(--dark-text-color);
+}
+
+body.dark-mode .tabs button {
+    background-color: var(--dark-input-background);
+    color: var(--dark-text-color);
+    border-bottom: 3px solid transparent;
+}
+
+body.dark-mode .tabs button.active {
+    color: var(--dark-accent-color);
+    border-bottom: 3px solid var(--dark-accent-color);
+}
+
+body.dark-mode .tabs button:hover {
+    background-color: var(--dark-secondary-color); /* Slightly darker on hover */
+}
+
+body.dark-mode .tab-pane {
+    background-color: var(--dark-card-background); /* Consistent with other cards */
+    border: 1px solid var(--dark-border-color);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode .tab-pane h2 {
+    color: var(--dark-accent-color);
+}
+
+body.dark-mode .share-btn,
+body.dark-mode .copy-btn {
+    background-color: var(--dark-accent-color);
+    color: var(--dark-background-color);
+}
+
+body.dark-mode .share-btn:hover,
+body.dark-mode .copy-btn:hover {
+    background-color: #c99330;
+}
+
+body.dark-mode .password-item {
+    background-color: var(--dark-input-background); /* Similar to input fields */
+    border: 1px solid var(--dark-border-color);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+body.dark-mode .password-details label {
+    color: var(--dark-accent-color);
+}
+
+body.dark-mode .password-details span,
+body.dark-mode .password-details input {
+    color: var(--dark-text-color);
+}
+
+body.dark-mode .password-details input {
+    background-color: transparent; /* Ensure input background is consistent */
+}
+
+body.dark-mode .popup-content {
+    background-color: var(--dark-card-background);
+    color: var(--dark-text-color);
+    border: 1px solid var(--dark-border-color);
+}
+
+body.dark-mode .popup-header h2 {
+    color: var(--dark-accent-color);
+}
+
+body.dark-mode .popup-body p,
+body.dark-mode .popup-body ul li {
+    color: var(--dark-text-color);
+}
+
+body.dark-mode .popup-footer button#popup-ok {
+    background-color: var(--dark-accent-color);
+    color: var(--dark-background-color);
+}
+
+body.dark-mode .popup-footer button#popup-ok:hover {
+    background-color: #c99330;
+}
+
+body.dark-mode .popup-close {
+    color: var(--dark-text-color);
+}
+
+body.dark-mode .popup-close:hover {
+    color: var(--dark-accent-color);
+}
+
+/* Theme toggle button styling */
+.theme-switch-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: 20px; /* Adjust as needed */
+}
+
+.theme-switch {
+    display: inline-block;
+    height: 24px; /* Smaller toggle */
+    position: relative;
+    width: 48px; /* Smaller toggle */
+}
+
+.theme-switch input {
+    display:none;
+}
+
+.slider {
+    background-color: #ccc;
+    bottom: 0;
+    cursor: pointer;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: .4s;
+    border-radius: 24px; /* Keep it rounded */
+}
+
+.slider:before {
+    background-color: #fff;
+    bottom: 3px; /* Adjust for smaller toggle */
+    content: "";
+    height: 18px; /* Smaller circle */
+    left: 3px; /* Adjust for smaller toggle */
+    position: absolute;
+    transition: .4s;
+    width: 18px; /* Smaller circle */
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: var(--dark-accent-color); /* Use accent color for active toggle */
+}
+
+input:checked + .slider:before {
+    transform: translateX(24px); /* Adjust for smaller toggle */
+}
+
+.theme-switch-wrapper .material-icons {
+    font-size: 20px; /* Smaller icons */
+    color: var(--text-color); /* Default text color */
+}
+
+body.dark-mode .theme-switch-wrapper .material-icons {
+    color: var(--dark-text-color); /* Dark mode text color */
 }
 
 /* إعادة تعيين الأنماط الافتراضية */
