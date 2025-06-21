@@ -16,10 +16,19 @@
             <img src="logo1.png" alt="Logo" class="header-logo">
             <h1 id="branchName">المفضلة</h1>
         </div>
-        <a href="dashboard.html" class="back-btn">
-            <span class="material-icons">arrow_back</span> 
-        </a>
-       
+        <div class="header-right" style="display: flex; align-items: center;">
+            <div class="theme-switch-wrapper">
+                <span class="material-icons" style="color: white;">wb_sunny</span>
+                <label class="theme-switch" for="themeToggle">
+                    <input type="checkbox" id="themeToggle" onchange="toggleDarkMode()">
+                    <span class="slider round"></span>
+                </label>
+                <span class="material-icons" style="color: white;">nights_stay</span>
+            </div>
+            <a href="dashboard.html" class="back-btn" style="margin-left: 15px;">
+                <span class="material-icons">arrow_back</span>
+            </a>
+        </div>
     </header>
     <main class="main-content">
         <div id="favoritesContainer" class="cards-container"></div>
