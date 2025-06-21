@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" class="offline-page-html"> <!-- Added class for specific html styling if needed -->
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -194,8 +194,17 @@
       }
     }
   </style>
+    <link rel="stylesheet" href="style.css"> <!-- Added to ensure toggle styles are loaded -->
 </head>
-<body>
+<body class="offline-page"> <!-- Ensure body has class for dark mode to apply -->
+    <div class="theme-switch-wrapper" style="position: absolute; top: 20px; left: 20px; z-index: 10000;">
+        <span class="material-icons">wb_sunny</span>
+        <label class="theme-switch" for="themeToggle">
+            <input type="checkbox" id="themeToggle" onchange="toggleOfflineDarkMode()" />
+            <span class="slider round"></span>
+        </label>
+        <span class="material-icons">nights_stay</span>
+    </div>
   <div class="offline-page">
     <div class="offline-container">
       <div class="offline-icon">
@@ -221,6 +230,30 @@
   </div>
 
   <script>
+    function toggleOfflineDarkMode() {
+        document.body.classList.toggle('dark-mode');
+        const isDarkMode = document.body.classList.contains('dark-mode');
+        localStorage.setItem('darkMode', isDarkMode); // Save preference for other pages
+        // Update toggle state
+        const themeToggle = document.getElementById('themeToggle');
+        if (themeToggle) {
+            themeToggle.checked = isDarkMode;
+        }
+    }
+
+    function loadOfflineThemePreference() {
+        const darkMode = localStorage.getItem('darkMode') === 'true';
+        if (darkMode) {
+            document.body.classList.add('dark-mode');
+        }
+        const themeToggle = document.getElementById('themeToggle');
+        if (themeToggle) {
+            themeToggle.checked = darkMode;
+        }
+    }
+    // Load theme preference when the page loads
+    document.addEventListener('DOMContentLoaded', loadOfflineThemePreference);
+
     const title = document.querySelector('.offline-title');
     const message = document.querySelector('.offline-message');
     const icon = document.querySelector('.offline-icon svg');
