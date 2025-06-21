@@ -1251,3 +1251,31 @@ window.addEventListener('load', function () {
     window.location.href = 'offline.html';
   });
 });
+
+// دالة لتبديل الوضع المظلم/الفاتح
+function toggleDarkMode() {
+  document.body.classList.toggle('dark-mode');
+  const isDarkMode = document.body.classList.contains('dark-mode');
+  localStorage.setItem('darkMode', isDarkMode);
+  // تحديث حالة مفتاح التبديل إذا كان موجودًا
+  const themeToggle = document.getElementById('themeToggle');
+  if (themeToggle) {
+    themeToggle.checked = isDarkMode;
+  }
+}
+
+// دالة لتحميل تفضيل الوضع عند تحميل الصفحة
+function loadThemePreference() {
+  const darkMode = localStorage.getItem('darkMode') === 'true';
+  if (darkMode) {
+    document.body.classList.add('dark-mode');
+  }
+  // تحديث حالة مفتاح التبديل إذا كان موجودًا
+  const themeToggle = document.getElementById('themeToggle');
+  if (themeToggle) {
+    themeToggle.checked = darkMode;
+  }
+}
+
+// استدعاء دالة تحميل تفضيل الوضع عند تحميل الصفحة
+document.addEventListener('DOMContentLoaded', loadThemePreference);
