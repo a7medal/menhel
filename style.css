@@ -11,10 +11,10 @@
     --dark-primary-color: #1C6459; /* الأساسي */
     --dark-secondary-color: #2C3E50; /* الثانوي */
     --dark-accent-color: #DBA437; /* التأكيدي */
-    --dark-background-color: #1A1A1A; /* الخلفية */
+    --dark-background-color: #222831; /* الخلفية - رمادي داكن حديث */
     --dark-text-color: #ECF0F1; /* لون النصوص */
-    --dark-card-background: #2C3E50; /* خلفية البطاقات */
-    --dark-input-background: #34495E; /* خلفية حقول الإدخال */
+    --dark-card-background: #2D3748; /* خلفية البطاقات - أغمق قليلاً من الثانوي */
+    --dark-input-background: #3A475A; /* خلفية حقول الإدخال - أفتح قليلاً من البطاقة */
     --dark-border-color: #34495E; /* لون الحدود */
 }
 
@@ -133,9 +133,47 @@ body.dark-mode .card-header h3 {
     color: var(--dark-text-color);
 }
 
-body.dark-mode .material-icons {
-    color: var(--dark-accent-color);
+body.dark-mode .material-icons,
+body.dark-mode .header-left .material-icons, /* For icons in header */
+body.dark-mode .logout-btn .material-icons,
+body.dark-mode .back-btn .material-icons,
+body.dark-mode .favorites-btn .material-icons,
+body.dark-mode .account-btn .material-icons,
+body.dark-mode .login-btn .material-icons,
+body.dark-mode .input-group .material-icons,
+body.dark-mode .share-btn .material-icons,
+body.dark-mode .copy-btn .material-icons,
+body.dark-mode .notice-content .material-icons,
+body.dark-mode .theme-switch-wrapper .material-icons,
+body.dark-mode .search-container .material-icons,
+body.dark-mode .offline-page .retry-btn .material-icons,
+body.dark-mode .admin-header .logout-btn .material-icons, /* Admin logout icon */
+body.dark-mode .card-header .material-icons:not(.favorite-icon):not(.arrow) /* General card icons, excluding specific ones */
+{
+    color: var(--dark-accent-color) !important; /* Ensure override for specificity issues */
 }
+
+/* Specific overrides if accent is not desired for all */
+body.dark-mode .theme-switch-wrapper .material-icons {
+    color: var(--dark-text-color) !important; /* Keep sun/moon icons in text color */
+}
+
+body.dark-mode .logout-btn .material-icons, /* Logout icon in header */
+body.dark-mode .admin-header .logout-btn .material-icons {
+    color: white !important; /* Keep logout icon white if button is accent */
+}
+body.dark-mode .login-btn .material-icons {
+    color: var(--dark-background-color) !important; /* If login button text is dark */
+}
+
+body.dark-mode .favorites-btn .material-icons,
+body.dark-mode .account-btn .material-icons,
+body.dark-mode .back-btn .material-icons,
+body.dark-mode .share-btn .material-icons,
+body.dark-mode .copy-btn .material-icons {
+    color: var(--dark-background-color) !important; /* If these buttons have dark text on accent bg */
+}
+
 
 body.dark-mode .file-item {
     background: var(--dark-input-background);
@@ -236,6 +274,37 @@ body.dark-mode .toggle-password:hover {
     color: var(--dark-text-color); /* Lighter for hover */
 }
 
+/* Dark mode for login history cards in account.html */
+body.dark-mode .login-card {
+    background: linear-gradient(to bottom right, var(--dark-card-background), var(--dark-secondary-color));
+    border-left: 6px solid var(--dark-accent-color);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode .login-card:hover {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .login-card .login-info .material-icons {
+    background-color: var(--dark-accent-color) !important; /* Ensure icon background is accent */
+    color: var(--dark-card-background) !important; /* Ensure icon color contrasts with its background */
+}
+
+body.dark-mode .login-card .username {
+    color: var(--dark-text-color);
+}
+
+body.dark-mode .login-card .time {
+    color: var(--dark-text-color);
+    opacity: 0.8;
+}
+
+body.dark-mode .no-logins {
+    color: var(--dark-text-color);
+    opacity: 0.7;
+}
+
+
 /* Adjustments for offline page in dark mode */
 body.dark-mode.offline-page {
     background-color: var(--dark-background-color);
@@ -270,7 +339,7 @@ body.dark-mode .admin-container {
     color: var(--dark-text-color);
 }
 
-body.dark-mode .admin-header {
+body.dark-mode .admin-header { /* This is dashboard-header style, ensure it's correctly applied or distinct */
     background: var(--dark-secondary-color);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
@@ -279,60 +348,106 @@ body.dark-mode .admin-header h1 {
     color: var(--dark-text-color);
 }
 
-body.dark-mode .tabs button {
-    background-color: var(--dark-input-background);
-    color: var(--dark-text-color);
-    border-bottom: 3px solid transparent;
+body.dark-mode .tabs {
+    border-bottom: 2px solid var(--dark-border-color);
 }
 
-body.dark-mode .tabs button.active {
+body.dark-mode .tab-button {
+    background: var(--dark-input-background);
+    color: var(--dark-text-color);
+    border-bottom: 3px solid transparent; /* Ensure this is for non-active */
+}
+
+body.dark-mode .tab-button.active {
+    background: var(--dark-secondary-color); /* Darker for active tab */
     color: var(--dark-accent-color);
     border-bottom: 3px solid var(--dark-accent-color);
 }
 
-body.dark-mode .tabs button:hover {
-    background-color: var(--dark-secondary-color); /* Slightly darker on hover */
+body.dark-mode .tab-button:hover:not(.active) {
+    background-color: var(--dark-card-background); /* Lighter on hover for non-active */
 }
 
 body.dark-mode .tab-pane {
-    background-color: var(--dark-card-background); /* Consistent with other cards */
+    background-color: var(--dark-card-background);
     border: 1px solid var(--dark-border-color);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); /* Slightly more pronounced shadow */
 }
 
-body.dark-mode .tab-pane h2 {
+body.dark-mode .tab-pane h2, 
+body.dark-mode .tab-pane h3 { /* Ensure all headings in tab pane are styled */
     color: var(--dark-accent-color);
 }
 
-body.dark-mode .share-btn,
-body.dark-mode .copy-btn {
+/* Ensure asset cards within admin page also follow dark mode */
+body.dark-mode .admin-container .asset-card {
+    background: var(--dark-secondary-color); /* Slightly different from main dashboard cards if needed */
+    border: 1px solid var(--dark-border-color);
+}
+
+body.dark-mode .admin-container .card-header {
+    background: var(--dark-input-background); /* Header of card */
+    border-bottom: 1px solid var(--dark-border-color);
+}
+
+body.dark-mode .admin-container .card-header h3 {
+    color: var(--dark-text-color);
+}
+
+body.dark-mode .admin-container .file-item {
+    background: var(--dark-card-background); /* Files within cards */
+    color: var(--dark-text-color);
+}
+body.dark-mode .admin-container .file-item:hover {
+    background: var(--dark-accent-color);
+    color: var(--dark-background-color);
+}
+
+body.dark-mode .admin-container .color-box {
+    border: 1px solid var(--dark-border-color);
+}
+
+
+body.dark-mode .admin-container .share-btn,
+body.dark-mode .admin-container .copy-btn { /* Specific to admin page if needed */
     background-color: var(--dark-accent-color);
     color: var(--dark-background-color);
 }
 
-body.dark-mode .share-btn:hover,
-body.dark-mode .copy-btn:hover {
+body.dark-mode .admin-container .share-btn:hover,
+body.dark-mode .admin-container .copy-btn:hover {
     background-color: #c99330;
 }
 
-body.dark-mode .password-item {
-    background-color: var(--dark-input-background); /* Similar to input fields */
+body.dark-mode .passwords-container .password-item { /* Ensure password items are styled */
+    background-color: var(--dark-input-background);
     border: 1px solid var(--dark-border-color);
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.15);
 }
 
-body.dark-mode .password-details label {
+body.dark-mode .passwords-container .password-details label {
     color: var(--dark-accent-color);
 }
 
-body.dark-mode .password-details span,
-body.dark-mode .password-details input {
+body.dark-mode .passwords-container .password-details span,
+body.dark-mode .passwords-container .password-details input {
     color: var(--dark-text-color);
 }
 
-body.dark-mode .password-details input {
-    background-color: transparent; /* Ensure input background is consistent */
+body.dark-mode .passwords-container .password-details input {
+    background-color: var(--dark-card-background); /* Input field within password item */
+    border: 1px solid var(--dark-border-color);
 }
+body.dark-mode .passwords-container .password-details input:focus {
+    border-color: var(--dark-accent-color);
+}
+
+
+body.dark-mode .no-favorites { /* If .no-favorites is used in admin */
+    background: var(--dark-card-background);
+    color: var(--dark-text-color);
+}
+
 
 body.dark-mode .popup-content {
     background-color: var(--dark-card-background);
